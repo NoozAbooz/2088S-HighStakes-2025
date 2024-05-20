@@ -1,27 +1,30 @@
 #pragma once
-#include "api.h"
+#include "main.h"
 
 // Controller
-inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
+extern pros::Controller controller;
 
 // Drivetrain
-// extern pros::MotorGroup leftDrive;
-// extern pros::MotorGroup rightDrive;
+extern pros::MotorGroup leftDrive;
+extern pros::MotorGroup rightDrive;
+
+extern lemlib::Chassis chassis;
 
 // Intake
-inline pros::Motor intake(-5, pros::v5::MotorGears::blue);
+extern pros::Motor intake;
 
-// Slapper
-inline pros::Motor slapper(7, pros::v5::MotorGears::red);
-
-// Pneumatics
-inline pros::adi::Pneumatics wingPiston('H', false);
-inline pros::adi::Pneumatics liftPiston('G', false);
-
-// LED
-
-
-/* Sensors */
+// Catapult
+extern pros::Motor slapper;
 
 // Inertial
-inline pros::Imu inertial(11);
+extern pros::Imu inertial;
+extern pros::Imu inertial2;
+
+extern pros::adi::Potentiometer potentiometer;
+
+extern pros::adi::DigitalOut leftWingPiston;
+extern pros::adi::DigitalOut rightWingPiston;
+
+extern pros::adi::DigitalOut liftPiston;
+extern pros::adi::DigitalOut tailPiston;
+extern pros::adi::DigitalOut ptoPiston;

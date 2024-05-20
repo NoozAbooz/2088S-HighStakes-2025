@@ -8,20 +8,19 @@
  * operator control task will be stopped. Re-enabling the robot will not resume 
  * the task from where it left off.
  */
-
 void opcontrol() {
 	while (true) { // Main continuous loop
 		/* Drive */
-		arcadeDrive();
+		strait::arcadeDrive(12, 0, 0.5);
 
 		/* Subsystem Listeners */
 		refreshIntake();
-		refreshSlapper();
-		refreshWings();
+		refreshLift();
 
-		// Report temperature telemetry (this line of code has never worked from the beginning)
-		controller.print(1, 0, "%.0lfC S%.0lfC I%.0lfC", leftDrive->get_temperature(), slapper.get_temperature(), intake.get_temperature());
+		// Report temperature telemetry (this code has never worked since the beginning 😭)
+		double drivetrainTemps = strait::vector_average(leftDrive.get_temperature_all());
+		controller.print(0, 0, "DT%.0lf %d %.0lf %.0lf", drivetrainTemps, strait::selector::auton, chassis.getPose().x, chassis.getPose().y);
 
-		pros::delay(10); // Delay to save resources on brain
+		pros::delay(100); // Delay to save resources on brain
 	}
 }

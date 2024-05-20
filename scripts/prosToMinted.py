@@ -58,7 +58,8 @@ def main():
                 those should be organized outside of src directory
             '''
             if(not 'src' in components
-            or ('src' and 'auton') in components):
+            or ('src' and 'auton') in components
+            or ('src' and 'libSTRAIT') in components):
                 continue
 
             # Build a relative unix path for Overleaf to find the source files
@@ -104,6 +105,36 @@ def main():
             f.write("\\inputminted[linenos,tabsize=2,breaklines,frame=lines,framesep=3mm,bgcolor=LightGray]{c}{" + name + "}\n")
             f.write("\\pagebreak\n\n")
 
+        # Recursively search the entire project for any relevant libstrait files
+        f.write("%%---------------------\n")
+        f.write("\\section{libSTRAITIS}\n\n")
+        for source in root.cwd().glob('**/*.c*'):
+            # break source into components starting from the root
+            components = source.parts[ROOT_START:]
+
+            '''
+                It is good practice to only have .c and .cpp files in src
+                PROS projects may contain .c image arrays or .csv files but
+                those should be organized outside of src directory
+            '''
+            if(not 'libSTRAITIS' in components
+            or '.d' in components
+            or 'bin' in components):
+                continue
+
+            # Build a relative unix path for Overleaf to find the source files
+            rel_src_path = ""
+            for i in range(0, len(components)-1):
+                rel_src_path += components[i] + "/"
+            name = components[-1]
+            rel_src_path += name
+            copy(source, zip_source)
+
+            # Generate LaTeX code for any valid source file
+            f.write("\\subsection{" + rel_src_path + "}\n")
+            f.write("\\inputminted[linenos,tabsize=2,breaklines,frame=lines,framesep=3mm,bgcolor=LightGray]{c}{" + name + "}\n")
+            f.write("\\pagebreak\n\n")
+
         # Recursively search the entire project for any header files
         f.write("%%---------------------\n")
         f.write("\\section{Header Files}\n\n")
@@ -117,17 +148,21 @@ def main():
             if('api.h' in components
             or ('include' and 'main.h') in components
             or ('include' and 'liblvgl') in components
+            or ('include' and 'display') in components
+            or ('include' and 'okapi') in components
 
             or ('include' and 'gif-pros') in components
             or ('include' and 'lemlib') in components
             or ('include' and 'fmt') in components
             or ('include' and 'robodash') in components
             or ('include' and 'sylib') in components
+            or ('include' and 'Graphy') in components
 
             or ('include' and 'pros') in components
             or ('include' and 'output') in components
 
             or ('docs' and 'index.html') in components
+            or ('docs' and 'PROS') in components
 
             or 'cquery_cached_index' in components
             or (not 'include') in components
@@ -185,8 +220,8 @@ def main():
 \predate{\begin{center}}
     \postdate{\par\end{center}}
 
-\title{\textbf{2088S Programming Docs}}
-\author{Michael Z and Brandon K\thanks{with support from Western Mechatronics and VTOW}}
+\title{\textbf{2088S Code (libSTRAITIS)}}
+\author{Michael Z and Brandon K\thanks{with support from WestMech and VTOW}}
 \date{\today}
 
 \begin{document}

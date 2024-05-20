@@ -22,7 +22,7 @@
  *
  * For instance, E_CONTROLLER_MASTER has a shorter name: CONTROLLER_MASTER.
  * E_CONTROLLER_MASTER is pedantically correct within the PROS styleguide, but
- * not convienent for most student programmers.
+ * not convenient for most student programmers.
  */
 #define PROS_USE_SIMPLE_NAMES
 
@@ -35,10 +35,6 @@
 #define PROS_USE_LITERALS
 
 #include "api.h"
-
-#include "deviceGlobals.hpp"
-#include "abstractGlobals.hpp"
-#include "autonGlobals.hpp"
 
 /**
  * You should add more #includes here
@@ -75,9 +71,12 @@ void opcontrol(void);
 #endif
 
 #ifdef __cplusplus
-/**
- * You can add C++-only headers here
- */
+// Device Init
+#include "abstractGlobals.hpp"
+#include "deviceGlobals.hpp"
+
+// libSTRAIT
+#include "libSTRAITIS/strait.hpp"
 //#include <iostream>
 #endif
 

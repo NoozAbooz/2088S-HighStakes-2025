@@ -4,13 +4,15 @@
 <br />
 <div align="center">
   <a href="https://github.com/2088S">
-    <img src="https://media.discordapp.net/attachments/918324957577093211/1087921955950313503/BE835697-5823-470A-951B-0C76C5AA13C2.png?width=463&height=463" alt="Logo" width="200">
+    <img src="https://raw.githubusercontent.com/NoozAbooz/2088S-HighStakes-2025/V1/logo.png" alt="Logo" width="200">
   </a>
+
+<h1 align="center">High Stakes</h1>
 
   <p align="center">
     VRC Team 2088S - "Straitis"
     <br/>
-    2nd year MS VEX team based in Calgary, Alberta
+    3rd year HS VRC team based in Calgary, Alberta
     <br/>
     Part of the Western Mechatronics Robotics Club
     <br/>
@@ -21,18 +23,10 @@
 
 <!-- GETTING STARTED -->
 ## Getting Started
-These steps detail how to build the code locally. Because this code does not support simulation, it is a assumed that you have a physical robot to test on.
+These steps detail how to build the code locally. Because this code does not support simulation (yet), it is a assumed that you have a physical robot to test on.
 
 ### Prerequisites
 * [PROS](https://pros.cs.purdue.edu/)
-
-### Installation
-1. Clone the repo
-   ```sh
-   git clone https://github.com/NoozSBC/VRC-OverUnder-2024.git
-   ```
-2. Open the project in VSCode
-3. Build and deploy the code to your robot (`pros mu`)
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -45,5 +39,9 @@ To contribute, follow these steps:
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+<!-- CONTACT -->
+## Contact
+If you would like to contact us, you can do so on the WestMech [discord server](https://discord.gg/W4mJYp3).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
