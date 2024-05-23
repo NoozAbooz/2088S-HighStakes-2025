@@ -26,15 +26,20 @@ pros::adi::Potentiometer potentiometer('G');
 
 pros::Imu inertial(2);
 pros::Imu inertial2(3);
-// pros::Rotation verticalEnc(15, true);
-// lemlib::TrackingWheel vertical(&verticalEnc, lemlib::Omniwheel::NEW_275, -3.7);
+
+pros::Rotation verticalEncoder(15);
+pros::Rotation horizontalEncoder(16);
+// horizontal tracking wheel
+lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_275, -5.75);
+// vertical tracking wheel
+lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemlib::Omniwheel::NEW_275, -2.5);
 
 // drivetrain settings
 lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               &rightDrive, // right motor group
                               10.5, // 25 hole track width
                               lemlib::Omniwheel::NEW_325,
-                              450, // drivetrain rpm
+                              360, // drivetrain rpm
                               2 // chase power is 2. If we had traction wheels, it would have been 8
 );
 // lateral motion controller

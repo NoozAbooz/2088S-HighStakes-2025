@@ -1,5 +1,4 @@
 #include "main.h"
-#include "robodash/core.h"
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -10,8 +9,8 @@
  * the task from where it left off.
  */
 void opcontrol() {
+	rd_view_focus(gifview);
 	while (true) { // Main continuous loop
-		rd_view_focus(gifview);
 		/* Drive */
 		strait::arcadeDrive(12, 0, 0.5);
 
