@@ -5,6 +5,9 @@
 #include "gif-pros/gifclass.hpp"
 #include "robodash/api.h"
 
+extern rd::Console console;
+extern rd_view_t *gifview;
+
 /* Functions */
 // Slapper
 void refreshSlapper();

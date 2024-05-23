@@ -20,9 +20,8 @@ void testPID() {
 }
 
 rd::Selector gui_selector({
-    {"PID test", &testPID},
+    {"PID test", &testPID, "/usd/images/pidtest.bin"},
 });
-
 
 void autonomous() {
     chassis.setPose(0,0,0);

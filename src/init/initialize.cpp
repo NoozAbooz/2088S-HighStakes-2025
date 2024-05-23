@@ -11,12 +11,12 @@ void initialize() {
     
     chassis.calibrate();
     pros::Task odomTask(strait::odomThread);
-
-    rd::Console console;
-
-    rd_view_t *gifview = rd_view_create("Logo GIF");
-    static Gif gif("/usd/logo2.gif", rd_view_obj(gifview));
 }
+
+// Robodash inits
+rd::Console console;
+rd_view_t *gifview = rd_view_create("Logo");
+static Gif gif("/usd/logo2.gif", rd_view_obj(gifview));
 
 /**
  * Runs while the robot is in the disabled state of Field Management System or

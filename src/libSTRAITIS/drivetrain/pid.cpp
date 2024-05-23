@@ -32,7 +32,7 @@ void strait::LateralPID::move_lateral_pid(double target, double maxSpeed, double
 	double local_timer = 0;
 
 	while (true) {
-		double error = target - ((leftDrive.get_positions().at(0) + rightDrive.get_positions().at(0)) / 2);
+		double error = target - ((leftDrive.get_position(0) + rightDrive.get_position(0)) / 2);
 		integral = (integral + error);
 		derivative = (error - prevError);
 
