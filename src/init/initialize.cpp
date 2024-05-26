@@ -16,7 +16,6 @@ void initialize() {
 // Robodash inits
 rd::Console console;
 rd_view_t *gifview = rd_view_create("Logo");
-static Gif gif("/usd/logo2.gif", rd_view_obj(gifview));
 
 /**
  * Runs while the robot is in the disabled state of Field Management System or
@@ -24,6 +23,7 @@ static Gif gif("/usd/logo2.gif", rd_view_obj(gifview));
  * the robot is enabled, this task will exit.
  */
 void disabled() {
+    gif.clean();
 }
 
 /**

@@ -7,6 +7,7 @@
 
 extern rd::Console console;
 extern rd_view_t *gifview;
+extern Gif gif;
 
 /* Functions */
 // Slapper

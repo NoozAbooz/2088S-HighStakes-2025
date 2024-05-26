@@ -9,6 +9,7 @@
  * the task from where it left off.
  */
 void opcontrol() {
+	static Gif gif("/usd/logo2.gif", rd_view_obj(gifview));
 	rd_view_focus(gifview);
 	while (true) { // Main continuous loop
 		/* Drive */
@@ -20,8 +21,8 @@ void opcontrol() {
 
 		// Report temperature telemetry (this code has never worked since the beginning 😭)
 		double drivetrainTemps = strait::vector_average(leftDrive.get_temperature_all());
-		controller.print(0, 0, "DT%.0lf %d %.0lf %.0lf", drivetrainTemps, strait::selector::auton, chassis.getPose().x, chassis.getPose().y);
+		controller.print(0, 0, "DT%.0lf %.0lf %.0lf", drivetrainTemps, chassis.getPose().x, chassis.getPose().y);
 
-		pros::delay(100); // Delay to save resources on brain
+		pros::delay(10); // Delay to save resources on brain
 	}
 }

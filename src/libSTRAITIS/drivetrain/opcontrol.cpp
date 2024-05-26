@@ -12,4 +12,4 @@ void strait::arcadeDrive(int linCurve, int rotCurve, double turnScale) {
 	// move motors based on direction (eg move left more when turn is positive)
 	leftDrive.move_voltage((power + turn) * (12000.0 / 127));
 	rightDrive.move_voltage((power - turn) * (12000.0 / 127));
-}
+}	
