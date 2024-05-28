@@ -20,6 +20,9 @@ extern pros::Motor slapper;
 extern pros::Imu inertial;
 extern pros::Imu inertial2;
 
+extern pros::Rotation verticalEncoder;
+extern pros::Rotation horizontalEncoder;
+
 extern pros::adi::Potentiometer potentiometer;
 
 extern pros::adi::DigitalOut leftWingPiston;
