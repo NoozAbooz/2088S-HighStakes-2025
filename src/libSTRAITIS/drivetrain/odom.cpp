@@ -64,10 +64,13 @@ void strait::odomThread() {
         
 		// Only run calcs if robot is acively moving
 		if (inertial.get_accel().x > 0.1 || inertial.get_accel().y > 0.1) {
+			double deltaLeft = (vertical_pos - prev_vertical_pos) * (M_PI / 180) * WHEEL_RADIUS; // Convert degrees to radians
+			double deltaPerpendicular = (perpendicularPosition - prevPerpendicularPosition) * (M_PI / 180) * WHEEL_RADIUS;
+
 			delta_distance = distance_traveled - previous_distance_traveled;
 			// std trig functions are in radians, so we have intermediary conversion to radians
-        	x += delta_distance * std::cos(to_rad(heading));
-        	y += delta_distance * std::sin(to_rad(heading));
+        	x += delta_distance * std::cos(heading);
+        	y += delta_distance * std::sin(heading);
 
 			// Set previous_distance_travelled for the next loop iteration
         	previous_distance_traveled = distance_traveled;
