@@ -13,10 +13,6 @@ void initialize() {
     pros::Task odomTask(strait::odomThread);
 }
 
-// Robodash inits
-rd::Console console;
-rd_view_t *gifview = rd_view_create("Logo");
-
 /**
  * Runs while the robot is in the disabled state of Field Management System or
  * the VEX Competition Switch, following either autonomous or opcontrol. When
@@ -37,3 +33,7 @@ void disabled() {
  */
 void competition_initialize() {
 }
+
+// Robodash inits
+rd::Console console;
+rd_view_t *gifview = rd_view_create("Logo");
