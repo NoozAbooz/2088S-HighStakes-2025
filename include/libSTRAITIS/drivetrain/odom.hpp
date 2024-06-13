@@ -8,4 +8,8 @@ namespace strait
             double y;
             double theta;
     };
+
+    extern Position odom_pos;
+
+    void odomViewInit();
 }

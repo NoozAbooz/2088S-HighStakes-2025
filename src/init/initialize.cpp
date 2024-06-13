@@ -11,6 +11,7 @@ void initialize() {
     
     chassis.calibrate();
     pros::Task odomTask(strait::odomThread);
+    pros::Task odomViewTask(strait::odomViewInit);
 }
 
 /**
@@ -33,7 +34,3 @@ void disabled() {
  */
 void competition_initialize() {
 }
-
-// Robodash inits
-rd::Console console;
-rd_view_t *gifview = rd_view_create("Logo");
