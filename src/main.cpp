@@ -9,7 +9,7 @@
  * the task from where it left off.
  */
 void opcontrol() {
-	static Gif gif("/usd/logo2.gif", rd_view_obj(gifview));
+	gif.resume();
 	rd_view_focus(gifview);
 	while (true) { // Main continuous loop
 		/* Drive */

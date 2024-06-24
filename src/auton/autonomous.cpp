@@ -16,11 +16,21 @@ using namespace strait;
 
 void testPID() {
     chassis.moveToPoint(0, 0, 10);
-    chassis.moveToPoint(0, 10, 1000);
+    chassis.moveToPoint(0, 24, 5000);
+}
+
+void sixballs() {
+    
+}
+
+void closeside() {
+    
 }
 
 rd::Selector gui_selector({
     {"PID test", &testPID, "/usd/images/pidtest.bin"},
+    {"Six balls", &sixballs},
+    {"Close side", &closeside}
 });
 
 void autonomous() {

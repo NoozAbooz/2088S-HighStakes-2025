@@ -11,7 +11,6 @@ pros::MotorGroup rightDrive({16, 17, 18});
 
 // Intake
 pros::Motor intake(10);
-pros::Motor slapper(3);
 
 // Pneumatics
 pros::adi::DigitalOut leftWingPiston('B');
@@ -39,7 +38,7 @@ lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               &rightDrive, // right motor group
                               10.5, // 25 hole track width
                               lemlib::Omniwheel::NEW_325,
-                              360, // drivetrain rpm
+                              450, // drivetrain rpm
                               2 // chase power is 2. If we had traction wheels, it would have been 8
 );
 // lateral motion controller

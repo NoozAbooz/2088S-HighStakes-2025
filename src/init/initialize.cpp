@@ -20,7 +20,7 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-    gif.clean();
+    gif.pause();
 }
 
 /**
