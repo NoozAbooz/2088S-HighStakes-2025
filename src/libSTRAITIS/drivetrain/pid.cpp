@@ -5,23 +5,23 @@ double global_ki = 0;
 double global_kd = 0;
 double global_timeOut = 0;
 
-using namespace strait;
+using namespace ks;
 
-strait::LateralPID::LateralPID() {
+ks::LateralPID::LateralPID() {
 	pid.kp = global_kp;
 	pid.ki = global_ki;
 	pid.kd = global_kd;
 	pid.timeOut = global_timeOut;
 }
 
-void strait::LateralPID::set_lateral_constants(double kp, double ki, double kd, double timeOut) {
+void ks::LateralPID::set_lateral_constants(double kp, double ki, double kd, double timeOut) {
 	pid.kp = kp;
 	pid.ki = ki;
 	pid.kd = kd;	
 	pid.timeOut = timeOut;
 }
 
-void strait::LateralPID::move_lateral_pid(double target, double maxSpeed, double minSpeed) {
+void ks::LateralPID::move_lateral_pid(double target, double maxSpeed, double minSpeed) {
 	double prevError = 0;
 	double integral = 0;
 	double derivative = 0;

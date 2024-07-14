@@ -1,6 +1,6 @@
 #include "main.h"
 
-using namespace strait;
+using namespace ks;
 
 double    x = 0; // global X
 double    y = 0; // global Y
@@ -21,11 +21,11 @@ double horizontal_wheel_offset = 10.75;
 
 // Return robot rotation in radians, unwrapped to 360
 double get_imu_rotation() {
-	double rotation1 = inertial.get_rotation();
+	double rotation1 = inertial1.get_rotation();
 	double rotation2 = inertial2.get_rotation();
 
 	double average_rotation = ((rotation1 * (360.0 / gyro_scale1)) + (rotation2 * (360.0 / gyro_scale2))) / 2;
-	return to_rad(average_rotation);
+	return ks::to_rad(average_rotation);
 }
 
 double get_vertical_distance_traveled() { 
@@ -50,7 +50,7 @@ double get_horizontal_distance_traveled() {
 // 	return std::fmod(to_deg(heading_in_radians), 360);
 // }
 
-void strait::odomThread() {
+void odomThread() {
 	inertial2.reset();
 
 	while (true) {
@@ -62,7 +62,7 @@ void strait::odomThread() {
 		double heading = fmod(get_imu_rotation() - 90, 360);
         
 		// Only run calcs if robot is acively moving
-		if (inertial.get_accel().x > 0.1 || inertial.get_accel().y > 0.1) {
+		if (inertial1.get_accel().x > 0.1 || inertial1.get_accel().y > 0.1) {
 			// double deltaLeft = (vertical_pos - prev_vertical_pos) * (M_PI / 180) * WHEEL_RADIUS; // Convert degrees to radians
 			// double deltaPerpendicular = (perpendicularPosition - prevPerpendicularPosition) * (M_PI / 180) * WHEEL_RADIUS;
 

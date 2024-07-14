@@ -8,10 +8,15 @@
  */
 void initialize() {
     pros::delay(10);
-    
     chassis.calibrate();
-    pros::Task odomTask(strait::odomThread);
-    pros::Task odomViewTask(strait::odomViewInit);
+
+    // pros::Task imuCalibrateTask = pros::Task([] {
+    //     ks::calibrateIMU(inertial1);
+    //     ks::calibrateIMU(inertial2);
+    // });
+
+    leftDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
+    rightDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
 }
 
 /**
@@ -20,7 +25,6 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-    gif.pause();
 }
 
 /**

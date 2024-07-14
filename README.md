@@ -4,20 +4,20 @@
 <br />
 <div align="center">
   <a href="https://github.com/2088S">
-    <img src="https://raw.githubusercontent.com/NoozAbooz/2088S-HighStakes-2025/V1/logo.png" alt="Logo" width="200">
+    <img src="https://raw.githubusercontent.com/NoozAbooz/210K-HighStakes-2025/V1/logo.png" alt="Logo" width="200">
   </a>
 
 <h1 align="center">High Stakes</h1>
 
   <p align="center">
-    VRC Team 2088S - "Straitis"
+    VRC 210K Killswitch
     <br/>
     3rd year HS VRC team based in Calgary, Alberta
     <br/>
-    Part of the Western Mechatronics Robotics Club
+    Western Mechatronics Robotics Club
     <br/>
     <br/>
-    <a href="https://www.robotevents.com/teams/VRC/2088S">RobotEvents</a>
+    <a href="https://www.robotevents.com/teams/VRC/210K">RobotEvents</a>
   </p>
 </div>
 

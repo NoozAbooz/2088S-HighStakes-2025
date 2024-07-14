@@ -76,7 +76,8 @@ void opcontrol(void);
 #include "deviceGlobals.hpp"
 
 // libSTRAIT
-#include "libSTRAITIS/strait.hpp"
+#include "libKS/killswitch.hpp"
+
 //#include <iostream>
 #endif
 
