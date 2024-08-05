@@ -15,7 +15,7 @@ void opcontrol() {
 
 		/* Subsystem Listeners */
 		refreshIntake();
-		refreshLift();
+		refreshClamp();
 
 		// Report temperature telemetry (this code has never worked since the beginning 😭)
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());

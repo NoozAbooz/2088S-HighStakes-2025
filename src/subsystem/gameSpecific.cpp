@@ -11,25 +11,11 @@ void refreshIntake() {
 	}
 }
 
-// Wings
-bool leftWingToggle = false;
-bool rightWingToggle = false;
-bool tailToggle = true;
-
+bool clampToggle = false;
 // Refresh wing status
-void refreshWings() {
-    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)) {
-    	leftWingToggle = !leftWingToggle; 
-		leftWingPiston.set_value(leftWingToggle);
-    }
-
-	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)) {
-    	rightWingToggle = !rightWingToggle; 
-		rightWingPiston.set_value(rightWingToggle);
-    }
-
+void refreshClamp() {
 	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
-    	tailToggle = !tailToggle;
-		tailPiston.set_value(tailToggle);
+    	clampToggle = !clampToggle;
+		clampPiston.set_value(clampToggle);
     }
 }

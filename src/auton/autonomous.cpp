@@ -12,7 +12,7 @@
  * from where it left off.
  */
 
-using namespace strait;
+using namespace ks;
 
 void testPID() {
     chassis.moveToPoint(0, 0, 10);

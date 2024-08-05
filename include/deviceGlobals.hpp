@@ -12,11 +12,7 @@ inline pros::MotorGroup rightDrive({16, 17, 18});
 inline pros::Motor intake(10);
 
 // Pneumatics
-inline pros::adi::DigitalOut leftWingPiston('B');
-inline pros::adi::DigitalOut rightWingPiston('C');
-
-inline pros::adi::DigitalOut liftPiston('E');
-inline pros::adi::DigitalOut tailPiston('D');
+inline pros::adi::DigitalOut clampPiston('D');
 inline pros::adi::DigitalOut ptoPiston('X');
 
 /* Declare sensors */
