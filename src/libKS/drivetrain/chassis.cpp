@@ -1,7 +1,5 @@
 #include "main.h"
 
-using namespace ks;
-
 void moveRaw(int voltage, int time) {
 	leftDrive.move_voltage(voltage);
 	rightDrive.move_voltage(voltage);
@@ -19,7 +17,7 @@ double driveCurve(double input, double curve) {
 void arcadeDrive(int linCurve, int rotCurve, double turnScale) {
     // poll joystick input and convert to mv, then run through drivecurve function
     int power = ks::driveCurve(controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y), linCurve);
-    int turn = ks::driveCurve((controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * turnScale), rotCurve);
+    int turn = ks::driveCurve(controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X), rotCurve);
 
     // move motors based on direction (eg move left more when turn is positive)
     leftDrive.move_voltage((power + turn) * (12000.0 / 127));
