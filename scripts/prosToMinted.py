@@ -220,7 +220,7 @@ def main():
 \predate{\begin{center}}
     \postdate{\par\end{center}}
 
-\title{\textbf{2088S Code (libSTRAITIS)}}
+\title{\textbf{210K Programming Documentation (libKS)}}
 \author{Michael Z and Brandon K\thanks{with support from WestMech and VTOW}}
 \date{\today}
 
@@ -228,7 +228,7 @@ def main():
 \maketitle
 
 \begin{centering}
-\url{https://github.com/NoozAbooz/2088S-OverUnder-2024/}\\
+\url{https://github.com/NoozAbooz/210K-Highstakes-2025/}\\
 \end{centering}
 \newpage
 

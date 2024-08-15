@@ -9,18 +9,16 @@
  * the task from where it left off.
  */
 void opcontrol() {
-	gif.resume();
-	rd_view_focus(gifview);
 	while (true) { // Main continuous loop
 		/* Drive */
-		strait::arcadeDrive(12, 0, 0.5);
+		ks::arcadeDrive(0, 0, 1);
 
 		/* Subsystem Listeners */
 		refreshIntake();
-		refreshLift();
+		refreshClamp();
 
 		// Report temperature telemetry (this code has never worked since the beginning 😭)
-		double drivetrainTemps = strait::vector_average(leftDrive.get_temperature_all());
+		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
 		controller.print(0, 0, "DT%.0lf %.0lf %.0lf", drivetrainTemps, chassis.getPose().x, chassis.getPose().y);
 
 		pros::delay(10); // Delay to save resources on brain

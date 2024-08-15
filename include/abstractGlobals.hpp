@@ -10,12 +10,6 @@ extern rd_view_t *gifview;
 extern Gif gif;
 
 /* Functions */
-// Slapper
-void refreshSlapper();
-
-// Lift
-void refreshLift();
-
 // DT
 void arcadeDrive();
 
@@ -23,4 +17,4 @@ void arcadeDrive();
 void refreshIntake();
 
 // Wings
-void refreshWings();
+void refreshClamp();
