@@ -28,13 +28,13 @@ jobs:
       - name: Generate LaTeX Files
         run: |
           python scripts/prosToMinted.py
-          cp logo.png docs/output/
+          cp logo.png website/output/
         shell: sh
 
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          working_directory: 'docs/output/'
+          working_directory: 'website/output/'
         
           root_file: main.tex
           latexmk_shell_escape: true
@@ -42,9 +42,9 @@ jobs:
 
       - name: Copy PDF
         run: |
-          cp docs/output/main.pdf docs/main.pdf
-          sudo rm -rf docs/output
-          rm docs/output.zip
+          cp website/output/main.pdf website/main.pdf
+          sudo rm -rf website/output
+          rm website/output.zip
         shell: sh
 
       # - name: Update PDF release
@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: './docs/'
+          path: './website/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

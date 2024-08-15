@@ -34,7 +34,7 @@ def main():
 
     try:
         # create a permanent directory to store all the files we want to print
-        docs_dest = root.cwd()  / "docs"
+        docs_dest = root.cwd()  / "website"
         docs_dest.mkdir(parents=True, exist_ok=True)
     except FileExistsError as e:
         # If the directory already exists, skip creating a new one
@@ -59,7 +59,7 @@ def main():
             '''
             if(not 'src' in components
             or ('src' and 'auton') in components
-            or ('src' and 'libSTRAIT') in components):
+            or ('src' and 'libKS') in components):
                 continue
 
             # Build a relative unix path for Overleaf to find the source files
@@ -107,7 +107,7 @@ def main():
 
         # Recursively search the entire project for any relevant libstrait files
         f.write("%%---------------------\n")
-        f.write("\\section{libSTRAITIS}\n\n")
+        f.write("\\section{libKS}\n\n")
         for source in root.cwd().glob('**/*.c*'):
             # break source into components starting from the root
             components = source.parts[ROOT_START:]
@@ -117,7 +117,7 @@ def main():
                 PROS projects may contain .c image arrays or .csv files but
                 those should be organized outside of src directory
             '''
-            if(not 'libSTRAITIS' in components
+            if(not 'libKS' in components
             or '.d' in components
             or 'bin' in components):
                 continue
