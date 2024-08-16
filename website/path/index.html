@@ -3,119 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Path Planner</title>
+    <title>VEX Robotics Path Planner</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        #container {
-            text-align: center;
-        }
-        canvas {
-            border: 2px solid #333;
-        }
-        button {
-            margin: 10px;
-            padding: 5px 10px;
-            font-size: 16px;
-        }
-    </style>
 </head>
 <body>
-    <div id="container">
-        <h1>VEX Robotics Autonomous Path Planner</h1>
+    <div id="main-container">
         <div id="canvas-container"></div>
-        <button onclick="clearPath()">Clear Path</button>
-        <button onclick="generateCode()">Generate Code</button>
-        <pre id="code-output"></pre>
+        <div id="config-panel">
+            <h2>Configuration</h2>
+            <div class="config-section">
+                <select id="format-select">
+                    <option value="libks">libKS Odom MTPoint</option>
+                    <option value="custom">Custom Format</option>
+                </select>
+            </div>
+            <div class="config-section">
+                <h2>Robot Visualization</h2>
+                <input type="number" id="robot-width" placeholder="Width" value="12">
+                <input type="number" id="robot-height" placeholder="Height" value="12">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="robot-visible">
+                    <label for="robot-visible">Visible</label>
+                </div>
+            </div>
+            <div class="config-section">
+                <h2>Field</h2>
+                <select id="field-select" onchange="updateFieldImage()">
+                    <option value="v5rc">V5RC - High Stakes</option>
+                    <option value="v5rc-skills">V5RC Skills - High Stakes</option>
+                </select>
+                <h2>Grid Density</h2>
+                <input type="number" id="grid-density" value="10" min="5" max="50" step="1" onchange="updateGridDensity()">
+            </div>
+            <button onclick="copyCodeToClipboard()">Copy Code</button>
+            <button onclick="clearPath()">Clear Path</button>
+            <button onclick="resetView()">Reset View</button>
+            <pre id="code-output"></pre>
+        </div>
+        <div id="toast" class="toast">Code copied to clipboard!</div> <!-- Toast Notification -->
     </div>
-
-    <script>
-        let path = [];
-        const gridSize = 20;
-        const canvasSize = 400;
-
-        function setup() {
-            let canvas = createCanvas(canvasSize, canvasSize);
-            canvas.parent('canvas-container');
-            background(220);
-            drawGrid();
-        }
-
-        function draw() {
-            if (mouseIsPressed) {
-                let x = Math.floor(mouseX / gridSize) * gridSize;
-                let y = Math.floor(mouseY / gridSize) * gridSize;
-                if (!path.some(p => p.x === x && p.y === y)) {
-                    path.push({ x, y });
-                }
-            }
-
-            background(220);
-            drawGrid();
-            drawPath();
-        }
-
-        function drawGrid() {
-            stroke(200);
-            for (let i = 0; i <= canvasSize; i += gridSize) {
-                line(i, 0, i, canvasSize);
-                line(0, i, canvasSize, i);
-            }
-        }
-
-        function drawPath() {
-            if (path.length > 0) {
-                stroke(0, 0, 255);
-                strokeWeight(3);
-                noFill();
-                beginShape();
-                for (let point of path) {
-                    vertex(point.x + gridSize / 2, point.y + gridSize / 2);
-                }
-                endShape();
-
-                fill(255, 0, 0);
-                noStroke();
-                for (let i = 0; i < path.length; i++) {
-                    ellipse(path[i].x + gridSize / 2, path[i].y + gridSize / 2, 10);
-                    textAlign(CENTER, CENTER);
-                    fill(0);
-                    text(i + 1, path[i].x + gridSize / 2, path[i].y + gridSize / 2);
-                }
-            }
-        }
-
-        function clearPath() {
-            path = [];
-        }
-
-        function generateCode() {
-            let code = "// Exported snippet - v1 format\n";
-            code += "void autonomous() {\n";
-            
-            for (let i = 1; i < path.length; i++) {
-                let dx = path[i].x - path[i-1].x;
-                let dy = path[i].y - path[i-1].y;
-                let distance = Math.sqrt(dx*dx + dy*dy);
-                let angle = Math.atan2(dy, dx) * 180 / Math.PI;
-                
-                code += `  // Move to point ${i+1}\n`;
-                code += `  turnToAngle(${angle});\n`;
-                code += `  moveForward(${distance});\n`;
-            }
-            
-            code += "}\n";
-            
-            document.getElementById('code-output').textContent = code;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
