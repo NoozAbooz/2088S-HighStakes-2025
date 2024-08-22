@@ -8,7 +8,7 @@ function openWaypointEditor(index) {
     // Populate the form with the current waypoint properties
     document.getElementById('angle-input').value = waypoint.angle;
     document.getElementById('forwards-input').value = waypoint.forwards;
-	document.getElementById('angular-direction-input').value = waypoint.angularDirection || "clockwise";
+	document.getElementById('angular-direction-input').value = waypoint.angularDirection || "auto";
     document.getElementById('min-speed-input').value = waypoint.minSpeed;
     document.getElementById('max-speed-input').value = waypoint.maxSpeed;
     document.getElementById('timeout-input').value = waypoint.timeout;

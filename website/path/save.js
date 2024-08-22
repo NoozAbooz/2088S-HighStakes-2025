@@ -28,7 +28,17 @@ function closeSaveOptionsModal() {
 }
 
 function exportPath() {
-    const pathData = JSON.stringify(path, null, 2); // Convert path array to a JSON string
+    const normalizedWaypoints = path.map(wp => ({
+        x: wp.x / canvasSize, // Convert pixel x to normalized value (0.0 to 1.0)
+        y: wp.y / canvasSize, // Convert pixel y to normalized value (0.0 to 1.0)
+        angle: wp.angle,
+        forwards: wp.forwards,
+        minSpeed: wp.minSpeed,
+        maxSpeed: wp.maxSpeed,
+        timeout: wp.timeout
+    }));
+
+    const pathData = JSON.stringify(normalizedWaypoints, null, 2); // Convert path array to a JSON string
     const blob = new Blob([pathData], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 
@@ -54,14 +64,23 @@ function handleFileUpload(event) {
             try {
                 const importedPath = JSON.parse(e.target.result); // Parse the JSON file
                 if (Array.isArray(importedPath)) {
-                    path = importedPath; // Replace the current path with the imported one
+                    path = importedPath.map(wp => ({  // Replace the current path with the imported one
+                        x: wp.x * canvasSize, // Convert normalized x to canvas pixel value
+                        y: wp.y * canvasSize, // Convert normalized y to canvas pixel value
+                        angle: wp.angle,
+                        forwards: wp.forwards,
+                        minSpeed: wp.minSpeed,
+                        maxSpeed: wp.maxSpeed,
+                        timeout: wp.timeout
+                    }));
+                    generateCode(); // Render the path with the new coordinates
                     undoStack = []; // Clear the undo stack
-                    generateCode(); // Regenerate the code with the imported path
                 } else {
                     alert('Invalid path format');
                 }
             } catch (error) {
                 alert('Error parsing the file');
+                console.log(error);
             }
         };
         reader.readAsText(file);
@@ -185,3 +204,18 @@ function loadSaveSlot(index) {
 document.addEventListener('DOMContentLoaded', () => {
     loadLastModifiedSlot();
 });
+
+function saveNormalizedWaypoints() {
+    const normalizedWaypoints = path.map(wp => ({
+        x: wp.x / canvasSize, // Convert pixel x to normalized value (0.0 to 1.0)
+        y: wp.y / canvasSize, // Convert pixel y to normalized value (0.0 to 1.0)
+        angle: wp.angle,
+        forwards: wp.forwards,
+        minSpeed: wp.minSpeed,
+        maxSpeed: wp.maxSpeed,
+        timeout: wp.timeout
+    }));
+
+    // Save the normalizedWaypoints as JSON or your preferred format
+    console.log(JSON.stringify(normalizedWaypoints)); // Example output
+}
