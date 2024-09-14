@@ -8,6 +8,7 @@
  */
 void initialize() {
     pros::delay(10);
+    rdconfig_init();
     chassis.calibrate();
 
     // pros::Task imuCalibrateTask = pros::Task([] {
@@ -17,6 +18,7 @@ void initialize() {
 
     leftDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
     rightDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
+    console.println("Robot initialized");
 }
 
 /**

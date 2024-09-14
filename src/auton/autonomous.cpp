@@ -29,19 +29,14 @@ void closeside() {
 }
 
 rd::Selector gui_selector({
-    {"PID test", &testPID, "/usd/images/pidtest.bin"},
+    {"PID test", &testPID},
     {"Six balls", &sixballs},
     {"Close side", &closeside}
 });
 
 void autonomous() {
     chassis.setPose(0,0,0);
+    console.println("Running auton...");
     gui_selector.run_auton();
-    // switch(selector::auton) {
-    //     case 0: // Do nothing
-    //         break;
-    // }
+    rd_view_focus(gifview);
 }
-
-
-

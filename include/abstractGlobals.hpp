@@ -4,10 +4,12 @@
 #include "lemlib/api.hpp"
 #include "gif-pros/gifclass.hpp"
 #include "robodash/api.h"
+#include "liblvgl/lvgl.h"
 
 extern rd::Console console;
 extern rd_view_t *gifview;
-extern Gif gif;
+extern rd::Selector gui_selector;
+void rdconfig_init();
 
 /* Functions */
 // DT
