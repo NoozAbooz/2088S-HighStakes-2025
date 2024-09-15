@@ -1,9 +1,11 @@
 #include "main.h"
 
 ASSET_LIB(glaze_gif)
+ASSET_LIB(sus_gif)
 
 rd::Console console;
-rd_view_t *gifview = rd_view_create("GIF");
+rd_view_t *homeview = rd_view_create("Home");
+rd_view_t *gifview = rd_view_create("Glaze");
 rd_view_t *allianceview = rd_view_create("Alliance Colour");
 
 // alliance select
@@ -37,7 +39,7 @@ static void btn_event_cb(lv_event_t *e) {
     }
 }
 
-void create_alliance_buttons() {
+void render_alliance_view() {
     lv_obj_t *parent = rd_view_obj(allianceview);
     
     red_btn = lv_btn_create(parent);
@@ -55,7 +57,47 @@ void create_alliance_buttons() {
     next_btn = NULL;
 }
 
+void render_home_view() {
+    lv_obj_t *parent = rd_view_obj(homeview);
+
+    // Create a container for the left side content
+    lv_obj_t *left_container = lv_obj_create(parent);
+    lv_obj_set_size(left_container, 240, 240);  // Half the screen width
+    lv_obj_align(left_container, LV_ALIGN_LEFT_MID, 0, 0);
+
+    // Add your centered object here (e.g., an image or another UI element)
+    lv_obj_t *centered_obj = lv_obj_create(left_container);
+    lv_obj_set_size(centered_obj, 200, 200);  // Example size
+    lv_obj_center(centered_obj);
+    Gif* gif = new Gif(sus_gif, centered_obj);
+
+    // Create right side content
+    lv_obj_t *right_container = lv_obj_create(parent);
+    lv_obj_set_size(right_container, 240, 240);  // Half the screen width
+    lv_obj_align(right_container, LV_ALIGN_RIGHT_MID, 0, 0);
+
+    // Add "Kawaii Kittens" text
+    lv_obj_t *title = lv_label_create(right_container);
+    lv_label_set_text(title, "Kawaii Kittens");
+    lv_obj_set_style_text_color(title, lv_color_hex(0xfa4482), 0);
+    lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 20);
+
+    // Add "Setup" button
+    lv_obj_t *setup_btn = lv_btn_create(right_container);
+    lv_obj_t *btn_label = lv_label_create(setup_btn);
+    lv_label_set_text(btn_label, "Setup");
+    lv_obj_center(btn_label);
+    lv_obj_align(setup_btn, LV_ALIGN_BOTTOM_MID, 0, -20);
+    lv_obj_add_event_cb(setup_btn, [](lv_event_t *e) {
+        if (lv_event_get_code(e) == LV_EVENT_CLICKED) {
+            rd_view_focus(allianceview);
+        }
+    }, LV_EVENT_CLICKED, NULL);
+}
+
 void rdconfig_init() {
-	static Gif gif(glaze_gif, rd_view_obj(gifview));
-	create_alliance_buttons();
+    render_home_view();
+	render_alliance_view();
+
+    //Gif* gif = new Gif(glaze_gif, rd_view_obj(gifview));
 }

@@ -20,7 +20,6 @@ function generateCode() {
 
         let code = "// libKS MTPoint v0.1\n";
         code += `// Starting point: (${((firstWaypoint.x - (canvasSize / 2)) / canvasSize * 144).toFixed(2)} in, ${((firstWaypoint.y  - (canvasSize / 2)) / canvasSize * -144).toFixed(2)} in)\n`;
-        //code += `chassis.set_drive_pid(${path.length * 10}, 100, 1000, 0, 0.0, 0.0);\n`;
 
         for (let i = 0; i < path.length; i++) {
             let relativeX = (path[i].x - firstWaypoint.x) / canvasSize * 144;
