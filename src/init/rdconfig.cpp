@@ -6,6 +6,7 @@ rd::Console console;
 rd_view_t *gifview = rd_view_create("GIF");
 rd_view_t *allianceview = rd_view_create("Alliance Colour");
 
+// alliance select
 static lv_obj_t *red_btn, *blue_btn, *next_btn;
 static char alliance[10] = "";
 
