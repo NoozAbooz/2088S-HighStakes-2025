@@ -1,5 +1,5 @@
 {
-    "name": "210K VEX AutonPP",
+    "name": "210K VRC AutonPP",
     "short_name": "Path Planner",
     "description": "Autonomous path planning tool for VEX robotics",
     "icons": [
@@ -12,5 +12,5 @@
     "start_url": "./index.html",
     "display": "standalone",
     "theme_color": "#000000",
-    "background_color": "#ffffff"
+    "background_color": "#1e1e1e"
 }
