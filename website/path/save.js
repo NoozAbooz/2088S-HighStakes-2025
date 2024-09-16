@@ -32,6 +32,7 @@ function exportPath() {
         x: wp.x / canvasSize, // Convert pixel x to normalized value (0.0 to 1.0)
         y: wp.y / canvasSize, // Convert pixel y to normalized value (0.0 to 1.0)
         angle: wp.angle,
+        includeTurn: wp.includeTurn,
         forwards: wp.forwards,
         minSpeed: wp.minSpeed,
         maxSpeed: wp.maxSpeed,
@@ -68,6 +69,7 @@ function handleFileUpload(event) {
                         x: wp.x * canvasSize, // Convert normalized x to canvas pixel value
                         y: wp.y * canvasSize, // Convert normalized y to canvas pixel value
                         angle: wp.angle,
+                        includeTurn: wp.includeTurn,
                         forwards: wp.forwards,
                         minSpeed: wp.minSpeed,
                         maxSpeed: wp.maxSpeed,

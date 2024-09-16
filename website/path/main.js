@@ -1,6 +1,7 @@
 let path = [];
 let draggingIndex = -1;
-let gridSize = 10; // Default grid size is now 10
+let gridSize = 4;
+let conversionFactor = 144;
 let fieldImage;
 let canvasSize;
 let panX = 0;
@@ -22,7 +23,7 @@ function preload() {
 // Setup the canvas and initial configurations
 function setup() {
     fieldSize = min(windowWidth, windowHeight - 60);
-    canvasSize = fieldSize - 10;
+    canvasSize = fieldSize;
     console.log("Window Size: " + windowWidth + "x" + (windowHeight - 60) + "px");
     let canvas = createCanvas(fieldSize, fieldSize);
     canvas.parent('canvas-container');
@@ -78,6 +79,10 @@ function updateGridDensity() {
     gridSize = parseInt(document.getElementById('grid-density').value);
 }
 
+function updateConversionFactor() {
+    conversionFactor = parseInt(document.getElementById('conversion-factor').value);
+}
+
 // Handle mouse pressed events for adding, dragging, or removing waypoints
 function mousePressed() {
     if (isModalOpen) return; // Disable waypoint creation and editing if the modal is open
@@ -96,6 +101,7 @@ function mousePressed() {
                     x,
                     y,
                     angle: 0,
+                    includeTurn: false,
                     forwards: true,
                     minSpeed: 0,
                     maxSpeed: 127,
