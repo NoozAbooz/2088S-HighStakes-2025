@@ -29,10 +29,10 @@ function generateCode() {
             let translatedY = (waypoint.y - firstWaypoint.y) / canvasSize * conversionFactor;
 
             // Rotate point (x and y flip here for complicated reasons)
-            const rotatedX = -translatedX * Math.sin(degreesToRadians(originAngle)) + 
-                            translatedY * Math.cos(degreesToRadians(originAngle));
-            const rotatedY = translatedX * Math.cos(degreesToRadians(originAngle)) + 
-                             translatedY * Math.sin(degreesToRadians(originAngle));
+            const rotatedX = (translatedX * Math.sin(degreesToRadians(originAngle)) + 
+                            translatedY * Math.cos(degreesToRadians(originAngle)));
+            const rotatedY = (translatedX * Math.cos(degreesToRadians(originAngle)) - 
+                             translatedY * Math.sin(degreesToRadians(originAngle)));
 
             code += `chassis.moveToPoint(${rotatedX.toFixed(2)}, ${rotatedY.toFixed(2)}, ${path[i].timeout}, {.forwards = ${path[i].forwards}, .maxSpeed = ${path[i].maxSpeed}, .minSpeed = ${path[i].minSpeed}}); // Point ${i + 1}\n`;
 

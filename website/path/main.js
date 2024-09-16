@@ -1,6 +1,6 @@
 let path = [];
 let draggingIndex = -1;
-let gridSize = 4;
+let gridSize = 3;
 let conversionFactor = 144;
 let fieldImage;
 let canvasSize;
