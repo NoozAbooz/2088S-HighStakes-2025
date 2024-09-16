@@ -6,14 +6,16 @@
     <title>210K Path Planner</title>
 	<link rel="icon" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.min.js"></script>
-	<script src="https://kit.fontawesome.com/ea77c5ed30.js" crossorigin="anonymous"></script>
+	<link rel="manifest" href="./manifest.json">
+	<meta name="theme-color" content="#000000">
+    <script src="./js/p5.min.js"></script>
+	<!-- <script src="https://kit.fontawesome.com/ea77c5ed30.js" crossorigin="anonymous"></script> -->
 </head>
 <body>
-	<script src="generator.js"></script>
-	<script src="main.js"></script>
-	<script src="editor.js"></script>
-	<script src="save.js"></script>
+	<script src="./js/generator.js"></script>
+	<script src="./js/main.js"></script>
+	<script src="./js/editor.js"></script>
+	<script src="./js/save.js"></script>
 
     <div id="main-container">
         <div id="canvas-container"></div>
@@ -113,5 +115,19 @@
 	        <input type="file" id="file-input" style="display: none;" accept=".json" onchange="handleFileUpload(event)">
 	    </div>
 	</div>
+
+	<script>
+	  if ('serviceWorker' in navigator) {
+	    window.addEventListener('load', () => {
+	      navigator.serviceWorker.register('./js/service-worker.js')
+	        .then((registration) => {
+	          console.log('Service Worker registered successfully:', registration.scope);
+	        })
+	        .catch((error) => {
+	          console.log('Service Worker registration failed:', error);
+	        });
+	    });
+	  }
+	</script>
 </body>
 </html>

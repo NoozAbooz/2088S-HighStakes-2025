@@ -11,8 +11,8 @@ let undoStack = [];
 
 // URLs for the field images
 const fieldImages = {
-    v5rc: "https://raw.githubusercontent.com/NoozAbooz/210K-HighStakes-2025/V1/website/path/V5RC-HighStakes-H2H-2000x2000.png",
-    "v5rc-skills": "https://raw.githubusercontent.com/NoozAbooz/210K-HighStakes-2025/V1/website/path/V5RC-HighStakes-Skills-2000x2000.png"
+    v5rc: "./V5RC-HighStakes-H2H-2000x2000.png",
+    "v5rc-skills": "./V5RC-HighStakes-Skills-2000x2000.png"
 };
 
 // Preload the field image based on selection
