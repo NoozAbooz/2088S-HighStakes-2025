@@ -1,4 +1,4 @@
-const cacheName = 'vex-path-planner-v1';
+const cacheName = 'vex-path-planner-v1.1';
 const cacheUrls = [
     '../index.html',
     '../styles.css',
