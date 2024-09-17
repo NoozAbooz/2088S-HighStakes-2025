@@ -40,14 +40,40 @@ self.addEventListener('fetch', (e) => {
         return; 
     }
 
-  e.respondWith((async () => {
-    const r = await caches.match(e.request);
-    console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
-    if (r) return r;
-    const response = await fetch(e.request);
-    const cache = await caches.open(cacheName);
-    console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
-    cache.put(e.request, response.clone());
-    return response;
-  })());
+    e.respondWith((async () => { // fetch network first then cache
+        console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
+        try {
+            // Try to fetch from network first
+            const response = await fetch(e.request);
+            
+            // If successful, clone the response and store it in the cache
+            const cache = await caches.open(cacheName);
+            console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
+            cache.put(e.request, response.clone());
+            
+            return response;
+        } catch (error) {
+            console.log(`[Service Worker] Network request failed, falling back to cache for: ${e.request.url}`);
+            
+            // If network request fails, try to get the resource from cache
+            const cachedResponse = await caches.match(e.request);
+            if (cachedResponse) {
+                return cachedResponse;
+            }
+            
+            // If not in cache either, throw the error
+            throw error;
+        }
+    })());
+
+  // e.respondWith((async () => {
+  //   const r = await caches.match(e.request);
+  //   console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
+  //   if (r) return r;
+  //   const response = await fetch(e.request);
+  //   const cache = await caches.open(cacheName);
+  //   console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
+  //   cache.put(e.request, response.clone());
+  //   return response;
+  // })());
 });
