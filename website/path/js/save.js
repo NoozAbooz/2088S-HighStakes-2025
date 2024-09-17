@@ -53,8 +53,11 @@ function exportPath() {
 }
 
 function importPath() {
-    document.getElementById('file-input').click(); // Trigger the hidden file input
-	showToast("Path file imported successfully!");
+    try {
+        document.getElementById('file-input').click(); // Trigger the hidden file input
+    } catch (error) {
+        showToast("Path file imported successfully!");
+    }
 }
 
 function handleFileUpload(event) {
@@ -90,7 +93,8 @@ function handleFileUpload(event) {
 }
 
 function copyPathString() {
-    const pathData = JSON.stringify(path, null, 2); // Convert path array to a JSON string
+    //const pathData = JSON.stringify(path, null, 2); // Convert path array to a JSON string
+    pathData = saveNormalizedWaypoints();
     const textArea = document.createElement('textarea');
     textArea.value = pathData;
     document.body.appendChild(textArea);
@@ -220,4 +224,14 @@ function saveNormalizedWaypoints() {
 
     // Save the normalizedWaypoints as JSON or your preferred format
     console.log(JSON.stringify(normalizedWaypoints)); // Example output
+    return JSON.stringify(normalizedWaypoints)
+}
+
+function isValidJSON(str) {
+    try {
+        JSON.parse(str);
+        return true;
+    } catch (e) {
+        return false;
+    }
 }
