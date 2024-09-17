@@ -248,13 +248,13 @@ function saveNormalizedWaypoints() {
         x: wp.x / canvasSize, // Convert pixel x to normalized value (0.0 to 1.0)
         y: wp.y / canvasSize, // Convert pixel y to normalized value (0.0 to 1.0)
         angle: wp.angle,
+        includeTurn: wp.includeTurn,
         forwards: wp.forwards,
         minSpeed: wp.minSpeed,
         maxSpeed: wp.maxSpeed,
         timeout: wp.timeout
     }));
 
-    // Save the normalizedWaypoints as JSON or your preferred format
-    console.log(JSON.stringify(normalizedWaypoints)); // Example output
-    return JSON.stringify(normalizedWaypoints)
+    const pathData = JSON.stringify(normalizedWaypoints, null, 2); // Convert path array to a JSON string
+    return JSON.stringify(pathData);
 }
