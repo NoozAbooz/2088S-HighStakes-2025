@@ -256,5 +256,5 @@ function saveNormalizedWaypoints() {
     }));
 
     const pathData = JSON.stringify(normalizedWaypoints, null, 2); // Convert path array to a JSON string
-    return JSON.stringify(pathData);
+    return pathData;
 }
