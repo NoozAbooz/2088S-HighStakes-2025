@@ -1,17 +1,18 @@
 const cacheName = 'vex-path-planner-v1.1';
 const cacheUrls = [
-    '../index.html',
-    '../styles.css',
-    '../manifest.json',
-    '../favicon.png',
-    './depend/p5.min.js',
-    './editor.js',
-    './generator.js',
-    './main.js',
-    './save.js',
-    './sw.js',
-    '../images/V5RC-HighStakes-H2H-2000x2000.png',
-    '../images/V5RC-HighStakes-Skills-2000x2000.png'
+    '/path/',
+    '/path/index.html',
+    '/path/styles.css',
+    '/path/manifest.json',
+    '/path/favicon.png',
+    '/path/js/depend/p5.min.js',
+    '/path/js/editor.js',
+    '/path/js/generator.js',
+    '/path/js/main.js',
+    '/path/js/save.js',
+    '/path/js/sw.js',
+    '/path/images/V5RC-HighStakes-H2H-2000x2000.png',
+    '/path/images/V5RC-HighStakes-Skills-2000x2000.png'
 ];
 
 // Installing Service Worker
