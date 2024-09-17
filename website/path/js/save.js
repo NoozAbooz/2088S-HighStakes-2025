@@ -54,9 +54,41 @@ function exportPath() {
 
 function importPath() {
     try {
-        document.getElementById('file-input').click(); // Trigger the hidden file input
+        // Check if the Clipboard API is available
+        if (!navigator.clipboard) {
+            throw new Error("Clipboard API not available");
+        }
+
+        // Read from clipboard
+        const clipboardText = navigator.clipboard.readText();
+        clipboardText.then((text) => {
+            try {
+                const importedPath = JSON.parse(text); // Parse the JSON file
+                if (Array.isArray(importedPath)) {
+                    path = importedPath.map(wp => ({  // Replace the current path with the imported one
+                        x: wp.x * canvasSize, // Convert normalized x to canvas pixel value
+                        y: wp.y * canvasSize, // Convert normalized y to canvas pixel value
+                        angle: wp.angle,
+                        includeTurn: wp.includeTurn,
+                        forwards: wp.forwards,
+                        minSpeed: wp.minSpeed,
+                        maxSpeed: wp.maxSpeed,
+                        timeout: wp.timeout
+                    }));
+                    generateCode(); // Render the path with the new coordinates
+                    undoStack = []; // Clear the undo stack
+                } else {
+                    alert('Invalid path format');
+                }
+            } catch (error) {
+                alert('Error parsing the file');
+                console.log(error);
+            }
+        });
     } catch (error) {
-        showToast("Path file imported successfully!");
+        console.error("Error reading clipboard:", error);
+        // If there's an error reading the clipboard, fall back to file dialog
+        openFileDialog();
     }
 }
 
@@ -225,13 +257,4 @@ function saveNormalizedWaypoints() {
     // Save the normalizedWaypoints as JSON or your preferred format
     console.log(JSON.stringify(normalizedWaypoints)); // Example output
     return JSON.stringify(normalizedWaypoints)
-}
-
-function isValidJSON(str) {
-    try {
-        JSON.parse(str);
-        return true;
-    } catch (e) {
-        return false;
-    }
 }
