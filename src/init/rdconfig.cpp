@@ -35,7 +35,7 @@ static void btn_event_cb(lv_event_t *e) {
             lv_label_set_text(lv_label_create(next_btn), "Next ->");
         }
         lv_obj_clear_flag(next_btn, LV_OBJ_FLAG_HIDDEN);
-        printf("Alliance set to: %s\n", alliance);
+        console.printf("Alliance set to: %s\n", alliance);
     }
 }
 
@@ -67,7 +67,7 @@ void render_home_view() {
 
     // Add your centered object here (e.g., an image or another UI element)
     lv_obj_t *centered_obj = lv_obj_create(left_container);
-    lv_obj_set_size(centered_obj, 200, 200);  // Example size
+    lv_obj_set_size(centered_obj, 200, 240);  // Example size
     lv_obj_center(centered_obj);
     Gif* gif = new Gif(sus_gif, centered_obj);
 
@@ -78,14 +78,14 @@ void render_home_view() {
 
     // Add "Kawaii Kittens" text
     lv_obj_t *title = lv_label_create(right_container);
-    lv_label_set_text(title, "Kawaii Kittens");
-    lv_obj_set_style_text_color(title, lv_color_hex(0xfa4482), 0);
+    lv_label_set_text(title, "210K - Kawaii Kittens");
+    lv_obj_set_style_text_color(title, lv_color_hex(0xfa4482), 0); 
     lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 20);
 
     // Add "Setup" button
     lv_obj_t *setup_btn = lv_btn_create(right_container);
     lv_obj_t *btn_label = lv_label_create(setup_btn);
-    lv_label_set_text(btn_label, "Setup");
+    lv_label_set_text(btn_label, "Setup Auton");
     lv_obj_center(btn_label);
     lv_obj_align(setup_btn, LV_ALIGN_BOTTOM_MID, 0, -20);
     lv_obj_add_event_cb(setup_btn, [](lv_event_t *e) {
@@ -98,6 +98,7 @@ void render_home_view() {
 void rdconfig_init() {
     render_home_view();
 	render_alliance_view();
+	rd_view_focus(homeview);
 
     //Gif* gif = new Gif(glaze_gif, rd_view_obj(gifview));
 }
