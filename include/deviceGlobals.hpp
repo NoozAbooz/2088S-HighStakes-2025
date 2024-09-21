@@ -5,14 +5,14 @@
 inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // Drivetrain
-inline pros::MotorGroup leftDrive({-1, -2, -3});
-inline pros::MotorGroup rightDrive({16, 17, 18});
+inline pros::MotorGroup leftDrive({14, 15, -20});
+inline pros::MotorGroup rightDrive({-16, 17, -18});
 
 // Intake
 inline pros::Motor intake(10);
 
 // Pneumatics
-inline pros::adi::DigitalOut clampPiston('D');
+inline pros::adi::DigitalOut clampPiston('A');
 inline pros::adi::DigitalOut ptoPiston('X');
 
 /* Declare sensors */
@@ -29,9 +29,9 @@ inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemli
 // drivetrain settings
 inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               &rightDrive, // right motor group
-                              10.5, // 25 hole track width
-                              lemlib::Omniwheel::NEW_325,
-                              450, // drivetrain rpm
+                              13.5, // track width
+                              lemlib::Omniwheel::NEW_4,
+                              300, // drivetrain rpm
                               2 // chase power is 2. If we had traction wheels, it would have been 8
 );
 // lateral motion controller

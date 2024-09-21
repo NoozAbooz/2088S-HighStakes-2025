@@ -1,7 +1,6 @@
 #include "main.h"
 
-ASSET_LIB(glaze_gif)
-ASSET_LIB(sus_gif)
+ASSET(sus_gif)
 
 rd::Console console;
 rd_view_t *homeview = rd_view_create("Home");
