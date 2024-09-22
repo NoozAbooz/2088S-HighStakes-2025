@@ -2,12 +2,14 @@
 
 ASSET(sus_gif)
 
-rd::Console console;
 rd_view_t *homeview = rd_view_create("Home");
-rd_view_t *gifview = rd_view_create("Glaze");
 rd_view_t *allianceview = rd_view_create("Alliance Colour");
+rd_view_t *sensorview = rd_view_create("Sensors");
+//rd_view_t *gifview = rd_view_create("Glaze");
+rd::Console console;
 
 // alliance select
+lv_style_t style_text_large;
 static lv_obj_t *red_btn, *blue_btn, *next_btn;
 static char alliance[10] = "";
 
@@ -56,38 +58,89 @@ void render_alliance_view() {
     next_btn = NULL;
 }
 
+void create_marker(lv_obj_t* parent, double row, double col) {
+    lv_obj_t* marker = lv_obj_create(parent);
+    lv_obj_set_size(marker, 5, 5);
+    lv_obj_set_style_bg_color(marker, lv_color_hex(0xFFFFFF), 0);
+    lv_obj_set_style_radius(marker, LV_RADIUS_CIRCLE, 0);
+    lv_obj_align(marker, LV_ALIGN_CENTER, row, col);
+}
+
+void render_sensor_view() {
+    lv_obj_t *parent = rd_view_obj(sensorview);
+    
+    
+
+    lv_obj_t *field = lv_img_create(parent);
+    lv_img_set_src(field, "S:field.png");
+    lv_obj_t *arrow = lv_img_create(parent);
+    lv_img_set_src(arrow, "S:arrow.png");
+
+    lv_obj_align(field, LV_ALIGN_CENTER, -120, 0);
+    lv_img_set_zoom(field, 12);
+    lv_obj_align(arrow, LV_ALIGN_CENTER, 0, 0);
+    lv_img_set_zoom(arrow, 64);
+
+    int horizontal_offset = -120;
+    while(1) {
+        double horizontal_pos = ((chassis.getPose().x / 24.0) * 39.375 + horizontal_offset);
+        double vertical_pos = ((chassis.getPose().y / -24.0) * 39.375);
+        lv_obj_align(arrow, LV_ALIGN_CENTER, horizontal_pos, vertical_pos);
+        lv_img_set_angle(arrow, (chassis.getPose().theta * 10));
+        create_marker(parent, horizontal_pos, vertical_pos);
+        lv_obj_move_foreground(arrow);
+    }
+}
+
 void render_home_view() {
-    lv_obj_t *parent = rd_view_obj(homeview);
+    lv_style_init(&style_text_large);
+	lv_style_set_text_opa(&style_text_large, LV_OPA_COVER);
+	lv_style_set_text_font(&style_text_large, &lv_font_montserrat_16);
+
+    lv_obj_t* parent = rd_view_obj(homeview);
 
     // Create a container for the left side content
-    lv_obj_t *left_container = lv_obj_create(parent);
+    lv_obj_t* left_container = lv_obj_create(parent);
     lv_obj_set_size(left_container, 240, 240);  // Half the screen width
     lv_obj_align(left_container, LV_ALIGN_LEFT_MID, 0, 0);
 
     // Add your centered object here (e.g., an image or another UI element)
-    lv_obj_t *centered_obj = lv_obj_create(left_container);
+    lv_obj_t* centered_obj = lv_obj_create(left_container);
     lv_obj_set_size(centered_obj, 200, 240);  // Example size
     lv_obj_center(centered_obj);
     Gif* gif = new Gif(sus_gif, centered_obj);
 
     // Create right side content
-    lv_obj_t *right_container = lv_obj_create(parent);
+    lv_obj_t* right_container = lv_obj_create(parent);
     lv_obj_set_size(right_container, 240, 240);  // Half the screen width
     lv_obj_align(right_container, LV_ALIGN_RIGHT_MID, 0, 0);
 
     // Add "Kawaii Kittens" text
-    lv_obj_t *title = lv_label_create(right_container);
-    lv_label_set_text(title, "210K - Kawaii Kittens");
-    lv_obj_set_style_text_color(title, lv_color_hex(0xfa4482), 0); 
+    lv_obj_t* title = lv_label_create(right_container);
+    lv_label_set_text(title, "Kawaii Kittens");
+    lv_obj_set_style_text_color(title, lv_color_hex(0xfa4482), 0);
     lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 20);
+    lv_obj_add_style(title, &style_text_large, 0);
+
+    // Add "Console" button
+    lv_obj_t* console_btn = lv_btn_create(right_container);
+    lv_obj_t* console_btn_label = lv_label_create(console_btn);
+    lv_label_set_text(console_btn_label, "Console");
+    lv_obj_center(console_btn_label);
+    lv_obj_align(console_btn, LV_ALIGN_BOTTOM_MID, 0, -70);  // Positioned above the Setup button
+    lv_obj_add_event_cb(console_btn, [](lv_event_t* e) {
+        if (lv_event_get_code(e) == LV_EVENT_CLICKED) {
+            console.focus();
+        }
+    }, LV_EVENT_CLICKED, NULL);
 
     // Add "Setup" button
-    lv_obj_t *setup_btn = lv_btn_create(right_container);
-    lv_obj_t *btn_label = lv_label_create(setup_btn);
+    lv_obj_t* setup_btn = lv_btn_create(right_container);
+    lv_obj_t* btn_label = lv_label_create(setup_btn);
     lv_label_set_text(btn_label, "Setup Auton");
     lv_obj_center(btn_label);
     lv_obj_align(setup_btn, LV_ALIGN_BOTTOM_MID, 0, -20);
-    lv_obj_add_event_cb(setup_btn, [](lv_event_t *e) {
+    lv_obj_add_event_cb(setup_btn, [](lv_event_t* e) {
         if (lv_event_get_code(e) == LV_EVENT_CLICKED) {
             rd_view_focus(allianceview);
         }
@@ -97,6 +150,7 @@ void render_home_view() {
 void rdconfig_init() {
     render_home_view();
 	render_alliance_view();
+    pros::Task sensor_task(render_sensor_view); // run multithreaded cuz continual refresh
 	rd_view_focus(homeview);
 
     //Gif* gif = new Gif(glaze_gif, rd_view_obj(gifview));

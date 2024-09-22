@@ -39,4 +39,5 @@ void disabled() {
  * starts.
  */
 void competition_initialize() {
+    rd_view_focus(allianceview);
 }

@@ -8,6 +8,7 @@
 
 extern rd::Console console;
 extern rd_view_t *gifview;
+extern rd_view_t *allianceview;
 extern rd::Selector gui_selector;
 void rdconfig_init();
 

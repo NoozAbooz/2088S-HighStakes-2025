@@ -119,7 +119,7 @@ lv_obj_align_to(blue_slider, green_slider, LV_ALIGN_OUT_RIGHT_MID, 25, 0);
 
   lv_obj_t* label = lv_label_create(view_cont);
   lv_label_set_recolor(label, true); 
-  lv_label_set_text(label, "#ffffff 210P Odom");
+  lv_label_set_text(label, "#ffffff 210K Odom");
   lv_obj_align(label, LV_ALIGN_CENTER, 120, -80);
   lv_obj_add_style(label, &style_title, 0);
 
