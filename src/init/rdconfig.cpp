@@ -1,11 +1,9 @@
 #include "main.h"
 
-ASSET(sus_gif)
-
 rd_view_t *homeview = rd_view_create("Home");
 rd_view_t *allianceview = rd_view_create("Alliance Colour");
 rd_view_t *sensorview = rd_view_create("Sensors");
-//rd_view_t *gifview = rd_view_create("Glaze");
+rd_view_t *gifview = rd_view_create("Shikanoko");
 rd::Console console;
 
 // alliance select
@@ -108,7 +106,8 @@ void render_home_view() {
     lv_obj_t* centered_obj = lv_obj_create(left_container);
     lv_obj_set_size(centered_obj, 200, 240);  // Example size
     lv_obj_center(centered_obj);
-    Gif* gif = new Gif(sus_gif, centered_obj);
+    lv_obj_t *sus = lv_img_create(centered_obj);
+    lv_img_set_src(sus, "S:sus.png");
 
     // Create right side content
     lv_obj_t* right_container = lv_obj_create(parent);
@@ -153,5 +152,5 @@ void rdconfig_init() {
     pros::Task sensor_task(render_sensor_view); // run multithreaded cuz continual refresh
 	rd_view_focus(homeview);
 
-    //Gif* gif = new Gif(glaze_gif, rd_view_obj(gifview));
+    Gif* gif = new Gif("/usd/nokotan.gif", rd_view_obj(gifview));
 }
