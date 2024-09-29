@@ -69,10 +69,11 @@ void render_sensor_view() {
     
     
 
-    lv_obj_t *field = lv_img_create(parent);
-    lv_img_set_src(field, "S:field.png");
-    lv_obj_t *arrow = lv_img_create(parent);
-    lv_img_set_src(arrow, "S:arrow.png");
+    lv_obj_t *field = lv_obj_create(parent);
+    lv_obj_t *arrow = lv_obj_create(parent);
+
+    Gif* gif = new Gif("/usd/field.gif", field);
+    Gif* gif1 = new Gif("/usd/arrow.gif", arrow);
 
     lv_obj_align(field, LV_ALIGN_CENTER, -120, 0);
     lv_img_set_zoom(field, 12);
@@ -80,20 +81,20 @@ void render_sensor_view() {
     lv_img_set_zoom(arrow, 64);
 
     int horizontal_offset = -120;
-    while(1) {
-        double horizontal_pos = ((chassis.getPose().x / 24.0) * 39.375 + horizontal_offset);
-        double vertical_pos = ((chassis.getPose().y / -24.0) * 39.375);
-        lv_obj_align(arrow, LV_ALIGN_CENTER, horizontal_pos, vertical_pos);
-        lv_img_set_angle(arrow, (chassis.getPose().theta * 10));
-        create_marker(parent, horizontal_pos, vertical_pos);
-        lv_obj_move_foreground(arrow);
-    }
+    // while(1) {
+    //     double horizontal_pos = ((chassis.getPose().x / 24.0) * 39.375 + horizontal_offset);
+    //     double vertical_pos = ((chassis.getPose().y / -24.0) * 39.375);
+    //     lv_obj_align(arrow, LV_ALIGN_CENTER, horizontal_pos, vertical_pos);
+    //     lv_img_set_angle(arrow, (chassis.getPose().theta * 10));
+    //     create_marker(parent, horizontal_pos, vertical_pos);
+    //     lv_obj_move_foreground(arrow);
+    // }
 }
 
 void render_home_view() {
     lv_style_init(&style_text_large);
 	lv_style_set_text_opa(&style_text_large, LV_OPA_COVER);
-	lv_style_set_text_font(&style_text_large, &lv_font_montserrat_16);
+	lv_style_set_text_font(&style_text_large, &lv_font_montserrat_24);
 
     lv_obj_t* parent = rd_view_obj(homeview);
 
@@ -107,7 +108,7 @@ void render_home_view() {
     lv_obj_set_size(centered_obj, 200, 240);  // Example size
     lv_obj_center(centered_obj);
     lv_obj_t *sus = lv_img_create(centered_obj);
-    lv_img_set_src(sus, "S:sus.png");
+    Gif* gif = new Gif("/usd/ayo.gif", sus);
 
     // Create right side content
     lv_obj_t* right_container = lv_obj_create(parent);
@@ -126,19 +127,42 @@ void render_home_view() {
     lv_obj_t* console_btn_label = lv_label_create(console_btn);
     lv_label_set_text(console_btn_label, "Console");
     lv_obj_center(console_btn_label);
-    lv_obj_align(console_btn, LV_ALIGN_BOTTOM_MID, 0, -70);  // Positioned above the Setup button
+    lv_obj_align(console_btn, LV_ALIGN_BOTTOM_MID, 0, -100);  // Positioned above the Setup button
     lv_obj_add_event_cb(console_btn, [](lv_event_t* e) {
         if (lv_event_get_code(e) == LV_EVENT_CLICKED) {
             console.focus();
         }
     }, LV_EVENT_CLICKED, NULL);
 
+    lv_obj_t* gif_btn = lv_btn_create(right_container);
+    lv_obj_t* gif_btn_label = lv_label_create(gif_btn);
+    lv_label_set_text(gif_btn_label, "Shikanoko");
+    lv_obj_center(gif_btn_label);
+    lv_obj_align(gif_btn, LV_ALIGN_BOTTOM_MID, 0, -50);  // Positioned above the Setup button
+    lv_obj_add_event_cb(gif_btn, [](lv_event_t* e) {
+        if (lv_event_get_code(e) == LV_EVENT_CLICKED) {
+            Gif* gif = new Gif("/usd/nokotan.gif", rd_view_obj(gifview));
+		    rd_view_focus(gifview);
+		    console.println("Running gif...");
+        }
+    }, LV_EVENT_CLICKED, NULL);
+
+    // lv_obj_t *clean_btn = lv_btn_create(rd_view_obj(gifview));
+    // lv_obj_set_size(clean_btn, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+    // lv_obj_align(clean_btn, LV_ALIGN_BOTTOM_RIGHT, -10, -10);
+    // lv_obj_add_event_cb(clean_btn, [](lv_event_t *e) { 
+    //     if (lv_event_get_code(e) == LV_EVENT_CLICKED) {
+    //         gif.clean();
+    //     }
+    // }, LV_EVENT_CLICKED, NULL);
+    // lv_label_set_text(lv_label_create(clean_btn), "Clean");
+
     // Add "Setup" button
     lv_obj_t* setup_btn = lv_btn_create(right_container);
     lv_obj_t* btn_label = lv_label_create(setup_btn);
     lv_label_set_text(btn_label, "Setup Auton");
     lv_obj_center(btn_label);
-    lv_obj_align(setup_btn, LV_ALIGN_BOTTOM_MID, 0, -20);
+    lv_obj_align(setup_btn, LV_ALIGN_BOTTOM_MID, 0, 0);
     lv_obj_add_event_cb(setup_btn, [](lv_event_t* e) {
         if (lv_event_get_code(e) == LV_EVENT_CLICKED) {
             rd_view_focus(allianceview);
@@ -149,8 +173,9 @@ void render_home_view() {
 void rdconfig_init() {
     render_home_view();
 	render_alliance_view();
-    pros::Task sensor_task(render_sensor_view); // run multithreaded cuz continual refresh
 	rd_view_focus(homeview);
 
-    Gif* gif = new Gif("/usd/nokotan.gif", rd_view_obj(gifview));
+    // pros::Task([] { // run multithreaded
+    //     render_sensor_view();
+    // });
 }

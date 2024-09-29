@@ -25,13 +25,13 @@ double get_imu_rotation() {
 	double rotation2 = inertial2.get_rotation();
 
 	double average_rotation = ((rotation1 * (360.0 / gyro_scale1)) + (rotation2 * (360.0 / gyro_scale2))) / 2;
-	return ks::to_rad(average_rotation);
+	return fmod(average_rotation - 90, 360);
 }
 
 double get_vertical_distance_traveled() { 
 	double current_vertical_pos = verticalEncoder.get_angle();
 
-	// Divide current angle by 36000 for centidegree conversion to get amount of wheel rots and multiple by circumference to get total distance
+	// Divide current angle for centidegree ticks conversion to get amount of wheel rots and multiple by circumference to get total distance
 	return (current_vertical_pos / 36000) * (M_PI * vertical_wheel_diameter);
 }
 
@@ -50,7 +50,7 @@ double get_horizontal_distance_traveled() {
 // 	return std::fmod(to_deg(heading_in_radians), 360);
 // }
 
-void odomThread() {
+void ks::odomThread() {
 	inertial2.reset();
 
 	while (true) {
@@ -59,7 +59,7 @@ void odomThread() {
 
 		// Find average between dt and imu heading
 		// wrap to [0, 360)
-		double heading = fmod(get_imu_rotation() - 90, 360);
+		double heading = ks::to_rad(get_imu_rotation());
         
 		// Only run calcs if robot is acively moving
 		if (inertial1.get_accel().x > 0.1 || inertial1.get_accel().y > 0.1) {
@@ -77,8 +77,9 @@ void odomThread() {
 
 		// print for debugging
 		//chassis.setPose(chassis.getPose().x, chassis.getPose().y, get_imu_rotation());
-		console.printf("X: %f, Y: %f, Theta: %f\n", x, y, get_imu_rotation());
+		// console.printf("X: %f, Y: %f, Theta: %f\n", x, y, get_imu_rotation());
+		printf("Theta: %f\n", get_imu_rotation());
 
-        pros::delay(10); // todo
+        pros::delay(100); // todo
     }
 }

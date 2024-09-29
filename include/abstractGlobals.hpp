@@ -12,6 +12,8 @@ extern rd_view_t *allianceview;
 extern rd::Selector gui_selector;
 void rdconfig_init();
 
+extern bool isCompetition;
+
 /* Functions */
 // DT
 void arcadeDrive();

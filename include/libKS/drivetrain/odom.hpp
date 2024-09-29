@@ -10,4 +10,6 @@ namespace ks
     };
 
     extern Position odom_pos;
+
+    extern void odomThread();
 }

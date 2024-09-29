@@ -9,6 +9,11 @@
  * the task from where it left off.
  */
 void opcontrol() {
+	if (isCompetition == true) {
+		Gif* gif = new Gif("/usd/nokotan.gif", rd_view_obj(gifview));
+		rd_view_focus(gifview);
+		console.println("Running gif...");
+	}
 	while (true) { // Main continuous loop
 		/* Drive */
 		ks::arcadeDrive(0, 0, 1);
