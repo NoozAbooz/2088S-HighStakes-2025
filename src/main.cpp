@@ -9,6 +9,7 @@
  * the task from where it left off.
  */
 void opcontrol() {
+	// gif renders only in competitqion opcontrol
 	if (isCompetition == true) {
 		Gif* gif = new Gif("/usd/nokotan.gif", rd_view_obj(gifview));
 		rd_view_focus(gifview);
@@ -24,7 +25,7 @@ void opcontrol() {
 
 		// Report temperature telemetry (this code has never worked since the beginning 😭)
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
-		controller.print(0, 0, "DT%.0lf %.0lf %.0lf", drivetrainTemps, chassis.getPose().x, chassis.getPose().y);
+		controller.print(0, 0, "DT%.0lf %.0lf %.0lf", drivetrainTemps, chassis.getPose().y, chassis.getPose().theta);
 		pros::delay(10); // Delay to save resources on brain
 	}
 }

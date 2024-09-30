@@ -18,6 +18,8 @@ double vertical_wheel_offset = 10.75;
 
 double horizontal_wheel_diameter = 3.25;
 double horizontal_wheel_offset = 10.75;
+std::string wheel_type = "motor";
+double rpm = 600;
 
 // Return robot rotation in radians, unwrapped to 360
 double get_imu_rotation() {
@@ -33,6 +35,30 @@ double get_vertical_distance_traveled() {
 
 	// Divide current angle for centidegree ticks conversion to get amount of wheel rots and multiple by circumference to get total distance
 	return (current_vertical_pos / 36000) * (M_PI * vertical_wheel_diameter);
+}
+
+float lemlib::TrackingWheel::getDistanceTraveled() {
+    if (wheel_type == "rotation") {
+        return (float(this->rotation->get_position()) * this->diameter * M_PI / 36000) / this->gearRatio;
+    } else if (wheel_type == "motor") {
+        // get distance traveled by each motor
+        std::vector<pros::MotorGears> gearsets = this->motors->get_gearing_all();
+        std::vector<double> positions = this->motors->get_position_all();
+        std::vector<float> distances;
+        for (int i = 0; i < this->motors->size(); i++) {
+            float in;
+            switch (gearsets[i]) {
+                case pros::MotorGears::red: in = 100; break;
+                case pros::MotorGears::green: in = 200; break;
+                case pros::MotorGears::blue: in = 600; break;
+                default: in = 200; break;
+            }
+            distances.push_back(positions[i] * (diameter * M_PI) * (rpm / in));
+        }
+        return lemlib::avg(distances);
+    } else {
+        return 0;
+    }
 }
 
 double get_horizontal_distance_traveled() { 

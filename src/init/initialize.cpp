@@ -13,9 +13,7 @@ void initialize() {
 
     pros::Task([] {
         //ks::odomThread();
-
-        ks::LateralPID::set_lateral_constants(21, 0, 0.24, 5000);
-        ks::LateralPID::move_lateral_pid(24, 127, 0, 4);
+        
     });
 
     leftDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);

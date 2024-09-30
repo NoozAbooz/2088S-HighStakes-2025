@@ -66,29 +66,29 @@ void create_marker(lv_obj_t* parent, double row, double col) {
 
 void render_sensor_view() {
     lv_obj_t *parent = rd_view_obj(sensorview);
-    
-    
 
-    lv_obj_t *field = lv_obj_create(parent);
-    lv_obj_t *arrow = lv_obj_create(parent);
+    // lv_obj_t *field = lv_obj_create(parent);
+    // lv_obj_t *arrow = lv_obj_create(parent);
 
-    Gif* gif = new Gif("/usd/field.gif", field);
-    Gif* gif1 = new Gif("/usd/arrow.gif", arrow);
+    // Gif* gif = new Gif("/usd/field.gif", field);
+    // Gif* gif1 = new Gif("/usd/arrow.gif", arrow);
 
-    lv_obj_align(field, LV_ALIGN_CENTER, -120, 0);
-    lv_img_set_zoom(field, 12);
-    lv_obj_align(arrow, LV_ALIGN_CENTER, 0, 0);
-    lv_img_set_zoom(arrow, 64);
+    // lv_obj_align(field, LV_ALIGN_CENTER, -120, 0);
+    // lv_img_set_zoom(field, 12);
+    // lv_obj_align(arrow, LV_ALIGN_CENTER, 0, 0);
+    // lv_img_set_zoom(arrow, 64);
 
-    int horizontal_offset = -120;
-    // while(1) {
+    // int horizontal_offset = -120;
+    while(1) {
     //     double horizontal_pos = ((chassis.getPose().x / 24.0) * 39.375 + horizontal_offset);
     //     double vertical_pos = ((chassis.getPose().y / -24.0) * 39.375);
     //     lv_obj_align(arrow, LV_ALIGN_CENTER, horizontal_pos, vertical_pos);
     //     lv_img_set_angle(arrow, (chassis.getPose().theta * 10));
     //     create_marker(parent, horizontal_pos, vertical_pos);
     //     lv_obj_move_foreground(arrow);
-    // }
+
+
+    }
 }
 
 void render_home_view() {
@@ -117,7 +117,7 @@ void render_home_view() {
 
     // Add "Kawaii Kittens" text
     lv_obj_t* title = lv_label_create(right_container);
-    lv_label_set_text(title, "Kawaii Kittens");
+    lv_label_set_text_fmt(title, "Kawaii Kittens - %.0f%%", pros::battery::get_capacity()); // weird tomfoolery for percentage sign
     lv_obj_set_style_text_color(title, lv_color_hex(0xfa4482), 0);
     lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 20);
     lv_obj_add_style(title, &style_text_large, 0);

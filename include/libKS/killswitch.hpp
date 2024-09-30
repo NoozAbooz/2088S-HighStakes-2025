@@ -7,6 +7,7 @@
 
 #include "libKS/drivetrain/chassis.hpp"
 #include "libKS/drivetrain/odom.hpp"
-#include "libKS/drivetrain/PID.hpp"
+#include "libKS/drivetrain/lateralPID.hpp"
+#include "libKS/drivetrain/angularPID.hpp"
 
 #include "libKS/utilities.hpp"
