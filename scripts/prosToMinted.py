@@ -146,6 +146,7 @@ def main():
             # It is good convention to keep all your header files in include/
             # Sub directories within include/ will still be found
             if('api.h' in components
+            or ('include' and 'libKS') in components
             or ('include' and 'main.h') in components
             or ('include' and 'liblvgl') in components
             or ('include' and 'display') in components
