@@ -19,7 +19,7 @@ double vertical_wheel_offset = 10.75;
 double horizontal_wheel_diameter = 3.25;
 double horizontal_wheel_offset = 10.75;
 std::string wheel_type = "motor";
-double rpm = 600;
+double rpm = 300;
 
 // Return robot rotation in radians, unwrapped to 360
 double get_imu_rotation() {
@@ -30,32 +30,15 @@ double get_imu_rotation() {
 	return fmod(average_rotation - 90, 360);
 }
 
-double get_vertical_distance_traveled() { 
-	double current_vertical_pos = verticalEncoder.get_angle();
-
-	// Divide current angle for centidegree ticks conversion to get amount of wheel rots and multiple by circumference to get total distance
-	return (current_vertical_pos / 36000) * (M_PI * vertical_wheel_diameter);
-}
-
-float lemlib::TrackingWheel::getDistanceTraveled() {
+double get_vertical_distance_traveled() {
     if (wheel_type == "rotation") {
-        return (float(this->rotation->get_position()) * this->diameter * M_PI / 36000) / this->gearRatio;
+        return ((verticalEncoder.get_position()) * vertical_wheel_diameter * M_PI / 36000) / 1; // 1 is gear ratio
     } else if (wheel_type == "motor") {
-        // get distance traveled by each motor
-        std::vector<pros::MotorGears> gearsets = this->motors->get_gearing_all();
-        std::vector<double> positions = this->motors->get_position_all();
-        std::vector<float> distances;
-        for (int i = 0; i < this->motors->size(); i++) {
-            float in;
-            switch (gearsets[i]) {
-                case pros::MotorGears::red: in = 100; break;
-                case pros::MotorGears::green: in = 200; break;
-                case pros::MotorGears::blue: in = 600; break;
-                default: in = 200; break;
-            }
-            distances.push_back(positions[i] * (diameter * M_PI) * (rpm / in));
-        }
-        return lemlib::avg(distances);
+            double in = 200; // cartridge gearing, leave since its factored into rpm
+            double left_distance =  (leftDrive.get_position(0) * (vertical_wheel_diameter * M_PI) * (rpm / in));
+			double right_distance =  (rightDrive.get_position(0) * (vertical_wheel_diameter * M_PI) * (rpm / in));
+
+			return (left_distance + right_distance) / 2; // find avg
     } else {
         return 0;
     }
