@@ -9,15 +9,15 @@
 void initialize() {
     rdconfig_init();
     pros::delay(10);
-    chassis.calibrate();
+    //chassis.calibrate();
 
     pros::Task([] {
-        //ks::odomThread();
+        ks::odomThread();
         
     });
 
-    leftDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
-    rightDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
+    //leftDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
+    //rightDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
     console.println("Robot initialized");
 }
 
