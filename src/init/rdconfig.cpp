@@ -117,7 +117,7 @@ void render_home_view() {
 
     // Add "Kawaii Kittens" text
     lv_obj_t* title = lv_label_create(right_container);
-    lv_label_set_text_fmt(title, "Kawaii Kittens - %.0f%%", pros::battery::get_capacity()); // weird tomfoolery for percentage sign
+    lv_label_set_text(title, "Kawaii Kittens"); // weird tomfoolery for percentage sign
     lv_obj_set_style_text_color(title, lv_color_hex(0xfa4482), 0);
     lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 20);
     lv_obj_add_style(title, &style_text_large, 0);
@@ -147,16 +147,6 @@ void render_home_view() {
         }
     }, LV_EVENT_CLICKED, NULL);
 
-    // lv_obj_t *clean_btn = lv_btn_create(rd_view_obj(gifview));
-    // lv_obj_set_size(clean_btn, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-    // lv_obj_align(clean_btn, LV_ALIGN_BOTTOM_RIGHT, -10, -10);
-    // lv_obj_add_event_cb(clean_btn, [](lv_event_t *e) { 
-    //     if (lv_event_get_code(e) == LV_EVENT_CLICKED) {
-    //         gif.clean();
-    //     }
-    // }, LV_EVENT_CLICKED, NULL);
-    // lv_label_set_text(lv_label_create(clean_btn), "Clean");
-
     // Add "Setup" button
     lv_obj_t* setup_btn = lv_btn_create(right_container);
     lv_obj_t* btn_label = lv_label_create(setup_btn);
@@ -176,6 +166,9 @@ void rdconfig_init() {
 	rd_view_focus(homeview);
 
     // pros::Task([] { // run multithreaded
+    //     while (true) {
+            
+    //     }
     //     render_sensor_view();
     // });
 }

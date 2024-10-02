@@ -19,43 +19,30 @@ double vertical_wheel_offset = 10.75;
 double horizontal_wheel_diameter = 3.25;
 double horizontal_wheel_offset = 10.75;
 std::string wheel_type = "motor";
-double rpm = 600;
+double gear_ratio = 36.0 / 72;
 
-// Return robot rotation in radians, unwrapped to 360
+// Return robot rotation in degrees, unwrapped
 double get_imu_rotation() {
 	double rotation1 = inertial1.get_rotation();
 	double rotation2 = inertial2.get_rotation();
 
-	double average_rotation = ((rotation1 * (360.0 / gyro_scale1)) + (rotation2 * (360.0 / gyro_scale2))) / 2;
-	return fmod(average_rotation - 90, 360);
+	double average_rotation = 0;
+	if (!isnanf(inertial2.get_rotation()) && !isinf(inertial2.get_heading())) { // use imu 2 when available
+		average_rotation = ((rotation1 * (360.0 / gyro_scale1)) + (rotation2 * (360.0 / gyro_scale2))) / 2;
+	} else {
+		average_rotation = rotation1 * (360.0 / gyro_scale1);
+	}
+	return average_rotation;
 }
 
-double get_vertical_distance_traveled() { 
-	double current_vertical_pos = verticalEncoder.get_angle();
-
-	// Divide current angle for centidegree ticks conversion to get amount of wheel rots and multiple by circumference to get total distance
-	return (current_vertical_pos / 36000) * (M_PI * vertical_wheel_diameter);
-}
-
-float lemlib::TrackingWheel::getDistanceTraveled() {
+double get_vertical_distance_traveled() {
     if (wheel_type == "rotation") {
-        return (float(this->rotation->get_position()) * this->diameter * M_PI / 36000) / this->gearRatio;
-    } else if (wheel_type == "motor") {
-        // get distance traveled by each motor
-        std::vector<pros::MotorGears> gearsets = this->motors->get_gearing_all();
-        std::vector<double> positions = this->motors->get_position_all();
-        std::vector<float> distances;
-        for (int i = 0; i < this->motors->size(); i++) {
-            float in;
-            switch (gearsets[i]) {
-                case pros::MotorGears::red: in = 100; break;
-                case pros::MotorGears::green: in = 200; break;
-                case pros::MotorGears::blue: in = 600; break;
-                default: in = 200; break;
-            }
-            distances.push_back(positions[i] * (diameter * M_PI) * (rpm / in));
-        }
-        return lemlib::avg(distances);
+        return ((verticalEncoder.get_position()) * vertical_wheel_diameter * M_PI / 36000) / 1; // 1 is gear ratio
+    } else if (wheel_type == "motor") { // cartridge gearing, leave since its factored into rpm
+            double left_distance = (leftDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
+			double right_distance = (rightDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
+
+			return (left_distance + right_distance) / 2; // find avg
     } else {
         return 0;
     }
@@ -77,35 +64,38 @@ double get_horizontal_distance_traveled() {
 // }
 
 void ks::odomThread() {
+	inertial1.reset();
 	inertial2.reset();
 
+	while (isnanf(inertial1.get_heading()) || isinf(inertial1.get_heading())) {
+		pros::delay(10);
+	}
+
+	double vertical_pos;
+	double heading;
+	double previous_distance_traveled = 0;
+	double change_in_distance = 0;
+
 	while (true) {
-		double vertical_pos = get_vertical_distance_traveled();
-		double horizontal_pos = get_horizontal_distance_traveled();
-
-		// Find average between dt and imu heading
-		// wrap to [0, 360)
-		double heading = ks::to_rad(get_imu_rotation());
+		vertical_pos = get_vertical_distance_traveled();
+		heading = fmod((360 - get_imu_rotation()) + 90, 360); // convert compass to standard position
         
-		// Only run calcs if robot is acively moving
-		if (inertial1.get_accel().x > 0.1 || inertial1.get_accel().y > 0.1) {
-			// double deltaLeft = (vertical_pos - prev_vertical_pos) * (M_PI / 180) * WHEEL_RADIUS; // Convert degrees to radians
-			// double deltaPerpendicular = (perpendicularPosition - prevPerpendicularPosition) * (M_PI / 180) * WHEEL_RADIUS;
+		change_in_distance = vertical_pos - previous_distance_traveled;
+        
+        x += change_in_distance * cos(ks::to_rad(heading));
+        y += change_in_distance * sin(ks::to_rad(heading));
+    	// At the end of the loop, set previous_distance_traveled for the next loop iteration
+        previous_distance_traveled = vertical_pos;
 
-			// delta_distance = distance_traveled - previous_distance_traveled;
-			// // std trig functions are in radians, so we have intermediary conversion to radians
-        	// x += delta_distance * std::cos(heading);
-        	// y += delta_distance * std::sin(heading);
-
-			// // Set previous_distance_travelled for the next loop iteration
-        	// previous_distance_traveled = distance_traveled;
+		theta = fmod(get_imu_rotation(), 360); // wrap to [0, 360) for user view
+    	if (theta < 0) {
+       		theta += 360;
 		}
 
 		// print for debugging
-		//chassis.setPose(chassis.getPose().x, chassis.getPose().y, get_imu_rotation());
-		// console.printf("X: %f, Y: %f, Theta: %f\n", x, y, get_imu_rotation());
-		printf("Theta: %f\n", get_imu_rotation());
+		chassis.setPose(chassis.getPose().x, chassis.getPose().y, get_imu_rotation());
+		printf("X: %f, Y: %f, Theta: %f\n", x, y, theta);
 
-        pros::delay(100); // todo
+        pros::delay(500); // todo
     }
 }
