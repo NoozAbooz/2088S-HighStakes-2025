@@ -151,7 +151,6 @@ def main():
             or ('include' and 'display') in components
             or ('include' and 'okapi') in components
 
-            or ('include' and 'libKS') in components
             or ('include' and 'gif-pros') in components
             or ('include' and 'lemlib') in components
             or ('include' and 'fmt') in components
