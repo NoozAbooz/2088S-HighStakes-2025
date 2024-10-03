@@ -195,7 +195,7 @@ def main():
 \usepackage{datetime2}
 \usepackage{url}
 
-\usepackage{minted}
+\usepackage{minted2}
 \usepackage{fontspec}
 \usepackage{xcolor}
 \usepackage{graphicx}
