@@ -96,6 +96,6 @@ void ks::odomThread() {
 		chassis.setPose(chassis.getPose().x, chassis.getPose().y, get_imu_rotation());
 		printf("X: %f, Y: %f, Theta: %f\n", x, y, theta);
 
-        pros::delay(500); // todo
+        pros::delay(10); // todo
     }
 }
