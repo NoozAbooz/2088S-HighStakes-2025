@@ -22,6 +22,19 @@ void testPID() {
     chassis.moveToPoint(24, 24, 5000);
     
 }
+ 
+void test() {
+
+// libKS MTPoint v0.1
+// Starting point: (-58.42 in, -24.45 in)
+// libKS MTPoint v0.1
+// Starting point: (-58.42 in, -24.45 in)
+chassis.moveToPoint(0.00, 0.00, 2000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 1
+chassis.moveToPoint(9.09, 47.35, 2000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 2
+chassis.moveToPoint(-6.85, 27.54, 2000, {.forwards = false, .maxSpeed = 127, .minSpeed = 0}); // Point 3
+
+
+}
 
 void WP_3Rush() {
     // libKS MTPoint v0.1
@@ -140,6 +153,7 @@ rd::Selector gui_selector({
 void autonomous() {
     chassis.setPose(0,0,0);
     console.println("Running auton...");
-    gui_selector.run_auton();
+    //gui_selector.run_auton();
+    test();
     rd_view_focus(gifview);
 }
