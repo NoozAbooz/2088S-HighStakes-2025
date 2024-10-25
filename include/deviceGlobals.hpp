@@ -7,8 +7,8 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // Drivetrain
 
 // ri24
-// inline pros::MotorGroup leftDrive({14, 15, -20}); 
-// inline pros::MotorGroup rightDrive({-16, 17, -18});
+//inline pros::MotorGroup leftDrive({14, -15, 16}); 
+//inline pros::MotorGroup rightDrive({-12, 13, -17});
 
 // v1
 inline pros::MotorGroup leftDrive({-1, -2, 3});
@@ -16,6 +16,7 @@ inline pros::MotorGroup rightDrive({6, -7, 8});
 
 // Intake
 inline pros::Motor intake(-10);
+//inline pros::Motor intake(-11);
 
 // Pneumatics
 inline pros::adi::DigitalOut clampPiston('A');
@@ -24,6 +25,7 @@ inline pros::adi::DigitalOut hoodPiston('B');
 /* Declare sensors */
 inline pros::Optical optical(14);
 inline pros::Imu inertial1(16);
+//inline pros::Imu inertial1(3);
 inline pros::Imu inertial2(3);
 
 inline pros::Rotation verticalEncoder(15);
