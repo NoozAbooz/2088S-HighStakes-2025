@@ -13,13 +13,12 @@ extern rd::Selector gui_selector;
 void rdconfig_init();
 
 extern bool isCompetition;
+extern std::string alliance;
 
 /* Functions */
 // DT
 void arcadeDrive();
 
-// Intake
 void refreshIntake();
-
-// Wings
 void refreshClamp();
+void refreshColourSort();

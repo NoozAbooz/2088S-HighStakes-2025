@@ -2,14 +2,14 @@
 
 rd_view_t *homeview = rd_view_create("Home");
 rd_view_t *allianceview = rd_view_create("Alliance Colour");
-rd_view_t *sensorview = rd_view_create("Sensors");
-rd_view_t *gifview = rd_view_create("Shikanoko");
+//rd_view_t *sensorview = rd_view_create("Sensors");
 rd::Console console;
+rd_view_t *gifview = rd_view_create("Shikanoko");
 
 // alliance select
 lv_style_t style_text_large;
 static lv_obj_t *red_btn, *blue_btn, *next_btn;
-static char alliance[10] = "";
+std::string alliance;
 
 #define BORDER_WIDTH 8
 #define HIGHLIGHT_COLOR lv_color_hex(0xFFFF00)
@@ -23,7 +23,7 @@ static void highlight_button(lv_obj_t *btn) {
 static void btn_event_cb(lv_event_t *e) {
     if (lv_event_get_code(e) == LV_EVENT_CLICKED) {
         lv_obj_t *btn = lv_event_get_target(e);
-        strcpy(alliance, (btn == red_btn) ? "red" : "blue");
+        alliance = ((btn == red_btn) ? "red" : "blue");
         highlight_button(btn);
         
         if (!next_btn) {
@@ -34,7 +34,7 @@ static void btn_event_cb(lv_event_t *e) {
             lv_label_set_text(lv_label_create(next_btn), "Next ->");
         }
         lv_obj_clear_flag(next_btn, LV_OBJ_FLAG_HIDDEN);
-        console.printf("Alliance set to: %s\n", alliance);
+        console.printf("Alliance set to: %s\n", alliance.c_str());
     }
 }
 
@@ -65,7 +65,7 @@ void create_marker(lv_obj_t* parent, double row, double col) {
 }
 
 void render_sensor_view() {
-    lv_obj_t *parent = rd_view_obj(sensorview);
+    //lv_obj_t *parent = rd_view_obj(sensorview);
 
     // lv_obj_t *field = lv_obj_create(parent);
     // lv_obj_t *arrow = lv_obj_create(parent);

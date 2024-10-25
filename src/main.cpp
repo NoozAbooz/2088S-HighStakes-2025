@@ -22,10 +22,11 @@ void opcontrol() {
 		/* Subsystem Listeners */
 		refreshIntake();
 		refreshClamp();
+		refreshColourSort();
 
 		// Report temperature telemetry (this code has never worked since the beginning 😭)
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
-		controller.print(0, 0, "DT%.0lf %.0lf %.0lf", drivetrainTemps, chassis.getPose().y, chassis.getPose().theta);
+		controller.print(0, 0, "DT%.0lf %.0lf %.0lf", drivetrainTemps, intake.get_temperature(), chassis.getPose().theta);
 		pros::delay(10); // Delay to save resources on brain
 	}
 }

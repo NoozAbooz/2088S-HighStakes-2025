@@ -12,12 +12,12 @@ void initialize() {
     //chassis.calibrate();
 
     pros::Task([] {
-        ks::odomThread();
-        
+        ks::odomThread();   
     });
 
     //leftDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
     //rightDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
+    optical.set_led_pwm(75);
     console.println("Robot initialized");
 }
 

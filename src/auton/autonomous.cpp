@@ -18,9 +18,7 @@ void testPID() {
     // ks::LateralPID::move_lateral_pid(24, 127, 0, 4);
     chassis.setPose(0, 0, 0);
     chassis.moveToPoint(0, 24, 5000);
-
     chassis.turnToHeading(90, 1000);
-
     chassis.moveToPoint(24, 24, 5000);
     
 }
