@@ -21,10 +21,9 @@ void refreshClamp() {
 }
 
 bool doinkerToggle = false;
-// Refresh wing status
 void refreshDoinker() {
-	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
-    	clampToggle = !clampToggle;
-		clampPiston.set_value(clampToggle);
+	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2)) {
+    	doinkerToggle = !doinkerToggle;
+		doinkerPiston.set_value(doinkerToggle);
     }
 }

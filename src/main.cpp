@@ -22,6 +22,7 @@ void opcontrol() {
 		/* Subsystem Listeners */
 		refreshIntake();
 		refreshClamp();
+		refreshDoinker();
 		refreshColourSort();
 
 		// Report temperature telemetry (this code has never worked since the beginning 😭)

@@ -25,14 +25,36 @@ void testPID() {
  
 void test() {
 
-// libKS MTPoint v0.1
-// Starting point: (-58.42 in, -24.45 in)
-// libKS MTPoint v0.1
-// Starting point: (-58.42 in, -24.45 in)
-chassis.moveToPoint(0.00, 0.00, 2000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 1
-chassis.moveToPoint(9.09, 47.35, 2000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 2
-chassis.moveToPoint(-6.85, 27.54, 2000, {.forwards = false, .maxSpeed = 127, .minSpeed = 0}); // Point 3
-
+chassis.moveToPoint(0.00, 0.00, 1000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 1
+chassis.moveToPoint(0, 40.35, 1000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 2
+chassis.turnToPoint(100,400,500);
+chassis.moveToPoint(4.5, 50, 1500, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 3
+pros::delay(600);
+doinkerPiston.set_value(true);
+pros::delay(800);
+chassis.moveToPoint(4.5, 29.54, 3000, {.forwards = false, .maxSpeed = 60, .minSpeed = 0}); // Point 3
+pros::delay(1500);
+doinkerPiston.set_value(false);
+pros::delay(800);
+chassis.moveToPoint(4.5, 37, 1000);
+chassis.turnToPoint(80, 45, 1000);
+pros::delay(200);
+chassis.moveToPoint(-13, 37, 1000, {false, 127, 0});
+pros::delay(500);
+clampPiston.set_value(true);
+pros::delay(100);
+intake.move_voltage(12000);
+pros::delay(2000);
+clampPiston.set_value(false);
+pros::delay(100);
+intake.move_voltage(0);
+chassis.turnToPoint(-80, 19.5, 2000);
+pros::delay(1000);
+chassis.setPose(0,0,0);
+chassis.turnToPoint(-6, 6, 1000);
+chassis.moveToPoint(4, -4, 1000, {false, 127, 0});
+intake.move_voltage(-12000);
+chassis.moveToPoint(0.5, -15, 1000);
 
 }
 

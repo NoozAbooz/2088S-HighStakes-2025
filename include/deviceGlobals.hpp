@@ -19,8 +19,9 @@ inline pros::Motor intake(-10);
 //inline pros::Motor intake(-11);
 
 // Pneumatics
-inline pros::adi::DigitalOut clampPiston('A');
-inline pros::adi::DigitalOut hoodPiston('B');
+inline pros::adi::Pneumatics clampPiston('A', false);
+inline pros::adi::Pneumatics doinkerPiston('B', false);
+inline pros::adi::Pneumatics hoodPiston('C', false, true);
 
 /* Declare sensors */
 inline pros::Optical optical(14);
@@ -40,7 +41,7 @@ inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               &rightDrive, // right motor group
                               13.5, // track width
                               lemlib::Omniwheel::NEW_4,
-                              300, // drivetrain rpm
+                              360, // drivetrain rpm
                               2 // chase power is 2. If we had traction wheels, it would have been 8
 );
 // lateral motion controller

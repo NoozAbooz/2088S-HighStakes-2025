@@ -21,4 +21,5 @@ void arcadeDrive();
 
 void refreshIntake();
 void refreshClamp();
+void refreshDoinker();
 void refreshColourSort();
