@@ -23,39 +23,102 @@ void testPID() {
     
 }
  
-void test() {
+void scrimTest() {
+// if (alliance == "red"){
+// chassis.moveToPoint(0.00, 0.00, 1000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 1
+// chassis.moveToPoint(0, 40.35, 1000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 2
+// chassis.turnToPoint(100,400,500);
+// chassis.moveToPoint(4.5, 50, 1500, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 3
+// pros::delay(600);
+// doinkerPiston.set_value(true);
+// pros::delay(800);
+// chassis.moveToPoint(4.5, 29.54, 3000, {.forwards = false, .maxSpeed = 60, .minSpeed = 0}); // Point 3
+// pros::delay(1500);
+// doinkerPiston.set_value(false);
+// pros::delay(800);
+// chassis.moveToPoint(4.5, 37, 1000);
+// chassis.turnToPoint(80, 45, 1000);
+// pros::delay(200);
+// chassis.moveToPoint(-13, 37, 1000, {false, 127, 0});
+// pros::delay(500);
+// clampPiston.set_value(true);
+// pros::delay(100);
+// intake.move_voltage(12000);
+// pros::delay(2000);
+// clampPiston.set_value(false);
+// pros::delay(100);
+// intake.move_voltage(0);
+// chassis.turnToPoint(-80, 19.5, 2000);
+// pros::delay(1000);
+// chassis.setPose(0,0,0);
+// chassis.turnToPoint(-6, 6, 1000);
+// chassis.moveToPoint(4, -4, 1000, {false, 127, 0});
+// intake.move_voltage(-12000);
+// chassis.moveToPoint(0.5, -15, 1000);
+// }
 
-chassis.moveToPoint(0.00, 0.00, 1000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 1
-chassis.moveToPoint(0, 40.35, 1000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 2
-chassis.turnToPoint(100,400,500);
-chassis.moveToPoint(4.5, 50, 1500, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 3
-pros::delay(600);
-doinkerPiston.set_value(true);
-pros::delay(800);
-chassis.moveToPoint(4.5, 29.54, 3000, {.forwards = false, .maxSpeed = 60, .minSpeed = 0}); // Point 3
+// if (alliance == "blue"){
+// chassis.moveToPoint(0.00, 0.00, 1000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 1
+// chassis.moveToPoint(0, 40.35, 1000, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 2
+// chassis.turnToPoint(-100,400,500);
+// chassis.moveToPoint(-4.5, 50, 1500, {.forwards = true, .maxSpeed = 127, .minSpeed = 0}); // Point 3
+// pros::delay(600);
+// doinkerPiston.set_value(true);
+// pros::delay(800);
+// chassis.moveToPoint(-4.5, 29.54, 3000, {.forwards = false, .maxSpeed = 60, .minSpeed = 0}); // Point 3
+// pros::delay(1500);
+// doinkerPiston.set_value(false);
+// pros::delay(800);
+// chassis.moveToPoint(-4.5, 37, 1000);
+// chassis.turnToPoint(-80, 45, 1000);
+// pros::delay(200);
+// chassis.moveToPoint(13, 37, 1000, {false, 127, 0});
+// pros::delay(500);
+// clampPiston.set_value(true);
+// pros::delay(100);
+// intake.move_voltage(12000);
+// pros::delay(2000);
+// clampPiston.set_value(false);
+// pros::delay(100);
+// intake.move_voltage(0);
+// chassis.turnToPoint(80, 19.5, 2000);
+// pros::delay(1000);
+// chassis.setPose(0,0,0);
+// chassis.turnToPoint(6, 6, 1000);
+// chassis.moveToPoint(-4, -4, 1000, {false, 127, 0});
+// intake.move_voltage(-12000);
+// chassis.moveToPoint(-0.5, -15, 1000);
+// }
+}
+
+void scrimLeftSide(){
+    clampPiston.set_value(false);
+chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
 pros::delay(1500);
-doinkerPiston.set_value(false);
-pros::delay(800);
-chassis.moveToPoint(4.5, 37, 1000);
-chassis.turnToPoint(80, 45, 1000);
-pros::delay(200);
-chassis.moveToPoint(-13, 37, 1000, {false, 127, 0});
-pros::delay(500);
 clampPiston.set_value(true);
-pros::delay(100);
 intake.move_voltage(12000);
 pros::delay(2000);
-clampPiston.set_value(false);
-pros::delay(100);
-intake.move_voltage(0);
-chassis.turnToPoint(-80, 19.5, 2000);
-pros::delay(1000);
-chassis.setPose(0,0,0);
-chassis.turnToPoint(-6, 6, 1000);
-chassis.moveToPoint(4, -4, 1000, {false, 127, 0});
-intake.move_voltage(-12000);
-chassis.moveToPoint(0.5, -15, 1000);
 
+chassis.moveToPoint(20, -32, 1000);
+pros::delay(3000);
+chassis.moveToPoint(50, -32, 4000, {.minSpeed = 127});
+pros::delay(3000);
+clampPiston.set_value(false);
+}
+
+void scrimRightSide(){
+    clampPiston.set_value(false);
+chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
+pros::delay(1500);
+clampPiston.set_value(true);
+intake.move_voltage(12000);
+pros::delay(2000);
+
+chassis.moveToPoint(-20, -32, 1000);
+pros::delay(3000);
+chassis.moveToPoint(-50, -32, 4000, {.minSpeed = 127});
+pros::delay(3000);
+clampPiston.set_value(false);
 }
 
 void WP_3Rush() {
@@ -166,6 +229,8 @@ chassis.moveToPoint(-0.36, -77.17, 2000, {.forwards = true, .maxSpeed = 127, .mi
 
 rd::Selector gui_selector({
     {"PID test", &testPID},
+    {"Scrim Left", &scrimLeftSide},
+    {"Scrim Right", &scrimRightSide},
     {"WP Rush", &WP_3Rush},
     {"WP 4 Ring", &WP4},
     {"Elim Rush", &Elim_rush},
@@ -175,7 +240,6 @@ rd::Selector gui_selector({
 void autonomous() {
     chassis.setPose(0,0,0);
     console.println("Running auton...");
-    //gui_selector.run_auton();
-    test();
+    gui_selector.run_auton();
     rd_view_focus(gifview);
 }

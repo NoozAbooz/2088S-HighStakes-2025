@@ -117,7 +117,8 @@ void render_home_view() {
 
     // Add "Kawaii Kittens" text
     lv_obj_t* title = lv_label_create(right_container);
-    lv_label_set_text(title, "Kawaii Kittens"); // weird tomfoolery for percentage sign
+    //lv_label_set_text_fmt(title, "Kawaii Kittens - %f%%", pros::battery::get_capacity());  // weird tomfoolery for percentage sign
+    lv_label_set_text(title, "Kawaii Kittens");
     lv_obj_set_style_text_color(title, lv_color_hex(0xfa4482), 0);
     lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 20);
     lv_obj_add_style(title, &style_text_large, 0);

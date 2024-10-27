@@ -25,9 +25,9 @@ inline pros::adi::Pneumatics hoodPiston('C', false, true);
 
 /* Declare sensors */
 inline pros::Optical optical(14);
-inline pros::Imu inertial1(16);
+inline pros::Imu inertial1(17);
 //inline pros::Imu inertial1(3);
-inline pros::Imu inertial2(3);
+inline pros::Imu inertial2(15);
 
 inline pros::Rotation verticalEncoder(15);
 inline pros::Rotation horizontalEncoder(16);

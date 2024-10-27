@@ -10,8 +10,8 @@ Position odom_pos;
 
 // Gyro scale effect from 2775V
 // If it is a bit less than 360, that's your number. If it is a bit more than 0, add 360 and that's your number.
-double gyro_scale1 = 357.91;
-double gyro_scale2 = 360.8;
+double gyro_scale1 = 360;
+double gyro_scale2 = 360;
 
 double vertical_wheel_diameter = 3.25;
 double vertical_wheel_offset = 10.75;
