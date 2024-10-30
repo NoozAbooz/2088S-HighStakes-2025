@@ -18,7 +18,6 @@ double vertical_wheel_offset = 10.75;
 
 double horizontal_wheel_diameter = 3.25;
 double horizontal_wheel_offset = 10.75;
-std::string wheel_type = "motor";
 double gear_ratio = 36.0 / 72;
 
 // Return robot rotation in degrees, unwrapped
@@ -36,9 +35,9 @@ double get_imu_rotation() {
 }
 
 double get_vertical_distance_traveled() {
-    if (wheel_type == "rotation") {
+    if (!isnanf(verticalEncoder.get_position()) && !isinf(verticalEncoder.get_position())) { // use rot sensor as priority
         return ((verticalEncoder.get_position()) * vertical_wheel_diameter * M_PI / 36000) / 1; // 1 is gear ratio
-    } else if (wheel_type == "motor") { // cartridge gearing, leave since its factored into rpm
+    } else if (!isnanf(leftDrive.get_position(0)) && !isinf(leftDrive.get_position(0))) { // cartridge gearing, leave since its factored into rpm
             double left_distance = (leftDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
 			double right_distance = (rightDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
 

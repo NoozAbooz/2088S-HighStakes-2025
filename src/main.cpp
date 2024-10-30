@@ -8,8 +8,7 @@
  * operator control task will be stopped. Re-enabling the robot will not resume 
  * the task from where it left off.
  */
-void opcontrol() {
-	// gif renders only in competition opcontrol
+void opcontrol() { 	// gif renders only in competition opcontrol
 	pros::Task([] {
 		if (isCompetition == true) {
 			Gif* gif = new Gif("/usd/nokotan.gif", rd_view_obj(gifview));
@@ -17,6 +16,8 @@ void opcontrol() {
 			console.println("Running gif...");
 		}
 	});
+	initializeColourSort(); // Initialize colour sorter
+
 	while (true) { // Main continuous loop
 		/* Drive */
 		ks::arcadeDrive(0, 0, 1);
@@ -25,7 +26,6 @@ void opcontrol() {
 		refreshIntake();
 		refreshClamp();
 		refreshDoinker();
-		refreshColourSort();
 
 		// Report temperature telemetry (this code has never worked since the beginning 😭)
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
