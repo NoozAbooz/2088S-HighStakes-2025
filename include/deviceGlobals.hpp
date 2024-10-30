@@ -7,16 +7,16 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // Drivetrain
 
 // ri24
-//inline pros::MotorGroup leftDrive({14, -15, 16}); 
-//inline pros::MotorGroup rightDrive({-12, 13, -17});
+inline pros::MotorGroup leftDrive({14, -15, 16}); 
+inline pros::MotorGroup rightDrive({-12, 13, -17});
 
 // v1
-inline pros::MotorGroup leftDrive({-1, -2, 3});
-inline pros::MotorGroup rightDrive({6, -7, 8});
+// inline pros::MotorGroup leftDrive({-1, -2, 3});
+// inline pros::MotorGroup rightDrive({6, -7, 8});
 
 // Intake
 inline pros::Motor intake(-10);
-//inline pros::Motor intake(-11);
+inline pros::Motor wallStake(9);
 
 // Pneumatics
 inline pros::adi::Pneumatics clampPiston('A', false);
