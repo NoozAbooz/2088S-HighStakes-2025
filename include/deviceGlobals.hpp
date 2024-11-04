@@ -32,7 +32,7 @@ inline pros::Imu inertial2(15);
 inline pros::Rotation verticalEncoder(22);
 inline pros::Rotation horizontalEncoder(22);
 // horizontal tracking wheel
-inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_2, 5.75);
+//inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_2, 5.75);
 // vertical tracking wheel
 inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemlib::Omniwheel::NEW_2, 2.5);
 
