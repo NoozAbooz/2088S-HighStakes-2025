@@ -127,6 +127,10 @@ chassis.moveToPoint(-0.36, -77.17, 2000, {.forwards = true, .maxSpeed = 127, .mi
 
 }
 
+void skills() {
+
+}
+
 rd::Selector gui_selector({
     {"PID test", &testPID},
     {"WP Rush", &WP_3Rush},
@@ -141,6 +145,20 @@ void autonomous() {
     console.println("Running auton...");
     gui_selector.run_auton();
     rd_view_focus(gifview);
+}
+
+void driverSkillsMacro() {
+    pros::Task skillsTask(skills, "skills");
+
+    pros::Task([&] {
+        while (true) {
+		    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+                skillsTask.remove();
+                chassis.cancelAllMotions();
+                break;
+		    }
+        }
+	});
 }
 
 /* Legacy Auton Routines */

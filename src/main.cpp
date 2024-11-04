@@ -27,7 +27,7 @@ void opcontrol() { 	// gif renders only in competition opcontrol
 		refreshDoinker();
 		//refreshWallstakes();
 
-		// Report temperature telemetry (this code has never worked since the beginning 😭)
+		// Report temperature telemetry 😭
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
 		controller.print(0, 0, "DT%.0lf INT%.0lf %.0lf", drivetrainTemps, intake.get_temperature(), chassis.getPose().theta);
 		pros::delay(10); // Delay to save resources on brain
