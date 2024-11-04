@@ -22,4 +22,5 @@ void arcadeDrive();
 void refreshIntake();
 void refreshClamp();
 void refreshDoinker();
+void refreshWallstakes();
 void initializeColourSort();
