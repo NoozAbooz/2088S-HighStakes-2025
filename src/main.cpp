@@ -16,7 +16,6 @@ void opcontrol() { 	// gif renders only in competition opcontrol
 			console.println("Running gif...");
 		}
 	});
-	initializeColourSort(); // Initialize colour sorter
 
 	while (true) { // Main continuous loop
 		/* Drive */
@@ -26,6 +25,7 @@ void opcontrol() { 	// gif renders only in competition opcontrol
 		refreshIntake();
 		refreshClamp();
 		refreshDoinker();
+		//refreshWallstakes();
 
 		// Report temperature telemetry (this code has never worked since the beginning 😭)
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
