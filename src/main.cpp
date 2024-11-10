@@ -8,8 +8,8 @@
  * operator control task will be stopped. Re-enabling the robot will not resume 
  * the task from where it left off.
  */
-void opcontrol() { 	// gif renders only in competition opcontrol
-	pros::Task([] {
+void opcontrol() {
+	pros::Task([] { // run only in competition
 		if (isCompetition == true) {
 			Gif* gif = new Gif("/usd/nokotan.gif", rd_view_obj(gifview));
 			rd_view_focus(gifview);
@@ -29,7 +29,7 @@ void opcontrol() { 	// gif renders only in competition opcontrol
 
 		// Report temperature telemetry 😭
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
-		controller.print(0, 0, "DT%.0lf INT%.0lf %.0lf", drivetrainTemps, intake.get_temperature(), chassis.getPose().theta);
+		controller.print(0, 0, "DT%.0lf INT%.0lf %.0lf   ", drivetrainTemps, intake.get_temperature(), chassis.getPose().theta);
 		pros::delay(10); // Delay to save resources on brain
 	}
 }

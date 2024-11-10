@@ -9,7 +9,10 @@
 void initialize() {
     rdconfig_init();
     pros::delay(10);
-    chassis.calibrate();
+
+    pros::Task([] {
+        chassis.calibrate();
+    });
 
     // pros::Task([] {
     //     ks::odomThread();   
