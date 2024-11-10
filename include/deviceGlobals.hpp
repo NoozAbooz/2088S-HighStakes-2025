@@ -40,7 +40,7 @@ inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemli
 inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               &rightDrive, // right motor group
                               13.5, // track width
-                              lemlib::Omniwheel::NEW_4,
+                              lemlib::Omniwheel::NEW_325,
                               360, // drivetrain rpm
                               2 // chase power is 2. If we had traction wheels, it would have been 8
 );
