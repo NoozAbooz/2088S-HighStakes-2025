@@ -23,6 +23,6 @@ void refreshIntake();
 void refreshClamp();
 void refreshDoinker();
 void refreshWallstakes();
-void initializeColourSort();
+void loadWallstakes();
 
 void driverSkillsMacro();

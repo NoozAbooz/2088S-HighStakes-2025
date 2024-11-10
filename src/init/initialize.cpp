@@ -18,8 +18,8 @@ void initialize() {
     //     ks::odomThread();   
     // });
 
-    //leftDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
-    //rightDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
+    verticalEncoder.set_data_rate(5);
+    horizontalEncoder.set_data_rate(5);
     optical.set_led_pwm(75);
     wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     console.println("Robot initialized");

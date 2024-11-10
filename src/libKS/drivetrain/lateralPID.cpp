@@ -14,7 +14,7 @@ void ks::LateralPID::set_lateral_constants(double kp, double ki, double kd, doub
 	global_timeOut = timeOut;
 }
 
-void ks::LateralPID::move_lateral_pid(double target, double maxSpeed, double minSpeed, double wheel_diamater) {
+void ks::LateralPID::move_lateral_pid(double target, double maxSpeed, double minSpeed) {
 	double prevError = 0;
 	double integral = 0;
 	double derivative = 0;
@@ -25,8 +25,8 @@ void ks::LateralPID::move_lateral_pid(double target, double maxSpeed, double min
 	double local_timer = 0;
 
 	while (true) {
-		double distance_travelled = ((leftDrive.get_position(0) + rightDrive.get_position(0)) / 2) * wheel_diamater * M_PI / 360 * 300;
-		printf("%f\n", distance_travelled);
+		double distance_travelled = ((verticalEncoder.get_position()) * 2 * M_PI / 36000);
+		//printf("%f\n", distance_travelled);
 		double error = target - distance_travelled;
 		integral = (integral + error);
 		derivative = (error - prevError);
@@ -38,11 +38,11 @@ void ks::LateralPID::move_lateral_pid(double target, double maxSpeed, double min
 			power = -maxSpeed;
 		}
 
-		// if (power * (12000.0 / 127) < minSpeed * (12000.0 / 127)) {
-		// 	power = minSpeed;
-		// } else if (power * (12000.0 / 127) > -minSpeed * (12000.0 / 127)) {
-		// 	power = -minSpeed;
-		// }
+		if (power * (12000.0 / 127) < minSpeed * (12000.0 / 127)) {
+			power = minSpeed;
+		} else if (power * (12000.0 / 127) > -minSpeed * (12000.0 / 127)) {
+			power = -minSpeed;
+		}
 
 		// printf("%f\n", power);
 		leftDrive.move_voltage(to_milivolt(power));

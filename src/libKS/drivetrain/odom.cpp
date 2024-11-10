@@ -36,7 +36,7 @@ double get_imu_rotation() {
 
 double get_vertical_distance_traveled() {
     if (!isnanf(verticalEncoder.get_position()) && !isinf(verticalEncoder.get_position())) { // use rot sensor as priority
-        return ((verticalEncoder.get_position()) * vertical_wheel_diameter * M_PI / 36000) / 1; // 1 is gear ratio
+        return ((verticalEncoder.get_position()) * vertical_wheel_diameter * M_PI / 36000); // 1 is gear ratio
     } else if (!isnanf(leftDrive.get_position(0)) && !isinf(leftDrive.get_position(0))) { // cartridge gearing, leave since its factored into rpm
             double left_distance = (leftDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
 			double right_distance = (rightDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
@@ -48,8 +48,7 @@ double get_vertical_distance_traveled() {
 }
 
 double get_horizontal_distance_traveled() { 
-	double current_horizontal_pos = horizontalEncoder.get_angle();
-	return (current_horizontal_pos / 36000) * (M_PI * horizontal_wheel_diameter);
+	return ((horizontalEncoder.get_position()) * horizontal_wheel_diameter * M_PI / 36000);
 }
 
 // double get_dt_heading() {

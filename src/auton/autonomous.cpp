@@ -44,20 +44,34 @@ void WP_3Rush() {
     chassis.moveToPoint(-8, -44, 2000);
 }
 
+void scrimRightSide(){
+    clampPiston.set_value(false);
+    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
+    pros::delay(1500);
+    clampPiston.set_value(true);
+    intake.move_voltage(12000);
+    pros::delay(2000);
+
+    chassis.moveToPoint(-20, -32, 1000);
+    pros::delay(3000);
+    chassis.moveToPoint(-44, 9, 4000, {.minSpeed = 127});
+    pros::delay(3000);
+}
+
 void skills() {
 
 }
 
 rd::Selector gui_selector({
-    {"WP Rush", &WP_3Rush},
+    {"WP Rush", WP_3Rush},
+    {"Scrim Right (2)", scrimRightSide},
 
-    {"PID test", &testPID},
-    {"PP test", &testPP},
-    {"BM test", &testBM}
+    {"PID test", testPID},
+    {"PP test", testPP},
+    {"BM test", testBM}
 });
 
 void autonomous() {
-    initializeColourSort();
     controller.print(0, 0, "Auton: %s | %.0lf   ", autonName.c_str(), chassis.getPose().theta);
     chassis.setPose(0,0,0);
     console.println("Running auton...");
@@ -92,20 +106,6 @@ void scrimLeftSide(){
     chassis.moveToPoint(20, -32, 1000);
     pros::delay(3000);
     chassis.moveToPoint(50, -32, 4000, {.minSpeed = 127});
-    pros::delay(3000);
-    clampPiston.set_value(false);
-}
-void scrimRightSide(){
-    clampPiston.set_value(false);
-    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
-    pros::delay(1500);
-    clampPiston.set_value(true);
-    intake.move_voltage(12000);
-    pros::delay(2000);
-
-    chassis.moveToPoint(-20, -32, 1000);
-    pros::delay(3000);
-    chassis.moveToPoint(-50, -32, 4000, {.minSpeed = 127});
     pros::delay(3000);
     clampPiston.set_value(false);
 }
