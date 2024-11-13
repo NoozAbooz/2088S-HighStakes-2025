@@ -16,12 +16,12 @@ inline pros::MotorGroup rightDrive({6, -7, 8});
 
 // Intake
 inline pros::Motor intake(-10);
-inline pros::MotorGroup wallStake({9, 10});
+inline pros::MotorGroup wallStake({-13, 14});
 
 // Pneumatics
 inline pros::adi::Pneumatics clampPiston('A', false);
 inline pros::adi::Pneumatics doinkerPiston('B', false);
-inline pros::adi::Pneumatics hoodPiston('C', false, true);
+inline pros::adi::AnalogIn wallStakeLineSensor('C');
 
 /* Declare sensors */
 inline pros::Optical optical(14);

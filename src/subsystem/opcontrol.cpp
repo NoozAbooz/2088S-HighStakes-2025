@@ -13,18 +13,27 @@ void refreshIntake() {
 
 void refreshWallstakes() {
 	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-		wallStake.move_voltage(12000);
+		wallStake.move_voltage(5000);
 	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-		wallStake.move_voltage(-12000);
+		wallStake.move_voltage(-5000);
 	} else {
-		wallStake.move_voltage(0);
+		wallStake.brake();
+	}
+}
+
+void resetWallstakes() {
+	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
+		pros::Task([] {
+			wallStake.move_absolute(800, 12000);
+			controller.rumble("-");
+		});
 	}
 }
 
 bool clampToggle = false;
 // Refresh wing status
 void refreshClamp() {
-	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
+	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
     	clampToggle = !clampToggle;
 		clampPiston.set_value(clampToggle);
     }
@@ -32,7 +41,7 @@ void refreshClamp() {
 
 bool doinkerToggle = false;
 void refreshDoinker() {
-	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2)) {
+	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
     	doinkerToggle = !doinkerToggle;
 		doinkerPiston.set_value(doinkerToggle);
     }

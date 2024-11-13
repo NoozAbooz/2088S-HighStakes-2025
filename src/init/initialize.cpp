@@ -18,10 +18,9 @@ void initialize() {
     //     ks::odomThread();   
     // });
 
-    //leftDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
-    //rightDrive.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
     optical.set_led_pwm(75);
     wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    wallStake.tare_position_all();
     console.println("Robot initialized");
 }
 

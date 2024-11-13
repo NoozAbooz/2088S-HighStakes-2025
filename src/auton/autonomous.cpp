@@ -30,8 +30,8 @@ void testPP() {
 }
 
 void testBM() {
-    chassis.setPose(-58, -46, 90);
-    chassis.moveToPose(-23, -23, 0, 6000, {.horizontalDrift = 4, .lead = 0.2});
+    chassis.setPose(0, 0, 0);
+    chassis.moveToPose(52, 6, 320, 1000, {.forwards = false});
 }
 
 void WP_3Rush() {
@@ -57,7 +57,7 @@ rd::Selector gui_selector({
 });
 
 void autonomous() {
-    initializeColourSort();
+    //initializeColourSort();
     controller.print(0, 0, "Auton: %s | %.0lf   ", autonName.c_str(), chassis.getPose().theta);
     chassis.setPose(0,0,0);
     console.println("Running auton...");

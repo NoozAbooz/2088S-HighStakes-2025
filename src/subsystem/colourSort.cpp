@@ -7,9 +7,7 @@ bool lock = false;
 void raiseHoodTask() {
 	lock = true;
 	console.println("Raising hood...");
-	hoodPiston.set_value(true);
 	pros::delay(700);
-	hoodPiston.set_value(false);
 	lock = false;
 }
 
