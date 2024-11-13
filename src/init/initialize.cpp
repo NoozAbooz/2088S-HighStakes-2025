@@ -20,7 +20,8 @@ void initialize() {
 
     optical.set_led_pwm(75);
     wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    wallStake.tare_position_all();
+    wallStake.set_zero_position_all(0);
+    wallStake.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
     console.println("Robot initialized");
 }
 

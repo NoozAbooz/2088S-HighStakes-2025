@@ -13,9 +13,9 @@ void refreshIntake() {
 
 void refreshWallstakes() {
 	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-		wallStake.move_voltage(5000);
+		wallStake.move_voltage(10000);
 	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-		wallStake.move_voltage(-5000);
+		wallStake.move_voltage(-10000);
 	} else {
 		wallStake.brake();
 	}
@@ -24,22 +24,10 @@ void refreshWallstakes() {
 void resetWallstakes() {
 	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
 		pros::Task([] {
-			wallStake.move_absolute(800, 12000);
+			wallStake.move_absolute(100, 100);
 			controller.rumble("-");
 		});
 	}
-}
-void loadWallstakes() {
-	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-    	pros::Task([] {
-        	while(wallstakePositionSensor.get_value() > 2700) {
-    			wallStake.move_voltage(10000);
-				pros::delay(10);
-			}
-			wallStake.brake();
-			controller.rumble(".");
-    	});
-    }
 }
 
 bool clampToggle = false;
