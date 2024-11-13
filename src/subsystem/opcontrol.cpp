@@ -29,9 +29,20 @@ void resetWallstakes() {
 		});
 	}
 }
+void loadWallstakes() {
+	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+    	pros::Task([] {
+        	while(wallstakePositionSensor.get_value() > 2700) {
+    			wallStake.move_voltage(10000);
+				pros::delay(10);
+			}
+			wallStake.brake();
+			controller.rumble(".");
+    	});
+    }
+}
 
 bool clampToggle = false;
-// Refresh wing status
 void refreshClamp() {
 	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
     	clampToggle = !clampToggle;

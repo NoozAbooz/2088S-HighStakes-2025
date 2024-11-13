@@ -28,6 +28,7 @@ inline pros::Optical optical(14);
 inline pros::Imu inertial1(17);
 //inline pros::Imu inertial1(3);
 inline pros::Imu inertial2(15);
+inline pros::adi::AnalogIn wallstakePositionSensor('X');
 
 inline pros::Rotation verticalEncoder(4);
 inline pros::Rotation horizontalEncoder(-5);
