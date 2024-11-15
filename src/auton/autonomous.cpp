@@ -163,7 +163,7 @@ void skills() {
     // chassis.turnToHeading(0, 500);
     // chassis.moveToPoint(-0.399, 122.804, 2000);
     // intake.move_voltage(12000);//second blue alliance
-    //total theroetical score: 55
+    //total theroetical score: 55 right now @ 15
 
 }
 
