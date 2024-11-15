@@ -59,6 +59,92 @@ void scrimRightSide(){
 }
 
 void skills() {
+    //all test code right now will tue Nov 15, 2024 :D
+    chassis.moveToPoint(0, 0, 500); //start
+    intake.move_voltage(12000); //red alliance
+    pros::delay(1500); //time to intake preload
+    chassis.moveToPoint(0.199, 13.955, 800); //move foward
+    chassis.turnToHeading(270, 500); //turn 90 deg
+    chassis.moveToPoint(16.945, 12.759, 1000, {.forwards = false}); //move to mogo
+    clampPiston.set_value(true); //clamp mogo
+    pros::delay(750); //time to clamp mogo
+    chassis.moveToPoint(22.527, 35.685, 1000); //ring 1
+    chassis.moveToPoint(46.251, 2.392, 1000); //ring 2
+    chassis.moveToPoint(58.412, 13.158, 1000); //ring 3
+    chassis.moveToPoint(45.852, 37.28, 1000); //ring 4
+    chassis.moveToPoint(46.45, 13.158, 1000); //ring5
+    chassis.moveToPoint(65.389, -4.785, 1000, {.forwards = false}); //pos mogo
+    clampPiston.set_value(false); //release mogo
+    pros::delay(750); //time to release mogo
+    resetWallstakes(); //prime wallstakes
+    chassis.moveToPoint(58.611, 60.206, 500); //wallstake 1
+    chassis.turnToHeading(90, 500); //turn 180 deg
+    chassis.moveToPoint(65.589, 59.807, 1000);
+    wallstakes.move_voltage(12000); //wallstake 1
+    pros::delay(1000); //time to wallstake 1
+    wallstakes.move_voltage(-12000); //stop wallstake 1
+    pros::delay(500); //time to reset
+    wallstakes.move_voltage(0); //stop wall stake
+    chassis.moveToPoint(47.248, 83.531, 1500);
+    pros::delay(500); //time to intake
+    intake.move_voltage(0); //stop intake
+    chassis.moveToPoint(21.73, 106.855, 1000, {.forwards = false});
+    chassis.moveToPoint(5.781, 108.251, 1000, {.forwards = false}); //mogo
+    clampPiston.set_value(true); //clamp mogo
+    pros::delay(750); //time to clamp mogo
+    intake.move_voltage(12000); //intake ring 1
+    chassis.moveToPoint(22.926, 84.926, 1000); //ring 2
+    chassis.moveToPoint(45.453, 107.653, 1000); //ring 3
+    chassis.moveToPoint(45.852, 118.618, 1000); //ring 4
+    chassis.moveToPoint(58.412, 108.052, 1000); //ring 5
+    chassis.moveToPoint(64.99, 125.396, 2000, {.forwards = false}); //pos
+    clampPiston.set_value(false); //release mogo
+    pros::delay(750); //time to release mogo
+    chassis.moveToPoint(-0.399, 60.405, 1000);
+    pros::delay(500); //time to intake
+    intake.move_voltage(0); //hold ring
+    chassis.moveToPoint(-21.331, 18.142, 2000); //mogo
+    clampPiston.set_value(true); //clamp mogo
+    pros::delay(750); //time to clamp mogo
+    intake.move_voltage(12000); //intake ring 1
+    chassis.moveToPoint(-24.521, 37.28, 1000); //ring 2
+    chassis.moveToPoint(-48.045, 36.482, 1000); //ring 3
+    chassis.moveToPoint(-47.846, 13.556, 1000); //ring 4
+    chassis.moveToPoint(-48.045, 2.193, 1000); //ring 5
+    chassis.moveToPoint(-60.007, 13.556, 1000); //ring 6
+    chassis.moveToPoint(-63.595, -2.592, 1000, {.forwards = false}); //pos mogo
+    clampPiston.set_value(false); //release mogo
+    pros::delay(750); //time to release mogo
+    resetWallstakes(); //prime wallstakes
+    chassis.moveToPoint(-59.408, 59.807, 1000); //wallstake setup
+    chassis.turnToHeading(270, 500); //turn 180 deg
+    chassis.moveToPoint(-65.19, 59.807, 1000); //wallstake 1
+    wallstakes.move_voltage(12000); //wallstake 1
+    pros::delay(1000); //time to wallstake 1
+    wallstakes.move_voltage(-12000); //stop wallstake 1
+    pros::delay(500); //time to reset
+    wallstakes.move_voltage(0); //stop wall stake
+    chassis.moveToPoint(-47.646, 84.129, 5000); //blue alliance
+    pros::delay(500); //time to intake
+    intake.move_voltage(0); //stop intake
+    chassis.moveToPoint(-26.515, 115.228, 1500, {.forwards = false});
+    chassis.moveToPoint(-21.331, 18.142, 2000); //mogo
+    clampPiston.set_value(true); //clamp mogo
+    chassis.moveToPoint(-65.19, 125.595, 2000, {.forwards = false}); //pos mogo
+    clampPiston.set_value(false); //release mogo
+    pros::delay(750); //time to release mogo
+    chassis.moveToPoint(-0.199, 107.852, 2000);
+    chassis.turnToHeading(0, 500);
+    chassis.moveToPoint(0, 123.003, 1000);
+    intake.move_voltage(12000);
+    chassis.moveToPoint(-23.923, 83.929, 1000);
+     pros::delay(500); //time to intake
+    intake.move_voltage(0); //stop intake
+    chassis.moveToPoint(-1.196, 93.1, 1000);
+    chassis.turnToHeading(0, 500);
+    chassis.moveToPoint(-0.399, 122.804, 2000);
+    intake.move_voltage(12000);//second blue alliance
+    //total theroetical score: 55
 
 }
 
