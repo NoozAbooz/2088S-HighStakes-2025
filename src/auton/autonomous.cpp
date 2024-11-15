@@ -151,7 +151,7 @@ void skills() {
 rd::Selector gui_selector({
     {"WP Rush", WP_3Rush},
     {"Scrim Right (2)", scrimRightSide},
-
+    {"Skills", skills},
     {"PID test", testPID},
     {"PP test", testPP},
     {"BM test", testBM}
