@@ -23,10 +23,15 @@ void refreshWallstakes() {
 
 void resetWallstakes() {
 	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
-		pros::Task([] {
-			wallStake.move_absolute(100, 100);
-			controller.rumble("-");
-		});
+		// pros::Task([] {
+		// 	wallStake.move_absolute(100, 100);
+		// 	controller.rumble("-");
+		//testing friday or sat elsewe will run code written below
+		// });
+		wallStake.move_voltage(10000);
+		pros::delay(170);
+		wallStake.move_voltage(0);
+		controller.rumble(".");
 	}
 }
 
