@@ -85,10 +85,10 @@ void skills() {
     wallstakes.move_voltage(-12000); //stop wallstake 1
     pros::delay(500); //time to reset
     wallstakes.move_voltage(0); //stop wall stake
-    chassis.moveToPoint(47.248, 83.531, 1500);
+    chassis.moveToPoint(47.248, 83.531, 1500); //Ring1
     pros::delay(500); //time to intake
     intake.move_voltage(0); //stop intake
-    chassis.moveToPoint(21.73, 106.855, 1000, {.forwards = false});
+    chassis.moveToPoint(21.73, 106.855, 1000, {.forwards = false}); //mogo setup
     chassis.moveToPoint(5.781, 108.251, 1000, {.forwards = false}); //mogo
     clampPiston.set_value(true); //clamp mogo
     pros::delay(750); //time to clamp mogo
@@ -100,7 +100,7 @@ void skills() {
     chassis.moveToPoint(64.99, 125.396, 2000, {.forwards = false}); //pos
     clampPiston.set_value(false); //release mogo
     pros::delay(750); //time to release mogo
-    chassis.moveToPoint(-0.399, 60.405, 1000);
+    chassis.moveToPoint(-0.399, 60.405, 1000); //ring 1
     pros::delay(500); //time to intake
     intake.move_voltage(0); //hold ring
     chassis.moveToPoint(-21.331, 18.142, 2000); //mogo
@@ -127,9 +127,9 @@ void skills() {
     chassis.moveToPoint(-47.646, 84.129, 5000); //blue alliance
     pros::delay(500); //time to intake
     intake.move_voltage(0); //stop intake
-    chassis.moveToPoint(-26.515, 115.228, 1500, {.forwards = false});
-    chassis.moveToPoint(-21.331, 18.142, 2000); //mogo
+    chassis.moveToPoint(-26.515, 115.228, 1500, {.forwards = false}); //mogo setup
     clampPiston.set_value(true); //clamp mogo
+    pros::delay(750); //time to clamp mogo
     chassis.moveToPoint(-65.19, 125.595, 2000, {.forwards = false}); //pos mogo
     clampPiston.set_value(false); //release mogo
     pros::delay(750); //time to release mogo
