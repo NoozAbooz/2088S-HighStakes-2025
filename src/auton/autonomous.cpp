@@ -76,7 +76,11 @@ void scrimRightSide(){
 
     chassis.moveToPoint(-19, -30, 1600);
     pros::delay(2000);
-    chassis.moveToPoint(0, -12, 2000);
+    chassis.moveToPoint(24, -24, 2000);
+    pros::delay(2000);
+    wallStake.move_voltage(10000);
+    pros::delay(500);
+    wallStake.brake();
     // chassis.moveToPoint(-44, 9, 4000, {.minSpeed = 127});
     // pros::delay(2000);
 
