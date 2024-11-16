@@ -91,27 +91,51 @@ void skills() {
     pros::delay(750); //time to intake
     clampPiston.set_value(true); //clamp mogo
     chassis.moveToPoint(24.527, 28.685, 1200); //ring 1
-    pros::delay(300); //time to intake
+    pros::delay(1000); //time to intake
     chassis.moveToPoint(47, 27, 1300);
-    pros::delay(500); //time to intake
+    pros::delay(1000); //time to intake
+    chassis.moveToPoint(52.248, 81.531, 1500); //Ring1
+    pros::delay(1000); //time to intake
     chassis.moveToPoint(46.251, 1.392, 1000); //ring 2
-    pros::delay(400); //time to intake
+    pros::delay(1000); //time to intake
     chassis.moveToPoint(45.552, -7.88, 1000); //ring 4
-    pros::delay(400);
+    pros::delay(1000);
     chassis.moveToPoint(50.412, 4.48, 1300); //ring 3
-    pros::delay(400); //time to intake
+    pros::delay(1000); //time to intake
     chassis.moveToPoint(58.389, -9.185, 1200, {.forwards = false}); //pos mogo
     pros::delay(1250);
     clampPiston.set_value(false); //release mogo
-    chassis.moveToPoint(45.611, 57.206, 1100); //wallstake 1
-    chassis.moveToPoint(18.248, 81.531, 1500); //Ring1
-    pros::delay(300); //time to intake
-    intake.move_voltage(0); //stop intake
-    chassis.moveToPoint(10.73, 91.855, 1000, {.forwards = false}); //mogo setup
-    chassis.moveToPoint(-5, 92.251, 1000, {.forwards = false}); //mogo
-    pros::delay(750); //time to clamp mogo
+    chassis.moveToPoint(-22.145, 13.959, 800, {.forwards = false}); //move to mogo
+     pros::delay(750); //time to intake
     clampPiston.set_value(true); //clamp mogo
-    intake.move_voltage(12000); //intake ring 1
+    chassis.moveToPoint(-24.527, 28.685, 1200); //ring 1
+    pros::delay(1000); //time to intake
+    chassis.moveToPoint(-47, 27, 1300);
+    pros::delay(1000); //time to intake
+    chassis.moveToPoint(-52.248, 81.531, 1500); //Ring1
+    pros::delay(1000); //time to intake
+    chassis.moveToPoint(-46.251, 1.392, 1000); //ring 2
+    pros::delay(1000); //time to intake
+    chassis.moveToPoint(-45.552, -7.88, 1000); //ring 4
+    pros::delay(1000);
+    chassis.moveToPoint(-50.412, 4.48, 1300); //ring 3
+    pros::delay(1000); //time to intake
+    chassis.moveToPoint(-58.389, -9.185, 1200, {.forwards = false}); //pos mogo
+    pros::delay(1250);
+    
+    //29 points
+
+
+
+    // chassis.moveToPoint(45.611, 57.206, 1100); //wallstake 1
+    // chassis.moveToPoint(18.248, 81.531, 1500); //Ring1
+    // pros::delay(300); //time to intake
+    // intake.move_voltage(0); //stop intake
+    // chassis.moveToPoint(10.73, 91.855, 1000, {.forwards = false}); //mogo setup
+    // chassis.moveToPoint(-5, 92.251, 1000, {.forwards = false}); //mogo
+    // pros::delay(750); //time to clamp mogo
+    // clampPiston.set_value(true); //clamp mogo
+    // intake.move_voltage(12000); //intake ring 1
     // chassis.moveToPoint(22.926, 84.926, 1000); //ring 2
     // chassis.moveToPoint(45.453, 107.653, 1000); //ring 3
     // chassis.moveToPoint(45.852, 118.618, 1000); //ring 4
