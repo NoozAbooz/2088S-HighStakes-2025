@@ -74,10 +74,27 @@ void scrimRightSide(){
     intake.move_voltage(12000);
     pros::delay(2000);
 
-    chassis.moveToPoint(-20, -32, 1000);
+    chassis.moveToPoint(-19, -30, 1600);
+    pros::delay(2000);
+    chassis.moveToPoint(0, -12, 2000);
+    // chassis.moveToPoint(-44, 9, 4000, {.minSpeed = 127});
+    // pros::delay(2000);
+
+}
+
+void scrimLeftSide(){ // not updated yet
+    clampPiston.set_value(false);
+    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
+    pros::delay(1500);
+    clampPiston.set_value(true);
+    intake.move_voltage(12000);
+    pros::delay(2000);
+
+    chassis.moveToPoint(20, -32, 1000);
     pros::delay(3000);
-    chassis.moveToPoint(-44, 9, 4000, {.minSpeed = 127});
+    chassis.moveToPoint(50, -32, 4000, {.minSpeed = 127});
     pros::delay(3000);
+    clampPiston.set_value(false);
 }
 
 void skills() {
@@ -193,7 +210,8 @@ void skills() {
 
 rd::Selector gui_selector({
     {"WP Rush", WP_3Rush},
-    {"Scrim Right (2)", scrimRightSide},
+    {"Scrim Left", scrimLeftSide},
+    {"Scrim Right", scrimRightSide},
     {"Skills", skills},
     {"PID test", testPID},
     {"SAWP test", testPP},
@@ -225,17 +243,3 @@ void driverSkillsMacro() {
 /* Legacy Auton Routines */
 
 // collect mogo, score preload and ring to the side. works for either alliance
-void scrimLeftSide(){
-    clampPiston.set_value(false);
-    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
-    pros::delay(1500);
-    clampPiston.set_value(true);
-    intake.move_voltage(12000);
-    pros::delay(2000);
-
-    chassis.moveToPoint(20, -32, 1000);
-    pros::delay(3000);
-    chassis.moveToPoint(50, -32, 4000, {.minSpeed = 127});
-    pros::delay(3000);
-    clampPiston.set_value(false);
-}
