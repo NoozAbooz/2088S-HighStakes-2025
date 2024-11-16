@@ -18,10 +18,10 @@ void initialize() {
     //     ks::odomThread();   
     // });
 
-    optical.set_led_pwm(75);
+    optical.set_led_pwm(75); // enable led on optical sensor for accuracy
+    optical.set_integration_time(10); // refresh every 10ms
     wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    wallStake.set_zero_position_all(0);
-    wallStake.set_encoder_units_all(pros::E_MOTOR_ENCODER_DEGREES);
+    wallStake.tare_position_all();
     console.println("Robot initialized");
 }
 
