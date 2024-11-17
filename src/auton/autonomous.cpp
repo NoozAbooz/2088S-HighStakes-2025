@@ -24,29 +24,31 @@ void testPID() {
 }
 
 ASSET(test_txt);
-void testPP() {
-    // chassis.setPose(-58, -46, 90);
-    // chassis.follow(test_txt, 20, 15000);
-    chassis.moveToPoint(0, 0, 5000, {.forwards = false});
-    chassis.turnToHeading(180, 1000);
-    intake.move_voltage(12000);
-    pros::delay(750);
+void Five_Ring() {
+    chassis.moveToPoint(0, 0, 1000); // Start
+    chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
+    pros::delay(20);
+    chassis.turnToHeading(45, 500); 
+    pros::delay(20);
+    chassis.moveToPoint(-9.788, -27.808, 1000, {.forwards = false}); // Mogo
+    pros::delay(900);
     clampPiston.set_value(true);
-    chassis.moveToPoint(0.145, 34.432, 5000, {.forwards = false});
-    chassis.moveToPoint(-19.787, 29.801, 5000);
-    chassis.moveToPoint(-24.956, 48.255, 5000);
-    clampPiston.set_value(false);
-    chassis.moveToPoint(-20.406, 29.022, 5000);
-    chassis.moveToPoint(-32.174, 46.362, 5000);
-    chassis.moveToPoint(-13.784, 16.4, 5000);
-    chassis.moveToPoint(-19.303, -14.401, 5000);
+    pros::delay(100);
+    intake.move_voltage(12000); // Preload
+    pros::delay(800);
+    chassis.moveToPoint(7.786, -31.589, 1000); // Ring 2
+    pros::delay(1000);   
+    chassis.moveToPoint(7.341, -49.386, 1000); // Ring 3
+    pros::delay(1000);
+    chassis.moveToPoint(12.68, -31.144, 1000, {.forwards = false}); 
     pros::delay(500);
-    intake.move_voltage(0);
-    chassis.moveToPoint(14.265, 19.416, 5000, {.forwards = false});
-    chassis.moveToPoint(38.386, 9.799, 5000, {.forwards = false});
-    pros::delay(2000);
-    intake.move_voltage(12000);
-    chassis.moveToPoint(28.345, 50.282, 5000);
+    chassis.moveToPoint(14.905, -49.386, 1000);
+    pros::delay(1000);
+    chassis.moveToPoint(-3.559, -30.032, 1000, {.forwards = false});
+    chassis.turnToHeading(45, 600);
+    chassis.moveToPoint(26.695, 8.009, 1200);
+
+
 
 
 }
@@ -218,7 +220,7 @@ rd::Selector gui_selector({
     {"Scrim Right", scrimRightSide},
     {"Skills", skills},
     {"PID test", testPID},
-    {"SAWP test", testPP},
+    {"5 Ring", Five_Ring},
     {"BM test", testBM}
 });
 
