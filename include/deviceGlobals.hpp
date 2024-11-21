@@ -21,12 +21,12 @@ inline pros::MotorGroup wallStake({-13, 14});
 // Pneumatics
 inline pros::adi::Pneumatics clampPiston('A', false);
 inline pros::adi::Pneumatics doinkerPiston('B', false);
-inline pros::adi::AnalogIn wallStakeLineSensor('C');
 
 /* Declare sensors */
 inline pros::Optical optical(14);
 inline pros::Imu inertial1(17);
 inline pros::Imu inertial2(15);
+inline pros::Rotation wallStakeSensor(12);
 
 inline pros::Rotation verticalEncoder(4);
 inline pros::Rotation horizontalEncoder(-5);

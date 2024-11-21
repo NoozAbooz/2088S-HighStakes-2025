@@ -12,8 +12,8 @@ void refreshIntake() {
 }
 
 void refreshWallstakes() {
-	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-		wallStake.move_voltage(10000);
+	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1) && (wallStakeSensor.get_angle()/100 < 140 && wallStakeSensor.get_angle()/100 > 0)) {
+		wallStake.move_voltage(8000);
 	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
 		wallStake.move_voltage(-10000);
 	} else {

@@ -21,7 +21,6 @@ void initialize() {
     optical.set_led_pwm(75); // enable led on optical sensor for accuracy
     optical.set_integration_time(10); // refresh every 10ms
     wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    wallStake.tare_position_all();
     console.println("Robot initialized");
 }
 
