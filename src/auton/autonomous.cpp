@@ -31,23 +31,26 @@ void Five_Ring() {
     chassis.turnToHeading(45, 500); 
     pros::delay(20);
     chassis.moveToPoint(-9.788, -27.808, 1000, {.forwards = false}); // Mogo
-    pros::delay(900);
+    pros::delay(790);
     clampPiston.set_value(true);
-    pros::delay(100);
+    pros::delay(20);
     intake.move_voltage(12000); // Preload
     pros::delay(800);
-    chassis.moveToPoint(7.786, -31.589, 1000); // Ring 2
-    pros::delay(1000);   
-    chassis.moveToPoint(7.341, -49.386, 1000); // Ring 3
+    chassis.moveToPoint(4.786, -26.589, 1000); // Ring 2
+    pros::delay(1000); 
+    chassis.turnToHeading(180, 500);  
+    chassis.moveToPoint(6.841, -39.986, 1000); // Ring 3
     pros::delay(1000);
-    chassis.moveToPoint(12.68, -31.144, 1000, {.forwards = false}); 
-    pros::delay(500);
-    chassis.moveToPoint(14.905, -49.386, 1000);
-    pros::delay(1000);
-    chassis.moveToPoint(-3.559, -30.032, 1000, {.forwards = false});
+    chassis.moveToPoint(12.68, -29.144, 1300, {.forwards = false}); 
+    pros::delay(200);
+    chassis.moveToPoint(14.505, -40.686, 1000);
+    pros::delay(1100);
+    chassis.moveToPoint(-3.559, -34.032, 1000, {.forwards = false});
     chassis.turnToHeading(45, 600);
-    chassis.moveToPoint(26.695, 8.009, 1200);
-
+    chassis.moveToPoint(27.695, 3.009, 1200);
+    pros::delay(1500);
+    chassis.moveToPoint(0.695, -30.009, 1500, {.forwards = false, .maxSpeed = 50});
+    chassis.moveToPoint(27.695, 3.009, 1200, {.forwards = true, .maxSpeed = 70});
 
 
 
@@ -60,12 +63,15 @@ void testBM() {
 
 void WP_3Rush() {
     autonName = "WP 3Rush";
-    chassis.setPose(0, 0, 290);
-    chassis.moveToPose(60, -20.5, 290, 2000, {.forwards = false, .horizontalDrift = 4, .lead = 0.2, .minSpeed = 50}, false);
+    chassis.moveToPose(0, 0, 315, 5000, {.forwards = false, .horizontalDrift = 7});
+    pros::delay(790);
     clampPiston.set_value(true);
-    intake.move_voltage(12000);
-    chassis.moveToPoint(34, -25, 2000);
-    chassis.moveToPoint(-8, -44, 2000);
+    chassis.moveToPose(9.326, -47.794, 270, 5000, {.forwards = false, .horizontalDrift = 7});
+    chassis.moveToPoint(24.946, -13.056, 5000);
+    chassis.moveToPoint(33.806, -26.112, 5000);
+    chassis.moveToPoint(13.289, -30.775, 5000);
+    chassis.moveToPoint(57.586, -30.308, 5000);
+
 }
 
 void scrimRightSide(){
@@ -215,12 +221,12 @@ void skills() {
 }
 
 rd::Selector gui_selector({
+    {"5 Ring", Five_Ring},
     {"WP Rush", WP_3Rush},
-    {"Scrim Left", scrimLeftSide},
-    {"Scrim Right", scrimRightSide},
+    //{"Scrim Left", scrimLeftSide},
+    //{"Scrim Right", scrimRightSide},
     {"Skills", skills},
     {"PID test", testPID},
-    {"5 Ring", Five_Ring},
     {"BM test", testBM}
 });
 
