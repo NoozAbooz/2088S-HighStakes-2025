@@ -63,14 +63,27 @@ void testBM() {
 
 void WP_3Rush() {
     autonName = "WP 3Rush";
-    chassis.moveToPose(0, 0, 315, 5000, {.forwards = false, .horizontalDrift = 7});
-    pros::delay(790);
+    chassis.moveToPoint(0, 0, 1500);
+    chassis.moveToPoint(0, -39.095, 1050, {.forwards = false});
+    chassis.turnToHeading(315, 450);
+    pros::delay(20);
+    chassis.moveToPoint(8.793, -44.79, 1200, {.forwards = false});
+    pros::delay(670);
     clampPiston.set_value(true);
-    chassis.moveToPose(9.326, -47.794, 270, 5000, {.forwards = false, .horizontalDrift = 7});
-    chassis.moveToPoint(24.946, -13.056, 5000);
-    chassis.moveToPoint(33.806, -26.112, 5000);
-    chassis.moveToPoint(13.289, -30.775, 5000);
-    chassis.moveToPoint(57.586, -30.308, 5000);
+    chassis.turnToHeading(90, 600);
+    chassis.moveToPoint(19.5, -38.898, 1200);
+    intake.move_voltage(12000);
+    pros::delay(1000);
+    chassis.turnToHeading(0, 600);
+    chassis.moveToPoint(22.681, -13.598, 1200);
+    chassis.turnToHeading(180, 600);
+    pros::delay(800);
+    clampPiston.set_value(false);
+    // chassis.moveToPoint(23.314, -17.952, 1500);
+    // chassis.moveToPoint(32.64, -30.308, 1500);
+    // chassis.moveToPoint(11.89, -35.671, 1500);
+    // chassis.moveToPoint(55.255, -34.272, 1500);
+
 
 }
 
