@@ -15,13 +15,6 @@ void refreshWallstakes() {
 	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
 		// if ((wallStakeSensor.get_angle() / 100 < 130 && wallStakeSensor.get_angle() / 100 > 0)) {
 			wallStake.move_voltage(8000);
-		// } else {
-		// 	// Gradually slow down the motor
-        //     for (int speed = 127; speed >= 0; speed -= 10) {
-        //         wallStake.move(speed);
-        //         pros::delay(50); // Adjust for smoother slow-down
-        //     }
-        //     wallStake.brake(); // Ensure motor stops
 		// }
 
 	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {

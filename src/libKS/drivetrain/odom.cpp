@@ -143,6 +143,6 @@ void ks::odomThread() {
 		}
 		chassis.setPose(x, y, get_imu_rotation());
 
-        pros::delay(10); // todo change
+        pros::delay(10);
     }
 }
