@@ -23,7 +23,6 @@ void testPID() {
     
 }
 
-ASSET(test_txt);
 void Five_Ring() {
     chassis.moveToPoint(0, 0, 1000); // Start
     chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
@@ -75,14 +74,45 @@ void WP_3Rush() {
     intake.move_voltage(12000);
     pros::delay(1000);
     chassis.turnToHeading(0, 600);
-    chassis.moveToPoint(22.681, -13.598, 1200);
+    chassis.moveToPoint(21.481, -13.598, 1200);
     chassis.turnToHeading(180, 600);
     pros::delay(800);
     clampPiston.set_value(false);
-    // chassis.moveToPoint(23.314, -17.952, 1500);
+    chassis.moveToPoint(23.314, -17.952, 1500, {.forwards = false});
+    pros::delay(750);
+    clampPiston.set_value(true);
     // chassis.moveToPoint(32.64, -30.308, 1500);
     // chassis.moveToPoint(11.89, -35.671, 1500);
     // chassis.moveToPoint(55.255, -34.272, 1500);
+
+
+}
+
+void WP_5NORush() {
+    autonName = "WP No Rush";
+    // get alliance stake
+    clampPiston.set_value(true);
+    chassis.moveToPoint(0, -17, 1000, {.forwards = false, .maxSpeed = 80});
+    chassis.turnToHeading(90, 1000);
+    chassis.moveToPoint(-7, -17, 2000, {.forwards = false}); // move into wall
+    intake.move_voltage(12000);
+    pros::delay(700);
+    intake.move_voltage(0);
+    chassis.moveToPoint(0, -17, 2000); // ram into wall
+    chassis.moveToPoint(-10, -17, 1000, {.forwards = false, .minSpeed = 90});
+    pros::delay(1000);
+    ks::resetOdomPosition();
+    pros::delay(500);
+    chassis.moveToPoint(0, 5, 2000, {.minSpeed = 80});
+
+    // clamp mogo
+    // chassis.turnToHeading(180, 1000);
+    // chassis.moveToPoint(0, -5, 1000);
+    // clampPiston.set_value(false);
+    // chassis.moveToPoint(30, 6, 1500, {.forwards = false, .maxSpeed = 80});
+    // pros::delay(1500);
+    // clampPiston.set_value(true);
+
 
 
 }
@@ -236,6 +266,7 @@ void skills() {
 rd::Selector gui_selector({
     {"5 Ring", Five_Ring},
     {"WP Rush", WP_3Rush},
+    {"WP NoRush", WP_5NORush},
     //{"Scrim Left", scrimLeftSide},
     //{"Scrim Right", scrimRightSide},
     {"Skills", skills},

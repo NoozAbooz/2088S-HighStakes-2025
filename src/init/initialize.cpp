@@ -10,13 +10,13 @@ void initialize() {
     rdconfig_init();
     pros::delay(10);
 
-    pros::Task([] {
-        chassis.calibrate();
-    });
-
     // pros::Task([] {
-    //     ks::odomThread();   
+    //     chassis.calibrate();
     // });
+
+    pros::Task([] {
+        ks::odomThread();   
+    });
 
     optical.set_led_pwm(75); // enable led on optical sensor for accuracy
     optical.set_integration_time(10); // refresh every 10ms

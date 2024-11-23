@@ -13,11 +13,11 @@ Position odom_pos;
 double gyro_scale1 = 360;
 double gyro_scale2 = 360;
 
-double vertical_wheel_diameter = 3.25;
-double vertical_wheel_offset = 10.75;
+double vertical_wheel_diameter = 2.125;
+double vertical_wheel_offset = 0.44;
 
-double horizontal_wheel_diameter = 3.25;
-double horizontal_wheel_offset = 10.75;
+double horizontal_wheel_diameter = 2.125;
+double horizontal_wheel_offset = 1.65;
 double gear_ratio = 36.0 / 72;
 
 // Return robot rotation in degrees, unwrapped
@@ -61,39 +61,88 @@ double get_horizontal_distance_traveled() {
 // 	return std::fmod(to_deg(heading_in_radians), 360);
 // }
 
+
+// important vars for odom
+double vertical_pos;
+double horizontal_pos;
+
+double prev_vertical_pos = 0;
+double prev_horizontal_pos = 0;
+
+double delta_vertical;
+double delta_horizontal;
+
+double heading;
+double prev_heading;
+double delta_heading;
+double avg_heading;
+	
+double deltaXLocal;
+double deltaYLocal;
+
+void ks::resetOdomPosition() {
+	x = 0;
+	y = 0;
+
+	verticalEncoder.reset_position();
+	horizontalEncoder.reset_position();
+
+	prev_vertical_pos = 0;
+	prev_horizontal_pos = 0;
+	prev_heading = 0;
+
+	inertial1.set_heading(0);
+	inertial2.set_heading(0);
+}
+
 void ks::odomThread() {
 	inertial1.reset();
 	inertial2.reset();
+
+	verticalEncoder.reset_position();
+	horizontalEncoder.reset_position();
 
 	while (isnanf(inertial1.get_heading()) || isinf(inertial1.get_heading())) {
 		pros::delay(10);
 	}
 
-	double vertical_pos;
-	double heading;
-	double previous_distance_traveled = 0;
-	double change_in_distance = 0;
-
 	while (true) {
+		printf("%f, %f\n", get_vertical_distance_traveled(), get_horizontal_distance_traveled());
 		vertical_pos = get_vertical_distance_traveled();
-		heading = fmod((360 - get_imu_rotation()) + 90, 360); // convert compass to standard position
+		horizontal_pos = get_horizontal_distance_traveled();
         
-		change_in_distance = vertical_pos - previous_distance_traveled;
-        
-        x += change_in_distance * cos(ks::to_rad(heading));
-        y += change_in_distance * sin(ks::to_rad(heading));
-    	// At the end of the loop, set previous_distance_traveled for the next loop iteration
-        previous_distance_traveled = vertical_pos;
+		delta_vertical = (vertical_pos - prev_vertical_pos);
+		delta_horizontal = (horizontal_pos - prev_horizontal_pos);
+
+		prev_vertical_pos = vertical_pos;
+		prev_horizontal_pos = horizontal_pos;
+		
+		heading = to_rad(fmod((360 - get_imu_rotation()) + 90, 360)); // convert compass to standard position in RAD
+		delta_heading = heading - prev_heading;
+		prev_heading = heading;
+		
+		if (delta_heading == 0) {
+			deltaXLocal = delta_horizontal;
+			deltaYLocal = delta_vertical;
+		} else {
+			// LEFT_TRACKING_RADIUS is the distance from the left tracking wheel to the tracking center of the robot
+			// PERPENDICULAR_TRACKING_RADIUS is the distance from the perpendicular tracking wheel to the tracking center of the robot
+			deltaXLocal = 2 * sin(delta_heading / 2) * ((delta_horizontal / delta_heading) + horizontal_wheel_offset);
+			deltaYLocal = 2 * sin(delta_heading/ 2) * ((delta_vertical / delta_heading) + vertical_wheel_offset);
+		}
+
+		avg_heading = heading - (delta_heading / 2);
+
+		x += (deltaYLocal * cos(avg_heading)) - (deltaXLocal * sin(avg_heading));
+		y += (deltaYLocal * sin(avg_heading)) - (deltaXLocal * cos(avg_heading));
+
 
 		theta = fmod(get_imu_rotation(), 360); // wrap to [0, 360) for user view
     	if (theta < 0) {
        		theta += 360;
 		}
-
-		// print for debugging
 		chassis.setPose(x, y, get_imu_rotation());
-		//printf("X: %f, Y: %f, Theta: %f\n", x, y, theta);
 
-        pros::delay(10); // todo
+        pros::delay(10); // todo change
     }
 }

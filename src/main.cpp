@@ -19,7 +19,7 @@ void opcontrol() {
 
 	while (true) { // Main continuous loop
 		/* Drive */
-		ks::arcadeDrive(0, 0, 1);
+		ks::arcadeDrive(0, 0, 0.8);
 
 		/* Subsystem Listeners */
 		refreshIntake();
@@ -30,7 +30,8 @@ void opcontrol() {
 
 		// Report temperature telemetry 😭
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
-		controller.print(0, 0, "DT%.0lf INT%.0lf %.0lf   ", drivetrainTemps, intake.get_temperature(), chassis.getPose().theta);
+		//controller.print(0, 0, "DT%.0lf INT%.0lf %.0lf   ", drivetrainTemps, intake.get_temperature(), chassis.getPose().theta);
+		controller.print(0, 0, "X%.0lf Y%.0lf ROT%.0lf   ", chassis.getPose().x, chassis.getPose().y, chassis.getPose().theta);
 		pros::delay(10); // Delay to save resources on brain
 	}
 }

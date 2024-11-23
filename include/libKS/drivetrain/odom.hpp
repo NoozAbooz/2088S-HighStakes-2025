@@ -12,4 +12,5 @@ namespace ks
     extern Position odom_pos;
 
     extern void odomThread();
+    extern void resetOdomPosition();
 }
