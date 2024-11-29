@@ -133,9 +133,8 @@ void ks::odomThread() {
 
 		avg_heading = heading - (delta_heading / 2);
 
-		x += (deltaYLocal * cos(avg_heading)) - (deltaXLocal * sin(avg_heading));
+		x += (deltaYLocal * cos(avg_heading)) + (deltaXLocal * sin(avg_heading));
 		y += (deltaYLocal * sin(avg_heading)) - (deltaXLocal * cos(avg_heading));
-
 
 		theta = fmod(get_imu_rotation(), 360); // wrap to [0, 360) for user view
     	if (theta < 0) {
@@ -149,6 +148,6 @@ void ks::odomThread() {
 			chassis.setPose(-x, y, (get_imu_rotation() + 180));
 		}
 
-        pros::delay(10);
+        pros::delay(5);
     }
 }
