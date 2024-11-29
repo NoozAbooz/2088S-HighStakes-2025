@@ -128,7 +128,7 @@ void ks::odomThread() {
 			// LEFT_TRACKING_RADIUS is the distance from the left tracking wheel to the tracking center of the robot
 			// PERPENDICULAR_TRACKING_RADIUS is the distance from the perpendicular tracking wheel to the tracking center of the robot
 			deltaXLocal = 2 * sin(delta_heading / 2) * ((delta_horizontal / delta_heading) + horizontal_wheel_offset);
-			deltaYLocal = 2 * sin(delta_heading/ 2) * ((delta_vertical / delta_heading) + vertical_wheel_offset);
+			deltaYLocal = 2 * sin(delta_heading / 2) * ((delta_vertical / delta_heading) + vertical_wheel_offset);
 		}
 
 		avg_heading = heading - (delta_heading / 2);
