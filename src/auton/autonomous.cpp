@@ -126,35 +126,76 @@ void skills() {
     chassis.moveToPoint(-0.466, 11.424, 1000);
     clampPiston.set_value(false);
     chassis.turnToHeading(90, 500);
-    chassis.moveToPoint(-23.118, 13.424, 1300, {.forwards = false, .maxSpeed = 70}); // Mogo
+    chassis.moveToPoint(-23.118, 13.424, 1300, {.forwards = false, .maxSpeed = 50}); // Mogo
     pros::delay(850);
     clampPiston.set_value(true);
     chassis.turnToHeading(0, 400);  
     chassis.moveToPoint(-23.014, 33.971, 900); // Ring 1
     chassis.turnToHeading(315, 500);
-    chassis.moveToPoint(-58.818, 59.486, 1000); // Ring 2
-    pros::delay(800);
-    chassis.moveToPoint(-56, 60.286, 800, {.forwards = false});
-    chassis.turnToHeading(180, 500);
-    chassis.moveToPoint(-51.594, 35.438, 1100, {.maxSpeed = 65}); // Ring 3
-    chassis.moveToPoint(-51.527, 12.123, 1100, {.maxSpeed = 65}); // Ring 4
-    chassis.moveToPoint(-51.528, -0.999, 1100, {.maxSpeed = 65}); // Ring 5
-    pros::delay(2000);
-    chassis.turnToHeading(315, 800);
-    pros::delay(500);
-    chassis.moveToPoint(-60.617, 14.725, 1000); // Ring 6
-    pros::delay(1200);
-    chassis.moveToPoint(-60, 12, 1000, {.forwards = false});
-    chassis.moveToPoint(-69.384, -4.098, 1300, {.forwards = false});
+    chassis.moveToPoint(-57.918, 58.386, 1200); // Ring 2
     pros::delay(1000);
+    chassis.moveToPoint(-56, 58.286, 800, {.forwards = false});
+    chassis.turnToHeading(180, 500);
+    chassis.moveToPoint(-50.994, 35.438, 1100, {.maxSpeed = 65}); // Ring 3
+    chassis.moveToPoint(-50.927, 12.123, 1100, {.maxSpeed = 65}); // Ring 4
+    pros::delay(1500);
+    chassis.moveToPoint(-50.928, -0.999, 1100, {.maxSpeed = 65}); // Ring 5
+    pros::delay(1500);
+    chassis.moveToPoint(-47, 11, 1000, {.forwards = false});    
+    chassis.turnToHeading(270, 800);
+    chassis.moveToPoint(-59.617, 11.725, 1000); // Ring 6
+    pros::delay(700);
+    chassis.moveToPoint(-60, 12, 1000, {.forwards = false});
+    chassis.moveToPoint(-69.384, -6.098, 1200, {.forwards = false});
+    pros::delay(1100);
     clampPiston.set_value(false);
     pros::delay(500);
-    chassis.moveToPoint(-25, 10, 1000);
-    chassis.turnToHeading(270, 600);
-    pros::delay(1000);
-    chassis.moveToPoint(0, 11, 2250, {.forwards = false});
 
-    // pros::delay(850);
+    chassis.moveToPoint(0.466, 11.424, 1500);
+    clampPiston.set_value(false);
+    chassis.turnToHeading(270, 500);
+    chassis.moveToPoint(23.118, 13.424, 1300, {.forwards = false, .maxSpeed = 50}); // Mogo
+    pros::delay(850);
+    clampPiston.set_value(true);
+    chassis.turnToHeading(0, 400);  
+    chassis.moveToPoint(23.014, 33.971, 900); // Ring 1
+    chassis.turnToHeading(45, 500);
+    chassis.moveToPoint(57.918, 58.386, 1200); // Ring 2
+    pros::delay(1000);
+    chassis.moveToPoint(56, 58.286, 800, {.forwards = false});
+    chassis.turnToHeading(180, 500);
+    chassis.moveToPoint(50.994, 35.438, 1100, {.maxSpeed = 65}); // Ring 3
+    chassis.moveToPoint(50.927, 12.123, 1100, {.maxSpeed = 65}); // Ring 4
+    pros::delay(1500);
+    chassis.moveToPoint(50.928, -0.999, 1100, {.maxSpeed = 65}); // Ring 5
+    pros::delay(1500);
+    chassis.moveToPoint(47, 11, 1000, {.forwards = false});    
+    chassis.turnToHeading(90, 800);
+    chassis.moveToPoint(59.617, 11.725, 1000); // Ring 6
+    pros::delay(700);
+    chassis.moveToPoint(60, 12, 1000, {.forwards = false});
+    chassis.moveToPoint(69.384, -6.098, 1200, {.forwards = false});
+    pros::delay(1100);
+    clampPiston.set_value(false);
+    pros::delay(500);
+
+    // chassis.moveToPoint(-7, 11, 2000);
+    // chassis.turnToHeading(270, 700);
+    // chassis.moveToPoint(23, 11, 1300, {.forwards = false, .maxSpeed = 60});
+    // pros::delay(1400);
+    // clampPiston.set_value(true);
+    // chassis.turnToHeading(0, 500);
+    // chassis.moveToPoint(18, 30, 1000);
+    // chassis.turnToHeading(45, 600);
+    // chassis.moveToPoint(49, 54, 1000);
+    // pros::delay(1000);
+    // chassis.moveToPoint(38, 23, 1200);
+    // chassis.moveToPoint(38, -2, 1200);
+    // pros::delay(1000);
+    // chassis.moveToPoint(38, -7, 1000);
+    // chassis.moveToPoint(38, 2, 1000, {.forwards = false});
+    // chassis.turnToHeading(90, 600);
+   
     // clampPiston.set_value(true);
     // chassis.turnToHeading(0, 600);  
     // chassis.moveToPoint(2.514, 27.971, 900); // Ring 1
