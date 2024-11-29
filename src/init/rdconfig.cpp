@@ -9,7 +9,7 @@ rd_view_t *gifview = rd_view_create("Shikanoko");
 // alliance select
 lv_style_t style_text_large;
 static lv_obj_t *red_btn, *blue_btn, *next_btn;
-std::string alliance;
+std::string alliance = "na";
 
 #define BORDER_WIDTH 8
 #define HIGHLIGHT_COLOR lv_color_hex(0xFFFF00)

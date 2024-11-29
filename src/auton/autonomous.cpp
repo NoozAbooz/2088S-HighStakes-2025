@@ -12,7 +12,7 @@
  * from where it left off.
  */
 
-std::string autonName = "noname";
+std::string autonName = "null";
 
 void testPID() {
     autonName = "PID Test";
@@ -53,43 +53,12 @@ void Five_Ring() {
     pros::delay(1100);
     chassis.moveToPoint(-3.559, -34.032, 1000, {.forwards = false});
     chassis.moveToPoint(25, 8, 1500, {.minSpeed = 127});
-        pros::delay(2100);
+    pros::delay(2100);
     // chassis.turnToHeading(45, 1000, {.maxSpeed = 70});
     // chassis.moveToPoint(25.995, 10.009, 2000, {.forwards = true});
     // pros::delay(2000);
     chassis.moveToPoint(10, -5, 1500, {.forwards = false, .maxSpeed = 60});
     chassis.moveToPoint(20.559, 0.032, 1000, {.maxSpeed = 90});
-
-
-
-}
-
-
-void WP_3Rush() {
-    autonName = "WP 3Rush";
-    chassis.moveToPoint(0, 0, 1500);
-    chassis.moveToPoint(0, -39.095, 1050, {.forwards = false});
-    chassis.turnToHeading(315, 450);
-    pros::delay(20);
-    chassis.moveToPoint(8.793, -44.79, 1200, {.forwards = false});
-    pros::delay(670);
-    clampPiston.set_value(true);
-    chassis.turnToHeading(90, 600);
-    chassis.moveToPoint(19.5, -38.898, 1200);
-    intake.move_voltage(12000);
-    pros::delay(1000);
-    chassis.turnToHeading(0, 600);
-    chassis.moveToPoint(21.481, -13.598, 1200);
-    chassis.turnToHeading(180, 600);
-    pros::delay(800);
-    clampPiston.set_value(false);
-    chassis.moveToPoint(23.314, -17.952, 1500, {.forwards = false});
-    pros::delay(750);
-    clampPiston.set_value(true);
-    // chassis.moveToPoint(32.64, -30.308, 1500);
-    // chassis.moveToPoint(11.89, -35.671, 1500);
-    // chassis.moveToPoint(55.255, -34.272, 1500);
-
 
 }
 
@@ -118,6 +87,32 @@ void SAWP_5NoRush() {
     // pros::delay(1500);
     // clampPiston.set_value(true);
 
+}
+
+void WP_3Rush() {
+    autonName = "WP 3Rush";
+    chassis.moveToPoint(0, 0, 1500);
+    chassis.moveToPoint(0, -39.095, 1050, {.forwards = false});
+    chassis.turnToHeading(315, 450);
+    pros::delay(20);
+    chassis.moveToPoint(8.793, -44.79, 1200, {.forwards = false});
+    pros::delay(670);
+    clampPiston.set_value(true);
+    chassis.turnToHeading(90, 600);
+    chassis.moveToPoint(19.5, -38.898, 1200);
+    intake.move_voltage(12000);
+    pros::delay(1000);
+    chassis.turnToHeading(0, 600);
+    chassis.moveToPoint(21.481, -13.598, 1200);
+    chassis.turnToHeading(180, 600);
+    pros::delay(800);
+    clampPiston.set_value(false);
+    chassis.moveToPoint(23.314, -17.952, 1500, {.forwards = false});
+    pros::delay(750);
+    clampPiston.set_value(true);
+    // chassis.moveToPoint(32.64, -30.308, 1500);
+    // chassis.moveToPoint(11.89, -35.671, 1500);
+    // chassis.moveToPoint(55.255, -34.272, 1500);
 
 
 }
@@ -159,7 +154,6 @@ void skills() {
     pros::delay(1000);
     chassis.moveToPoint(0, 11, 2250, {.forwards = false});
 
-
     // pros::delay(850);
     // clampPiston.set_value(true);
     // chassis.turnToHeading(0, 600);  
@@ -198,46 +192,9 @@ void skills() {
     // chassis.moveToPoint(0.233, 111.908, 1500);
     // chassis.moveToPoint(0.466, 122.4, 1500);
     // chassis.moveToPoint(17.952, 96.521, 1500);
-
-    
-
-
-}
-
-rd::Selector gui_selector({
-    {"5 Ring", Five_Ring},
-    {"WP Rush", WP_3Rush},
-    {"SAWP NoRush", SAWP_5NoRush},
-    //{"Scrim Left", scrimLeftSide},
-    //{"Scrim Right", scrimRightSide},
-    {"Skills", skills},
-    {"PID test", testPID},
-    {"BM test", testBM}
-});
-
-void autonomous() {
-    //initializeColourSort();
-    chassis.setPose(0,0,0);
-    console.println("Running auton...");
-    gui_selector.run_auton();
-}
-
-void driverSkillsMacro() {
-    pros::Task skillsTask(skills, "skills");
-
-    pros::Task([&] {
-        while (true) {
-		    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
-                skillsTask.remove();
-                chassis.cancelAllMotions();
-                break;
-		    }
-        }
-	});
 }
 
 /* Legacy Auton Routines */
-
 // collect mogo, score preload and ring to the side. works for either alliance
 void scrimRightSide(){
     clampPiston.set_value(false);
@@ -258,17 +215,33 @@ void scrimRightSide(){
     // pros::delay(2000);
 
 }
-void scrimLeftSide(){ // not updated yet
-    clampPiston.set_value(false);
-    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
-    pros::delay(1500);
-    clampPiston.set_value(true);
-    intake.move_voltage(12000);
-    pros::delay(2000);
 
-    chassis.moveToPoint(20, -32, 1000);
-    pros::delay(3000);
-    chassis.moveToPoint(50, -32, 4000, {.minSpeed = 127});
-    pros::delay(3000);
-    clampPiston.set_value(false);
+rd::Selector gui_selector({
+    {"5 Ring", Five_Ring},
+    {"WP Rush", WP_3Rush},
+    {"SAWP NoRush", SAWP_5NoRush},
+    {"Scrim Right", scrimRightSide},
+    {"Skills", skills},
+    {"PID test", testPID},
+    {"BM test", testBM}
+});
+void autonomous() {
+    //initializeColourSort();
+    chassis.setPose(0,0,0);
+    console.println("Running auton...");
+    gui_selector.run_auton();
+}
+
+void driverSkillsMacro() {
+    pros::Task skillsTask(skills, "skills");
+
+    pros::Task([&] {
+        while (true) {
+		    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+                skillsTask.remove();
+                chassis.cancelAllMotions();
+                break;
+		    }
+        }
+	});
 }

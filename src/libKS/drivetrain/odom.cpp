@@ -141,7 +141,13 @@ void ks::odomThread() {
     	if (theta < 0) {
        		theta += 360;
 		}
-		chassis.setPose(x, y, get_imu_rotation());
+
+		// funky stuff for alliance colours :(
+		if (alliance == "red" || alliance == "na") {
+			chassis.setPose(x, y, get_imu_rotation());
+		} else if (alliance == "blue") {
+			chassis.setPose(-x, y, get_imu_rotation() - 360);
+		}
 
         pros::delay(10);
     }
