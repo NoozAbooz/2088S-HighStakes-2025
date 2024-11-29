@@ -146,7 +146,7 @@ void ks::odomThread() {
 		if (alliance == "red" || alliance == "na") {
 			chassis.setPose(x, y, get_imu_rotation());
 		} else if (alliance == "blue") {
-			chassis.setPose(-x, y, get_imu_rotation() - 360);
+			chassis.setPose(-x, y, (get_imu_rotation() + 180));
 		}
 
         pros::delay(10);
