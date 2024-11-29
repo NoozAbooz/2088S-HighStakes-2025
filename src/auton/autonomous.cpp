@@ -21,11 +21,15 @@ void testPID() {
     pros::delay(1000);
     // chassis.moveToPoint(0, 24, 5000);
     chassis.turnToHeading(90, 1000);
-    // chassis.moveToPoint(24, 24, 5000)
-    
+    // chassis.moveToPoint(24, 24, 5000)   
+}
+void testBM() {
+    chassis.setPose(0, 0, 0);
+    chassis.moveToPose(52, 6, 320, 1000, {.forwards = false});
 }
 
 void Five_Ring() {
+    autonName = "5 Ring Elim";
     chassis.moveToPoint(0, 0, 1000); // Start
     chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
     pros::delay(20);
@@ -60,10 +64,6 @@ void Five_Ring() {
 
 }
 
-void testBM() {
-    chassis.setPose(0, 0, 0);
-    chassis.moveToPose(52, 6, 320, 1000, {.forwards = false});
-}
 
 void WP_3Rush() {
     autonName = "WP 3Rush";
@@ -93,7 +93,7 @@ void WP_3Rush() {
 
 }
 
-void WP_5NORush() {
+void SAWP_5NoRush() {
     autonName = "WP No Rush";
     // get alliance stake
     clampPiston.set_value(true);
@@ -120,41 +120,6 @@ void WP_5NORush() {
 
 
 
-}
-
-void scrimRightSide(){
-    clampPiston.set_value(false);
-    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
-    pros::delay(1500);
-    clampPiston.set_value(true);
-    intake.move_voltage(12000);
-    pros::delay(2000);
-
-    chassis.moveToPoint(-19, -30, 1600);
-    pros::delay(2000);
-    chassis.moveToPoint(24, -24, 2000);
-    pros::delay(2000);
-    wallStake.move_voltage(10000);
-    pros::delay(500);
-    wallStake.brake();
-    // chassis.moveToPoint(-44, 9, 4000, {.minSpeed = 127});
-    // pros::delay(2000);
-
-}
-
-void scrimLeftSide(){ // not updated yet
-    clampPiston.set_value(false);
-    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
-    pros::delay(1500);
-    clampPiston.set_value(true);
-    intake.move_voltage(12000);
-    pros::delay(2000);
-
-    chassis.moveToPoint(20, -32, 1000);
-    pros::delay(3000);
-    chassis.moveToPoint(50, -32, 4000, {.minSpeed = 127});
-    pros::delay(3000);
-    clampPiston.set_value(false);
 }
 
 void skills() {
@@ -242,7 +207,7 @@ void skills() {
 rd::Selector gui_selector({
     {"5 Ring", Five_Ring},
     {"WP Rush", WP_3Rush},
-    {"WP NoRush", WP_5NORush},
+    {"SAWP NoRush", SAWP_5NoRush},
     //{"Scrim Left", scrimLeftSide},
     //{"Scrim Right", scrimRightSide},
     {"Skills", skills},
@@ -252,7 +217,6 @@ rd::Selector gui_selector({
 
 void autonomous() {
     //initializeColourSort();
-    controller.print(0, 0, "Auton: %s | %.0lf   ", autonName.c_str(), chassis.getPose().theta);
     chassis.setPose(0,0,0);
     console.println("Running auton...");
     gui_selector.run_auton();
@@ -275,3 +239,36 @@ void driverSkillsMacro() {
 /* Legacy Auton Routines */
 
 // collect mogo, score preload and ring to the side. works for either alliance
+void scrimRightSide(){
+    clampPiston.set_value(false);
+    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
+    pros::delay(1500);
+    clampPiston.set_value(true);
+    intake.move_voltage(12000);
+    pros::delay(2000);
+
+    chassis.moveToPoint(-19, -30, 1600);
+    pros::delay(2000);
+    chassis.moveToPoint(24, -24, 2000);
+    pros::delay(2000);
+    wallStake.move_voltage(10000);
+    pros::delay(500);
+    wallStake.brake();
+    // chassis.moveToPoint(-44, 9, 4000, {.minSpeed = 127});
+    // pros::delay(2000);
+
+}
+void scrimLeftSide(){ // not updated yet
+    clampPiston.set_value(false);
+    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
+    pros::delay(1500);
+    clampPiston.set_value(true);
+    intake.move_voltage(12000);
+    pros::delay(2000);
+
+    chassis.moveToPoint(20, -32, 1000);
+    pros::delay(3000);
+    chassis.moveToPoint(50, -32, 4000, {.minSpeed = 127});
+    pros::delay(3000);
+    clampPiston.set_value(false);
+}

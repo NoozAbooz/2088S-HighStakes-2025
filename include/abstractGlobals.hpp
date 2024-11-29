@@ -28,3 +28,4 @@ void resetWallstakes();
 void initializeColourSort();
 
 void driverSkillsMacro();
+extern std::string autonName;

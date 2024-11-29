@@ -45,4 +45,5 @@ bool isCompetition = false;
 void competition_initialize() {
     rd_view_focus(allianceview);
     isCompetition = true;
+    controller.print(0, 0, "A: %s | %.0lf   ", autonName.c_str(), chassis.getPose().theta);
 }
