@@ -94,8 +94,7 @@ void Five_Ring() {
 }
 
 void SAWP_5NoRush() {
-    autonName = "WP No Rush";
-    //alliance = "blue";
+    autonName = "SAWP 4Ring";
 
     if (alliance == "red" || alliance == "na") {
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
@@ -127,12 +126,12 @@ void SAWP_5NoRush() {
         chassis.turnToHeading(180, 1000, {.maxSpeed = 80});
         pros::delay(100);
         clampPiston.set_value(true); // close clamp
-        chassis.moveToPoint(-48, 8, 2200, {.forwards = false, .maxSpeed = 40}); // alliance stake
+        chassis.moveToPoint(-38, 11, 2000, {.forwards = false, .maxSpeed = 60}); // alliance stake
         intake.move_voltage(12000);
-        pros::delay(1500);
-        chassis.moveToPoint(-46, 14, 1000);
+        pros::delay(2000);
+        intake.move_voltage(0);
         chassis.moveToPoint(-36, -26, 2000);
-    } else { //
+    } else { // blue
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
         chassis.turnToHeading(315, 500); 
