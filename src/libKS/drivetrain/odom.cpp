@@ -142,12 +142,7 @@ void ks::odomThread() {
 		}
 
 		// funky stuff for alliance colours :(
-		if (alliance == "red" || alliance == "na") {
-			chassis.setPose(x, y, get_imu_rotation());
-		} else if (alliance == "blue") {
-			chassis.setPose(-x, y, (get_imu_rotation() + 180));
-		}
-
+		chassis.setPose(x, y, get_imu_rotation());
         pros::delay(5);
     }
 }
