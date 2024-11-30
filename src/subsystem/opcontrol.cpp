@@ -26,14 +26,14 @@ void refreshWallstakes() {
 
 void resetWallstakes() {
 	if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-		pros::Task([] {
-			wallStake.move_absolute(100, 100);
-			controller.rumble(".");
-		});
-		// wallStake.move_voltage(10000);
-		// pros::delay(170);
-		// wallStake.brake();
-		// controller.rumble(".");
+		// pros::Task([] {
+		// 	wallStake.move_absolute(100, 100);
+		// 	controller.rumble(".");
+		// });
+		wallStake.move_voltage(10000);
+		pros::delay(170);
+		wallStake.brake();
+		controller.rumble(".");
 	}
 }
 
