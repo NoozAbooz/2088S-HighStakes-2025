@@ -27,9 +27,17 @@ void refreshWallstakes() {
 void resetWallstakes() {
 	if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
 		pros::Task([] {
-			while (wallStakeSensor.get_angle() < 32) {
-				wallStake.move_voltage(8000);
-			}
+			console.printf("%d", wallStakeSensor.get_angle() / 100);
+
+			// if ((wallStakeSensor.get_angle() / 100) > 40) {
+			// 	while ((wallStakeSensor.get_angle() / 100) > 28) {
+			// 		wallStake.move_voltage(-8000);
+			// 	}
+			// } else {
+				while ((wallStakeSensor.get_angle() / 100) < 32) {
+					wallStake.move_voltage(8000);
+				}
+			// }
 			controller.rumble(".");
 		});
 		// wallStake.move_voltage(10000);

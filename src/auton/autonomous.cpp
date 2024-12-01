@@ -13,6 +13,13 @@
  */
 
 std::string autonName = "null";
+void displayAutonInfo () {
+    if (alliance == "red" || alliance == "na") {
+        controller.print(0, 0, "RED: %s | %.0lf   ", autonName.c_str(), chassis.getPose().theta);
+    } else {
+        controller.print(0, 0, "BLU: %s | %.0lf   ", autonName.c_str(), chassis.getPose().theta);
+    }
+}
 
 void testPID() {
     autonName = "PID Test";
@@ -30,6 +37,8 @@ void testBM() {
 
 void Five_Ring() {
     autonName = "5 Ring Elim";
+    displayAutonInfo();
+    
     if (alliance == "red" || alliance == "na") {
         chassis.moveToPoint(0, 0, 1000); // Start
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
@@ -95,6 +104,7 @@ void Five_Ring() {
 
 void SAWP_5NoRush() {
     autonName = "SAWP 4Ring";
+    displayAutonInfo();
 
     if (alliance == "red" || alliance == "na") {
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
@@ -198,6 +208,9 @@ void WP_3Rush() {
 }
 
 void skills() {
+    autonName = "SKILL";
+    displayAutonInfo();
+
     chassis.moveToPoint(0, 0, 1000);
     clampPiston.set_value(true);
     chassis.moveToPoint(-0.233, -5.595, 300);
