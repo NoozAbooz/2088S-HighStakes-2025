@@ -10,7 +10,7 @@
 <h1 align="center">High Stakes</h1>
 
   <p align="center">
-    VRC 210K Killswitch
+    VRC 210K Kawaii Kittens
     <br/>
     3rd year HS VRC team based in Calgary, Alberta
     <br/>
@@ -42,6 +42,6 @@ To contribute, follow these steps:
 
 <!-- CONTACT -->
 ## Contact
-If you would like to contact us, you can do so on the WestMech [discord server](https://discord.gg/W4mJYp3).
+If you would like to contact us, you can do so on our [discord server](https://discord.gg/ZymgDaWFHg).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
