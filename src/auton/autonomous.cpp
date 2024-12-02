@@ -13,13 +13,6 @@
  */
 
 std::string autonName = "null";
-void displayAutonInfo () {
-    if (alliance == "red" || alliance == "na") {
-        controller.print(0, 0, "RED: %s | %.0lf   ", autonName.c_str(), chassis.getPose().theta);
-    } else {
-        controller.print(0, 0, "BLU: %s | %.0lf   ", autonName.c_str(), chassis.getPose().theta);
-    }
-}
 
 void testPID() {
     autonName = "PID Test";
@@ -37,9 +30,9 @@ void testBM() {
 
 void Five_Ring() {
     autonName = "5 Ring Elim";
-    displayAutonInfo();
     
     if (alliance == "red" || alliance == "na") {
+        horizontalEncoder.reverse(); // test reversing directions
         chassis.moveToPoint(0, 0, 1000); // Start
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
@@ -94,9 +87,6 @@ void Five_Ring() {
         chassis.moveToPoint(3.559, -34.032, 1000, {.forwards = false});
         chassis.moveToPoint(-25, 8, 1500, {.minSpeed = 127});
         pros::delay(2100);
-        // chassis.turnToHeading(315, 1000, {.maxSpeed = 70});
-        // chassis.moveToPoint(-25.995, 10.009, 2000, {.forwards = true});
-        // pros::delay(2000);
         chassis.moveToPoint(-10, -5, 1500, {.forwards = false, .maxSpeed = 60});
         chassis.moveToPoint(-20.559, 0.032, 1000, {.maxSpeed = 90});
     }
@@ -104,7 +94,6 @@ void Five_Ring() {
 
 void SAWP_5NoRush() {
     autonName = "SAWP 4Ring";
-    displayAutonInfo();
 
     if (alliance == "red" || alliance == "na") {
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
@@ -209,7 +198,6 @@ void WP_3Rush() {
 
 void skills() {
     autonName = "SKILL";
-    displayAutonInfo();
 
     chassis.moveToPoint(0, 0, 1000);
     clampPiston.set_value(true);
@@ -376,7 +364,6 @@ void scrimRightSide(){
     wallStake.brake();
     // chassis.moveToPoint(-44, 9, 4000, {.minSpeed = 127});
     // pros::delay(2000);
-
 }
 
 rd::Selector gui_selector({

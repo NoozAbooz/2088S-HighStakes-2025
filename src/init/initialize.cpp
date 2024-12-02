@@ -51,9 +51,10 @@ void competition_initialize() {
     rd_view_focus(allianceview);
     isCompetition = true;
 
-    if (alliance == "red" || alliance == "na") {
-        controller.print(0, 0, "RED: %s | %.0lf   ", autonName.c_str(), chassis.getPose().theta);
-    } else {
-        controller.print(0, 0, "BLU: %s | %.0lf   ", autonName.c_str(), chassis.getPose().theta);
-    }
+    pros::Task([] {
+        while (true) {
+            controller.print(0, 0, "%s | %s | %.0lf", alliance.c_str(), gui_selector.selected_routine->name.c_str(), chassis.getPose().theta);
+            pros::delay(10);
+        }
+    });
 }
