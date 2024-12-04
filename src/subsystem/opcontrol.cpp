@@ -35,7 +35,7 @@ void resetWallstakes() {
 			// 	}
 			// } else {
 				while ((wallStakeSensor.get_angle() / 100) < 32) {
-					wallStake.move_voltage(8000);
+					wallStake.move_voltage(10000);
 				}
 			// }
 			controller.rumble(".");
