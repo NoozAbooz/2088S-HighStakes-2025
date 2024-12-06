@@ -54,7 +54,7 @@ void competition_initialize() {
     pros::Task([] {
         while (true) {
             controller.print(0, 0, "%s | %s | %.0lf", alliance.c_str(), gui_selector.selected_routine->name.c_str(), chassis.getPose().theta);
-            pros::delay(10);
+            pros::delay(500);
         }
     });
 }

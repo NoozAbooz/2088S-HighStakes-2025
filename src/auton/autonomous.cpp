@@ -29,7 +29,6 @@ void testBM() {
 }
 
 void Five_Ring() {
-
     autonName = "5 Ring Elim";
     
     if (alliance == "red" || alliance == "na") {
@@ -92,7 +91,6 @@ void Five_Ring() {
         chassis.moveToPoint(-20.559, 0.032, 1000, {.maxSpeed = 90});
     }
 }
->>>>>>> 0f76e6ba128b4714154bf4628742ae1941f2d168
 
 void SAWP_4() {
     autonName = "SAWP 4Ring";
@@ -100,8 +98,8 @@ void SAWP_4() {
     if (alliance == "red" || alliance == "na") {
         
         chassis.moveToPoint(0, 0, 1500);
-        chassis.moveToPoint(0.233, -19.351, 1500, {.fowrads = false});
-        chassis.moveToPoint(-5.595, -30.075, 1500, {.fowrads = false});
+        chassis.moveToPoint(0.233, -19.351, 1500, {.forwards = false});
+        chassis.moveToPoint(-5.595, -30.075, 1500, {.forwards = false});
         pros::delay(790);
         clampPiston.set_value(true);
         pros::delay(20);
@@ -391,7 +389,7 @@ void scrimRightSide(){
 rd::Selector gui_selector({
     {"5 Ring", Five_Ring},
     {"WP Rush", WP_3Rush},
-    {"SAWP NoRush", SAWP_5NoRush},
+    {"SAWP NoRush", SAWP_4},
     {"Scrim Right", scrimRightSide},
     {"Skills", skills},
     {"PID test", testPID},
