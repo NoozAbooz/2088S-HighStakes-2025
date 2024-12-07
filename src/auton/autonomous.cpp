@@ -28,6 +28,37 @@ void testBM() {
     chassis.moveToPose(52, 6, 320, 1000, {.forwards = false});
 }
 
+void four_ring_bar() {
+    autonName = "4 Ring Bar";
+        chassis.moveToPoint(0, 0, 1000); // Start
+        wallStake.move_voltage(10000);
+        pros::delay(300);
+        wallStake.brake();
+        chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
+        pros::delay(20);
+        chassis.turnToHeading(45, 500); 
+        pros::delay(20);
+        chassis.moveToPoint(-9.788, -27.808, 1000, {.forwards = false}); // Mogo
+        pros::delay(790);
+        clampPiston.set_value(true);
+        pros::delay(20);
+        intake.move_voltage(12000); // Preload
+        pros::delay(800);
+        chassis.turnToHeading(90, 700);
+        chassis.moveToPoint(5.786, -28.589, 1000); // Ring 2
+        pros::delay(1000); 
+        chassis.turnToHeading(180, 600);  
+        chassis.moveToPoint(5.841, -43.686, 1000); // Ring 3
+        pros::delay(1000);
+        chassis.moveToPoint(12.68, -29.144, 1300, {.forwards = false}); 
+        pros::delay(200);
+        chassis.moveToPoint(12.905, -44.186, 1200);
+        pros::delay(1100);
+        chassis.moveToPoint(-3.559, -34.032, 1000, {.forwards = false});
+        chassis.moveToPoint(-5, -33, 2000);
+
+}
+
 void Five_Ring() {
     autonName = "5 Ring Elim";
     
@@ -98,35 +129,37 @@ void SAWP_4() {
     if (alliance == "red" || alliance == "na") {
         
         chassis.moveToPoint(0, 0, 1500);
-        chassis.moveToPoint(0.233, -19.351, 1000, {.forwards = false});
-        chassis.turnToHeading(30, 600);
-        chassis.moveToPoint(-5.595, -30.075, 1000, {.forwards = false});
+        chassis.moveToPoint(0.233, -11.351, 700, {.forwards = false});
+        chassis.turnToHeading(30, 500);
+        chassis.moveToPoint(-10.595, -28.875, 700, {.forwards = false});
         pros::delay(790);
         clampPiston.set_value(true);
         pros::delay(20);
         intake.move_voltage(12000); // Preload
-        pros::delay(750);
+        pros::delay(850);
+        intake.move_voltage(0);
         clampPiston.set_value(false);
-        chassis.moveToPoint(8.16, -22.615, 900);
-        chassis.turnToHeading(270,500);
-        chassis.moveToPoint(27.977, -21.915, 1300, {.forwards = false});
-        chassis.turnToHeading(315, 500);
-        chassis.moveToPoint(36.603, -30.075, 1000, {.forwards = false});
-        pros::delay(790);
-        clampPiston.set_value(true);
-        chassis.moveToPoint(58.985, -34.505, 1000); // ring 1
-         pros::delay(400);
-        chassis.turnToHeading(180, 500);
-        chassis.moveToPoint(58.286, -53.39, 1000); // ring 2
-         pros::delay(400);
-        chassis.moveToPoint(65.746, -34.505, 1000, {.forwards = false});
-        chassis.moveToPoint(66.446, -53.856, 1000); // ring 3
-         pros::delay(400);
-        chassis.turnToHeading(300, 500);
+        chassis.moveToPoint(8.16, -15.615, 900);
+        chassis.turnToHeading(270,600);
         wallStake.move_voltage(10000);
-        pros::delay(250);
+        pros::delay(300);
         wallStake.brake();
-        chassis.moveToPoint(18.418, -34.738, 1200); // Ladder
+        chassis.moveToPoint(34.977, -25.915, 1250, {.forwards = false, .maxSpeed = 80});
+        pros::delay(1030);
+        clampPiston.set_value(true);
+        intake.move_voltage(12000);
+        chassis.moveToPoint(56.985, -34.505, 1500); // ring 1
+        pros::delay(600);
+        chassis.turnToHeading(180, 500);
+        chassis.moveToPoint(53.486, -46.39, 1000); // ring 2
+        pros::delay(1000);
+        chassis.moveToPoint(59.746, -34.505, 1000, {.forwards = false});
+        chassis.turnToHeading(180, 500);
+        chassis.moveToPoint(60.446, -46.356, 1000); // ring 3
+        pros::delay(1200);
+        chassis.moveToPoint(60, 45, 700, {.forwards = false});
+        chassis.turnToHeading(215, 500);
+        chassis.moveToPoint(24.418, -36.738, 1200); // Ladder
 
 
         // chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
@@ -402,12 +435,9 @@ void scrimRightSide(){
 
 rd::Selector gui_selector({
     {"5 Ring", Five_Ring},
-    {"WP Rush", WP_3Rush},
     {"SAWP NoRush", SAWP_4},
-    {"Scrim Right", scrimRightSide},
     {"Skills", skills},
-    {"PID test", testPID},
-    {"BM test", testBM}
+    {"Four,  Bar", four_ring_bar}
 });
 void autonomous() {
     //initializeColourSort();
