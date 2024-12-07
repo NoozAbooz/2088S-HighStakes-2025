@@ -1,5 +1,8 @@
 #include "main.h"
 
+bool isCompetition = false;
+std::string field_status;
+
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -35,6 +38,7 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
+    field_status = "disabled";
 }
 
 /**
@@ -46,13 +50,12 @@ void disabled() {
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-bool isCompetition = false;
 void competition_initialize() {
     rd_view_focus(allianceview);
     isCompetition = true;
 
     pros::Task([] {
-        while (true) {
+        while (field_status != "opcontrol") {
             controller.print(0, 0, "%s | %s | %.0lf", alliance.c_str(), gui_selector.selected_routine->name.c_str(), chassis.getPose().theta);
             pros::delay(500);
         }

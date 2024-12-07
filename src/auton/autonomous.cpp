@@ -12,10 +12,9 @@
  * from where it left off.
  */
 
-std::string autonName = "null";
+std::string auton_name = "null";
 
 void testPID() {
-    autonName = "PID Test";
     chassis.setPose(0, 0, 0);
     clampPiston.set_value(true);
     pros::delay(1000);
@@ -29,8 +28,6 @@ void testBM() {
 }
 
 void Five_Ring() {
-    autonName = "5 Ring Elim";
-    
     if (alliance == "red" || alliance == "na") {
         horizontalEncoder.reverse(); // test reversing directions
         chassis.moveToPoint(0, 0, 1000); // Start
@@ -93,8 +90,6 @@ void Five_Ring() {
 }
 
 void SAWP_4() {
-    autonName = "SAWP 4Ring";
-
     if (alliance == "red" || alliance == "na") {
         
         chassis.moveToPoint(0, 0, 1500);
@@ -189,7 +184,6 @@ void SAWP_4() {
 }
 
 void WP_3Rush() {
-    autonName = "WP 3Rush";
     chassis.moveToPoint(0, 0, 1500);
     chassis.moveToPoint(0, -39.095, 1050, {.forwards = false});
     chassis.turnToHeading(315, 450);
@@ -217,8 +211,6 @@ void WP_3Rush() {
 }
 
 void skills() {
-    autonName = "SKILL";
-
     chassis.moveToPoint(0, 0, 1000);
     clampPiston.set_value(true);
     chassis.moveToPoint(-0.233, -5.595, 300);
@@ -398,20 +390,21 @@ rd::Selector gui_selector({
 void autonomous() {
     //initializeColourSort();
     chassis.setPose(0,0,0);
+    field_status = "autonomous";
     console.println("Running auton...");
     gui_selector.run_auton();
 }
 
 void driverSkillsMacro() {
-    pros::Task skillsTask(skills, "skills");
+    // pros::Task skillsTask(skills, "skills");
 
-    pros::Task([&] {
-        while (true) {
-		    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
-                skillsTask.remove();
-                chassis.cancelAllMotions();
-                break;
-		    }
-        }
-	});
+    // pros::Task([&] {
+    //     while (true) {
+	// 	    if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+    //             skillsTask.remove();
+    //             chassis.cancelAllMotions();
+    //             break;
+	// 	    }
+    //     }
+	// });
 }

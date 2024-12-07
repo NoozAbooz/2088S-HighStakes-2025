@@ -14,6 +14,8 @@ void rdconfig_init();
 
 extern bool isCompetition;
 extern std::string alliance;
+extern std::string auton_name;
+extern std::string field_status;
 
 /* Functions */
 // DT
@@ -28,4 +30,3 @@ void resetWallstakes();
 void initializeColourSort();
 
 void driverSkillsMacro();
-extern std::string autonName;
