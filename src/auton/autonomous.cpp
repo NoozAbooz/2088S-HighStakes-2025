@@ -15,7 +15,6 @@
 std::string auton_name = "null";
 
 void testPID() {
-    chassis.setPose(0, 0, 0);
     clampPiston.set_value(true);
     pros::delay(1000);
     // chassis.moveToPoint(0, 24, 5000);
@@ -23,14 +22,11 @@ void testPID() {
     // chassis.moveToPoint(24, 24, 5000)   
 }
 void testBM() {
-    chassis.setPose(0, 0, 0);
     chassis.moveToPose(52, 6, 320, 1000, {.forwards = false});
 }
 
 void four_ring_bar() {
-    autonName = "4 Ring Bar";
-        chassis.moveToPoint(0, 0, 1000); // Start
-        wallStake.move_voltage(10000);
+        wallStake.move_voltage(10000); // Start
         pros::delay(300);
         wallStake.brake();
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
@@ -47,7 +43,7 @@ void four_ring_bar() {
         chassis.moveToPoint(5.786, -28.589, 1000); // Ring 2
         pros::delay(1000); 
         chassis.turnToHeading(180, 600);  
-        chassis.moveToPoint(5.841, -43.686, 1000); // Ring 3
+        chassis.moveToPoint(5.841, -43.686, 1000, {.maxSpeed = 60}); // Ring 3
         pros::delay(1000);
         chassis.moveToPoint(12.68, -29.144, 1300, {.forwards = false}); 
         pros::delay(200);
@@ -55,13 +51,12 @@ void four_ring_bar() {
         pros::delay(1100);
         chassis.moveToPoint(-3.559, -34.032, 1000, {.forwards = false});
         chassis.moveToPoint(-5, -33, 2000);
+        chassis.moveToPoint(-24, -36, 2000);
 
 }
 
 void Five_Ring() {
     if (alliance == "red" || alliance == "na") {
-        horizontalEncoder.reverse(); // test reversing directions
-        chassis.moveToPoint(0, 0, 1000); // Start
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
         chassis.turnToHeading(45, 500); 
@@ -91,7 +86,6 @@ void Five_Ring() {
         chassis.moveToPoint(10, -5, 1500, {.forwards = false, .maxSpeed = 60});
         chassis.moveToPoint(20.559, 0.032, 1000, {.maxSpeed = 90});
     } else { // blue
-        chassis.moveToPoint(0, 0, 1000); // Start
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
         chassis.turnToHeading(315, 500); 
@@ -122,8 +116,6 @@ void Five_Ring() {
 
 void SAWP_4() {
     if (alliance == "red" || alliance == "na") {
-        
-        chassis.moveToPoint(0, 0, 1500);
         chassis.moveToPoint(0.233, -11.351, 700, {.forwards = false});
         chassis.turnToHeading(30, 500);
         chassis.moveToPoint(-10.595, -28.875, 700, {.forwards = false});
@@ -231,7 +223,6 @@ void SAWP_4() {
 }
 
 void WP_3Rush() {
-    chassis.moveToPoint(0, 0, 1500);
     chassis.moveToPoint(0, -39.095, 1050, {.forwards = false});
     chassis.turnToHeading(315, 450);
     pros::delay(20);
@@ -258,7 +249,6 @@ void WP_3Rush() {
 }
 
 void skills() {
-    chassis.moveToPoint(0, 0, 1000);
     clampPiston.set_value(true);
     chassis.moveToPoint(-0.233, -5.595, 300);
     intake.move_voltage(12000);
@@ -426,14 +416,14 @@ void scrimRightSide(){
 }
 
 rd::Selector gui_selector({
-    {"5 Ring", Five_Ring},
-    {"SAWP NoRush", SAWP_4},
+    {"E 5 Ring", Five_Ring},
+    {"E 4 Ring + Bar", four_ring_bar},
+    {"Q SAWP 2Mogo", SAWP_4},
     {"Skills", skills},
-    {"Four,  Bar", four_ring_bar}
 });
 void autonomous() {
     //initializeColourSort();
-    chassis.setPose(0,0,0);
+    chassis.setPose(0, 0, 0);
     field_status = "autonomous";
     console.println("Running auton...");
     gui_selector.run_auton();

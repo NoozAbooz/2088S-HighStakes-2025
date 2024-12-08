@@ -56,7 +56,7 @@ void competition_initialize() {
 
     pros::Task([] {
         while (field_status != "opcontrol") {
-            controller.print(0, 0, "%s | %s | %.0lf", alliance.c_str(), gui_selector.selected_routine->name.c_str(), chassis.getPose().theta);
+            controller.print(0, 0, "%s | %s | %.0lf", alliance.c_str(), gui_selector.label_str, chassis.getPose().theta);
             pros::delay(500);
         }
     });

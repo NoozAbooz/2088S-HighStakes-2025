@@ -14,7 +14,7 @@ void refreshIntake() {
 void refreshWallstakes() {
 	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
 		// if ((wallStakeSensor.get_angle() / 100 < 130 && wallStakeSensor.get_angle() / 100 > 0)) {
-			wallStake.move_voltage(8000);
+			wallStake.move_voltage(6000);
 		// }
 
 	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
@@ -34,8 +34,8 @@ void resetWallstakes() {
 			// 		wallStake.move_voltage(-8000);
 			// 	}
 			// } else {
-				while ((wallStakeSensor.get_angle() / 100) < 35) {
-					wallStake.move_voltage(10000);
+				while ((wallStakeSensor.get_angle() / 100) < 32) {
+					wallStake.move_voltage(8000);
 				}
 			// }
 			controller.rumble(".");

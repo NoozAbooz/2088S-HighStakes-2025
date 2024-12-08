@@ -65,6 +65,7 @@ class Selector {
 	void focus();
 
 	rd::Selector::routine_t *selected_routine;
+	char label_str[256];
 
 	/// @}
 
