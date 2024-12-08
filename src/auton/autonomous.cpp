@@ -26,6 +26,7 @@ void testBM() {
 }
 
 void four_ring_bar() {
+    if (alliance == "red" || alliance == "na") {
         wallStake.move_voltage(10000); // Start
         pros::delay(300);
         wallStake.brake();
@@ -52,7 +53,34 @@ void four_ring_bar() {
         chassis.moveToPoint(-3.559, -34.032, 1000, {.forwards = false});
         chassis.moveToPoint(-5, -33, 2000);
         chassis.moveToPoint(-24, -36, 2000);
-
+    } else {
+        wallStake.move_voltage(10000); // Start
+        pros::delay(300);
+        wallStake.brake();
+        chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
+        pros::delay(20);
+        chassis.turnToHeading(315, 500); 
+        pros::delay(20);
+        chassis.moveToPoint(9.788, -27.808, 1000, {.forwards = false}); // Mogo
+        pros::delay(790);
+        clampPiston.set_value(true);
+        pros::delay(20);
+        intake.move_voltage(12000); // Preload
+        pros::delay(800);
+        chassis.turnToHeading(270, 700);
+        chassis.moveToPoint(-5.786, -28.589, 1000); // Ring 2
+        pros::delay(1000); 
+        chassis.turnToHeading(180, 600);  
+        chassis.moveToPoint(-5.841, -43.686, 1000, {.maxSpeed = 60}); // Ring 3
+        pros::delay(1000);
+        chassis.moveToPoint(-12.68, -29.144, 1300, {.forwards = false}); 
+        pros::delay(200);
+        chassis.moveToPoint(-12.905, -44.186, 1200);
+        pros::delay(1100);
+        chassis.moveToPoint(3.559, -34.032, 1000, {.forwards = false});
+        chassis.moveToPoint(5, -33, 2000);
+        chassis.moveToPoint(24, -36, 2000);
+    }
 }
 
 void Five_Ring() {
@@ -116,7 +144,6 @@ void Five_Ring() {
 
 void SAWP_4() {
     if (alliance == "red" || alliance == "na") {
-        
         chassis.moveToPoint(0, 0, 1500);
         chassis.moveToPoint(0.233, -11.351, 700, {.forwards = false});
         chassis.turnToHeading(30, 500);
@@ -149,105 +176,40 @@ void SAWP_4() {
         chassis.moveToPoint(60, 45, 700, {.forwards = false});
         chassis.turnToHeading(215, 500);
         chassis.moveToPoint(24.418, -36.738, 1200); // Ladder
-
-
-        // chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
-        // pros::delay(20);
-        // chassis.turnToHeading(45, 500); 
-        // pros::delay(20);
-        // chassis.moveToPoint(-9.788, -27.808, 1000, {.forwards = false}); // Mogo
-        // pros::delay(790);
-        // clampPiston.set_value(true);
-        // pros::delay(20);
-        // intake.move_voltage(12000); // Preload
-        // pros::delay(800);
-        // chassis.turnToHeading(90, 700);
-        // chassis.moveToPoint(5.786, -28.589, 1000); // Ring 2
-        // pros::delay(1000); 
-        // chassis.turnToHeading(180, 500);  
-        // chassis.moveToPoint(7.841, -43.686, 1000); // Ring 3
-        // pros::delay(1000);
-        // chassis.moveToPoint(8.68, -29.144, 1300, {.forwards = false}); 
-        // pros::delay(200);
-        // chassis.moveToPoint(12.905, -44.186, 1200);
-        // pros::delay(1100);
-        // chassis.moveToPoint(-3.559, -34.032, 1000, {.forwards = false}, false);
-        // chassis.turnToHeading(330, 1000, {.maxSpeed = 60}); // face alliance state
-        // chassis.moveToPoint(-34, 2, 2000, {.minSpeed = 50}); // move to all. stake
-        // pros::delay(450);
-        // intake.move_voltage(0);
-        // clampPiston.set_value(false); //drop mogo
-        // chassis.turnToHeading(180, 1000, {.maxSpeed = 80});
-        // pros::delay(100);
-        // clampPiston.set_value(true); // close clamp
-        // chassis.moveToPoint(-38, 11, 2000, {.forwards = false, .maxSpeed = 60}); // alliance stake
-        // intake.move_voltage(12000);
-        // pros::delay(2000);
-        // intake.move_voltage(0);
-        // chassis.moveToPoint(-36, -26, 2000);
-    // } else { // blue
-    //     chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
-    //     pros::delay(20);
-    //     chassis.turnToHeading(315, 500); 
-    //     pros::delay(20);
-    //     chassis.moveToPoint(9.788, -27.808, 1000, {.forwards = false}); // Mogo
-    //     pros::delay(790);
-    //     clampPiston.set_value(true);
-    //     pros::delay(20);
-    //     intake.move_voltage(12000); // Preload
-    //     pros::delay(800);
-    //     chassis.turnToHeading(270, 700);
-    //     chassis.moveToPoint(-5.786, -28.589, 1000); // Ring 2
-    //     pros::delay(1000); 
-    //     chassis.turnToHeading(180, 500);  
-    //     chassis.moveToPoint(-7.841, -43.686, 1000); // Ring 3
-    //     pros::delay(1000);
-    //     chassis.moveToPoint(-8.68, -29.144, 1300, {.forwards = false}); 
-    //     pros::delay(200);
-    //     chassis.moveToPoint(-12.905, -44.186, 1200);
-    //     pros::delay(1100);
-    //     chassis.moveToPoint(3.559, -34.032, 1000, {.forwards = false}, false);
-    //     chassis.turnToHeading(30, 1000, {.maxSpeed = 60}); // face alliance state
-    //     chassis.moveToPoint(34, 2, 2000, {.minSpeed = 50}); // move to all. stake
-    //     pros::delay(450);
-    //     intake.move_voltage(0);
-    //     clampPiston.set_value(false); //drop mogo
-    //     chassis.turnToHeading(180, 1000, {.maxSpeed = 80});
-    //     pros::delay(100);
-    //     clampPiston.set_value(true); // close clamp
-    //     chassis.moveToPoint(38, 11, 2000, {.forwards = false, .maxSpeed = 60}); // alliance stake
-    //     intake.move_voltage(12000);
-    //     pros::delay(2000);
-    //     intake.move_voltage(0);
-    //     chassis.moveToPoint(36, -26, 2000);
-    // }
-}
-}
-
-void WP_3Rush() {
-    chassis.moveToPoint(0, -39.095, 1050, {.forwards = false});
-    chassis.turnToHeading(315, 450);
-    pros::delay(20);
-    chassis.moveToPoint(8.793, -44.79, 1200, {.forwards = false});
-    pros::delay(670);
-    clampPiston.set_value(true);
-    chassis.turnToHeading(90, 600);
-    chassis.moveToPoint(19.5, -38.898, 1200);
-    intake.move_voltage(12000);
-    pros::delay(1000);
-    chassis.turnToHeading(0, 600);
-    chassis.moveToPoint(21.481, -13.598, 1200);
-    chassis.turnToHeading(180, 600);
-    pros::delay(800);
-    clampPiston.set_value(false);
-    chassis.moveToPoint(23.314, -17.952, 1500, {.forwards = false});
-    pros::delay(750);
-    clampPiston.set_value(true);
-    // chassis.moveToPoint(32.64, -30.308, 1500);
-    // chassis.moveToPoint(11.89, -35.671, 1500);
-    // chassis.moveToPoint(55.255, -34.272, 1500);
-
-
+    } else { // blue
+        chassis.moveToPoint(0, 0, 1500);
+        chassis.moveToPoint(-0.233, -11.351, 700, {.forwards = false});
+        chassis.turnToHeading(330, 500);
+        chassis.moveToPoint(10.595, -28.875, 700, {.forwards = false});
+        pros::delay(790);
+        clampPiston.set_value(true);
+        pros::delay(20);
+        intake.move_voltage(12000); // Preload
+        pros::delay(850);
+        intake.move_voltage(0);
+        clampPiston.set_value(false);
+        chassis.moveToPoint(-8.16, -15.615, 900);
+        chassis.turnToHeading(90,600);
+        wallStake.move_voltage(10000);
+        pros::delay(300);
+        wallStake.brake();
+        chassis.moveToPoint(-34.977, -25.915, 1250, {.forwards = false, .maxSpeed = 80});
+        pros::delay(1030);
+        clampPiston.set_value(true);
+        intake.move_voltage(12000);
+        chassis.moveToPoint(-56.985, -34.505, 1500); // ring 1
+        pros::delay(600);
+        chassis.turnToHeading(180, 500);
+        chassis.moveToPoint(-53.486, -46.39, 1000); // ring 2
+        pros::delay(1000);
+        chassis.moveToPoint(-59.746, -34.505, 1000, {.forwards = false});
+        chassis.turnToHeading(180, 500);
+        chassis.moveToPoint(-60.446, -46.356, 1000); // ring 3
+        pros::delay(1200);
+        chassis.moveToPoint(-60, 45, 700, {.forwards = false});
+        chassis.turnToHeading(145, 500);
+        chassis.moveToPoint(-24.418, -36.738, 1200); // Ladder
+    }
 }
 
 void skills() {
@@ -396,27 +358,6 @@ void skills() {
     // chassis.moveToPoint(17.952, 96.521, 1500);
 }
 
-/* Legacy Auton Routines */
-// collect mogo, score preload and ring to the side. works for either alliance
-void scrimRightSide(){
-    clampPiston.set_value(false);
-    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
-    pros::delay(1500);
-    clampPiston.set_value(true);
-    intake.move_voltage(12000);
-    pros::delay(2000);
-
-    chassis.moveToPoint(-19, -30, 1600);
-    pros::delay(2000);
-    chassis.moveToPoint(24, -24, 2000);
-    pros::delay(2000);
-    wallStake.move_voltage(10000);
-    pros::delay(500);
-    wallStake.brake();
-    // chassis.moveToPoint(-44, 9, 4000, {.minSpeed = 127});
-    // pros::delay(2000);
-}
-
 rd::Selector gui_selector({
     {"E 5 Ring", Five_Ring},
     {"E 4 Ring + Bar", four_ring_bar},
@@ -443,4 +384,49 @@ void driverSkillsMacro() {
 	// 	    }
     //     }
 	// });
+}
+
+/* Legacy Auton Routines */
+// collect mogo, score preload and ring to the side. works for either alliance
+void scrimRightSide(){
+    clampPiston.set_value(false);
+    chassis.moveToPoint(0, -28, 1000, {.forwards = false, .maxSpeed = 70});
+    pros::delay(1500);
+    clampPiston.set_value(true);
+    intake.move_voltage(12000);
+    pros::delay(2000);
+
+    chassis.moveToPoint(-19, -30, 1600);
+    pros::delay(2000);
+    chassis.moveToPoint(24, -24, 2000);
+    pros::delay(2000);
+    wallStake.move_voltage(10000);
+    pros::delay(500);
+    wallStake.brake();
+    // chassis.moveToPoint(-44, 9, 4000, {.minSpeed = 127});
+    // pros::delay(2000);
+}
+
+void WP_3Rush() {
+    chassis.moveToPoint(0, -39.095, 1050, {.forwards = false});
+    chassis.turnToHeading(315, 450);
+    pros::delay(20);
+    chassis.moveToPoint(8.793, -44.79, 1200, {.forwards = false});
+    pros::delay(670);
+    clampPiston.set_value(true);
+    chassis.turnToHeading(90, 600);
+    chassis.moveToPoint(19.5, -38.898, 1200);
+    intake.move_voltage(12000);
+    pros::delay(1000);
+    chassis.turnToHeading(0, 600);
+    chassis.moveToPoint(21.481, -13.598, 1200);
+    chassis.turnToHeading(180, 600);
+    pros::delay(800);
+    clampPiston.set_value(false);
+    chassis.moveToPoint(23.314, -17.952, 1500, {.forwards = false});
+    pros::delay(750);
+    clampPiston.set_value(true);
+    // chassis.moveToPoint(32.64, -30.308, 1500);
+    // chassis.moveToPoint(11.89, -35.671, 1500);
+    // chassis.moveToPoint(55.255, -34.272, 1500);
 }
