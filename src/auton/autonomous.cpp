@@ -360,7 +360,7 @@ void skills() {
 
 rd::Selector gui_selector({
     {"E 5 Ring", Five_Ring},
-    {"E 4 Ring + Bar", four_ring_bar},
+    {"Q 4 Ring + Bar", four_ring_bar},
     {"Q SAWP 2Mogo", SAWP_4},
     {"Skills", skills},
 });
