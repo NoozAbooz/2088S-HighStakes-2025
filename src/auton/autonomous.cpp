@@ -309,11 +309,12 @@ void skills() {
     pros::delay(500);
     chassis.moveToPoint(0, 110, 1000);
     chassis.turnToHeading(180, 600);
-    pros::Task([] {
-			while ((wallStakeSensor.get_angle() / 100) < 32) {
-				wallStake.move_voltage(8000);
-			}
-    });
+    resetWallstakes();
+    // pros::Task([] {
+	// 		while ((wallStakeSensor.get_angle() / 100) < 32) {
+	// 			wallStake.move_voltage(8000);
+	// 		}
+    // });
     pros::delay(600);
     intake.move_voltage(12000);
     pros::delay(1000);
