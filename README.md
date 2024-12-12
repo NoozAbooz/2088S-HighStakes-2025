@@ -18,6 +18,7 @@
     <br/>
     <br/>
     <a href="https://www.robotevents.com/teams/VRC/210K">RobotEvents</a>
+    <a rref="https://210k.westernmech.ca/">210K Website</a>
   </p>
 </div>
 
