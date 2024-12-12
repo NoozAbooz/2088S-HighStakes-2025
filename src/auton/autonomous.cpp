@@ -160,8 +160,8 @@ void SAWP_4() {
         wallStake.move_voltage(10000);
         pros::delay(300);
         wallStake.brake();
-        chassis.moveToPoint(34.977, -25.915, 1500, {.forwards = false, .maxSpeed = 80});
-        pros::delay(1230);
+        chassis.moveToPoint(34.977, -25.915, 1400, {.forwards = false, .maxSpeed = 80});
+        pros::delay(1130);
         clampPiston.set_value(true);
         intake.move_voltage(12000);
         chassis.moveToPoint(56.985, -34.505, 1500); // ring 1
@@ -193,8 +193,8 @@ void SAWP_4() {
         wallStake.move_voltage(10000);
         pros::delay(300);
         wallStake.brake();
-        chassis.moveToPoint(-34.977, -25.915, 1500, {.forwards = false, .maxSpeed = 80});
-        pros::delay(1230);
+        chassis.moveToPoint(-34.977, -25.915, 1400, {.forwards = false, .maxSpeed = 80});
+        pros::delay(1130);
         clampPiston.set_value(true);
         intake.move_voltage(12000);
         chassis.moveToPoint(-56.985, -34.505, 1500); // ring 1
