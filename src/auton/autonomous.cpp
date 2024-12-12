@@ -141,7 +141,6 @@ void Five_Ring() {
 
 void SAWP_4() {
     if (alliance == "red" || alliance == "na") {
-        chassis.moveToPoint(0, 0, 1500);
         chassis.moveToPoint(0.233, -11.351, 700, {.forwards = false});
         chassis.turnToHeading(30, 500);
         chassis.moveToPoint(-10.595, -28.875, 700, {.forwards = false});
@@ -174,7 +173,6 @@ void SAWP_4() {
         chassis.turnToHeading(215, 500);
         chassis.moveToPoint(24.418, -36.738, 1200); // Ladder
     } else { // blue
-        chassis.moveToPoint(0, 0, 1500);
         chassis.moveToPoint(-0.233, -11.351, 700, {.forwards = false});
         chassis.turnToHeading(330, 500);
         chassis.moveToPoint(10.595, -28.875, 700, {.forwards = false});
