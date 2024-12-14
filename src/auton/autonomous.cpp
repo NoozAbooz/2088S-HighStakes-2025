@@ -43,15 +43,17 @@ void four_ring_bar() {
         chassis.turnToHeading(90, 700);
         chassis.moveToPoint(5.786, -28.589, 1000); // Ring 2
         pros::delay(1000); 
-        chassis.turnToHeading(180, 600);  
-        chassis.moveToPoint(5.841, -43.686, 1000, {.maxSpeed = 60}); // Ring 3
+        chassis.turnToHeading(180, 500);  
+        chassis.moveToPoint(7.141, -43.686, 1000); // Ring 3
         pros::delay(1000);
-        chassis.moveToPoint(12.68, -29.144, 1300, {.forwards = false}); 
+        chassis.moveToPoint(12.68, -36.144, 1300, {.forwards = false}); 
         pros::delay(200);
-        chassis.moveToPoint(12.905, -44.186, 1200);
+        chassis.turnToHeading(180, 410);
+        chassis.moveToPoint(13.605, -44.186, 1200);
         pros::delay(1100);
         chassis.moveToPoint(-3.559, -34.032, 1000, {.forwards = false});
         chassis.moveToPoint(-5, -33, 2000);
+        chassis.turnToHeading(225, 500, {.direction = lemlib::AngularDirection::CW_CLOCKWISE});
         chassis.moveToPoint(-24, -36, 2000);
     } else {
         wallStake.move_voltage(10000); // Start
@@ -70,15 +72,17 @@ void four_ring_bar() {
         chassis.turnToHeading(270, 700);
         chassis.moveToPoint(-5.786, -28.589, 1000); // Ring 2
         pros::delay(1000); 
-        chassis.turnToHeading(180, 600);  
-        chassis.moveToPoint(-5.841, -43.686, 1000, {.maxSpeed = 60}); // Ring 3
+        chassis.turnToHeading(180, 500);  
+        chassis.moveToPoint(-7.141, -43.686, 1000); // Ring 3
         pros::delay(1000);
-        chassis.moveToPoint(-12.68, -29.144, 1300, {.forwards = false}); 
+        chassis.moveToPoint(-12.68, -36.144, 1300, {.forwards = false}); 
         pros::delay(200);
-        chassis.moveToPoint(-12.905, -44.186, 1200);
+        chassis.turnToHeading(180, 410);
+        chassis.moveToPoint(-13.605, -44.186, 1200);
         pros::delay(1100);
         chassis.moveToPoint(3.559, -34.032, 1000, {.forwards = false});
         chassis.moveToPoint(5, -33, 2000);
+        chassis.turnToHeading(135, 500, {.direction = lemlib::AngularDirection::CCW_COUNTERCLOCKWISE});
         chassis.moveToPoint(24, -36, 2000);
     }
 }
@@ -99,17 +103,18 @@ void Five_Ring() {
         chassis.moveToPoint(5.786, -28.589, 1000); // Ring 2
         pros::delay(1000); 
         chassis.turnToHeading(180, 500);  
-        chassis.moveToPoint(7.841, -43.686, 1000); // Ring 3
+        chassis.moveToPoint(7.141, -43.686, 1000); // Ring 3
         pros::delay(1000);
-        chassis.moveToPoint(8.68, -29.144, 1300, {.forwards = false}); 
+        chassis.moveToPoint(12.68, -36.144, 1300, {.forwards = false}); 
         pros::delay(200);
-        chassis.moveToPoint(12.905, -44.186, 1200);
+        chassis.turnToHeading(180, 410);
+        chassis.moveToPoint(13.605, -44.186, 1200);
         pros::delay(1100);
         chassis.moveToPoint(-3.559, -34.032, 1000, {.forwards = false});
-        chassis.moveToPoint(25, 8, 1500, {.minSpeed = 127});
+        chassis.moveToPoint(29, 12, 2500, {.maxSpeed = 57});
         pros::delay(2100);
         chassis.moveToPoint(10, -5, 1500, {.forwards = false, .maxSpeed = 60});
-        chassis.moveToPoint(20.559, 0.032, 1000, {.maxSpeed = 90});
+        chassis.moveToPoint(20.559, 0.032, 1000, {.minSpeed = 127});
     } else { // blue
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
@@ -125,17 +130,18 @@ void Five_Ring() {
         chassis.moveToPoint(-5.786, -28.589, 1000); // Ring 2
         pros::delay(1000); 
         chassis.turnToHeading(180, 500);  
-        chassis.moveToPoint(-7.841, -43.686, 1000); // Ring 3
+        chassis.moveToPoint(-7.141, -43.686, 1000); // Ring 3
         pros::delay(1000);
-        chassis.moveToPoint(-8.68, -29.144, 1300, {.forwards = false}); 
+        chassis.moveToPoint(-12.68, -36.144, 1300, {.forwards = false}); 
         pros::delay(200);
-        chassis.moveToPoint(-12.905, -44.186, 1200);
+        chassis.turnToHeading(180, 410);
+        chassis.moveToPoint(-13.605, -44.186, 1200);
         pros::delay(1100);
         chassis.moveToPoint(3.559, -34.032, 1000, {.forwards = false});
-        chassis.moveToPoint(-25, 8, 1500, {.minSpeed = 127});
+        chassis.moveToPoint(-29, 12, 2500, {.maxSpeed = 57});
         pros::delay(2100);
         chassis.moveToPoint(-10, -5, 1500, {.forwards = false, .maxSpeed = 60});
-        chassis.moveToPoint(-20.559, 0.032, 1000, {.maxSpeed = 90});
+        chassis.moveToPoint(-20.559, 0.032, 1000, {.minSpeed = 127});
     }
 }
 
@@ -148,26 +154,26 @@ void SAWP_4() {
         clampPiston.set_value(true);
         pros::delay(20);
         intake.move_voltage(12000); // Preload
-        pros::delay(850);
+        pros::delay(1050);
         intake.move_voltage(0);
         clampPiston.set_value(false);
-        chassis.moveToPoint(8.16, -15.615, 900);
-        chassis.turnToHeading(270,600);
+        chassis.moveToPoint(8.16, -15.615, 1000);
+        chassis.turnToHeading(270,700);
         wallStake.move_voltage(10000);
         pros::delay(300);
         wallStake.brake();
-        chassis.moveToPoint(34.977, -25.915, 1400, {.forwards = false, .maxSpeed = 80}); // mogo 2
-        pros::delay(1130);
+        chassis.moveToPoint(40.977, -30.415, 2000, {.forwards = false, .maxSpeed = 57}); // mogo 2
+        pros::delay(1730);
         clampPiston.set_value(true);
         intake.move_voltage(12000);
-        chassis.moveToPoint(56.985, -34.505, 1500); // ring 1
-        pros::delay(600);
-        chassis.turnToHeading(180, 500);
-        chassis.moveToPoint(53.486, -46.39, 1000); // ring 2
+        chassis.moveToPoint(56.985, -30.505, 1500); // ring 1
         pros::delay(1000);
+        chassis.turnToHeading(180, 500);
+        chassis.moveToPoint(54.486, -46.39, 1000); // ring 2
+        pros::delay(100);
         chassis.moveToPoint(59.746, -34.505, 1000, {.forwards = false});
         chassis.turnToHeading(180, 500);
-        chassis.moveToPoint(60.446, -46.356, 1000); // ring 3
+        chassis.moveToPoint(61.446, -46.356, 1000); // ring 3
         pros::delay(1200);
         chassis.moveToPoint(60, 45, 700, {.forwards = false});
         chassis.turnToHeading(215, 500);
@@ -180,26 +186,26 @@ void SAWP_4() {
         clampPiston.set_value(true);
         pros::delay(20);
         intake.move_voltage(12000); // Preload
-        pros::delay(850);
+        pros::delay(1050);
         intake.move_voltage(0);
         clampPiston.set_value(false);
-        chassis.moveToPoint(-8.16, -15.615, 900);
-        chassis.turnToHeading(90,600);
+        chassis.moveToPoint(-8.16, -15.615, 1000);
+        chassis.turnToHeading(90,700);
         wallStake.move_voltage(10000);
         pros::delay(300);
         wallStake.brake();
-        chassis.moveToPoint(-34.977, -25.915, 1400, {.forwards = false, .maxSpeed = 80});
-        pros::delay(1130);
+        chassis.moveToPoint(-40.977, -30.415, 2000, {.forwards = false, .maxSpeed = 57}); // mogo 2
+        pros::delay(1730);
         clampPiston.set_value(true);
         intake.move_voltage(12000);
-        chassis.moveToPoint(-56.985, -34.505, 1500); // ring 1
-        pros::delay(600);
-        chassis.turnToHeading(180, 500);
-        chassis.moveToPoint(-53.486, -46.39, 1000); // ring 2
+        chassis.moveToPoint(-56.985, -30.505, 1500); // ring 1
         pros::delay(1000);
+        chassis.turnToHeading(180, 500);
+        chassis.moveToPoint(-54.486, -46.39, 1000); // ring 2
+        pros::delay(100);
         chassis.moveToPoint(-59.746, -34.505, 1000, {.forwards = false});
         chassis.turnToHeading(180, 500);
-        chassis.moveToPoint(-60.446, -46.356, 1000); // ring 3
+        chassis.moveToPoint(-61.446, -46.356, 1000); // ring 3
         pros::delay(1200);
         chassis.moveToPoint(-60, 45, 700, {.forwards = false});
         chassis.turnToHeading(145, 500);
