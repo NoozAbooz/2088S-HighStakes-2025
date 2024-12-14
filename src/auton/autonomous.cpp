@@ -28,7 +28,7 @@ void testBM() {
 void four_ring_bar() {
     if (alliance == "red" || alliance == "na") {
         wallStake.move_voltage(10000); // Start
-        pros::delay(300);
+        pros::delay(320);
         wallStake.brake();
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
@@ -53,11 +53,11 @@ void four_ring_bar() {
         pros::delay(1100);
         chassis.moveToPoint(-3.559, -34.032, 1000, {.forwards = false});
         chassis.moveToPoint(-5, -33, 2000);
-        chassis.turnToHeading(225, 500, {.direction = lemlib::AngularDirection::CW_CLOCKWISE});
-        chassis.moveToPoint(-24, -36, 2000);
+        chassis.turnToHeading(45, 500, {.direction = lemlib::AngularDirection::CW_CLOCKWISE});
+        chassis.moveToPoint(-24, -36, 2000, {.forwards = false});
     } else {
         wallStake.move_voltage(10000); // Start
-        pros::delay(300);
+        pros::delay(320);
         wallStake.brake();
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
@@ -82,8 +82,8 @@ void four_ring_bar() {
         pros::delay(1100);
         chassis.moveToPoint(3.559, -34.032, 1000, {.forwards = false});
         chassis.moveToPoint(5, -33, 2000);
-        chassis.turnToHeading(135, 500, {.direction = lemlib::AngularDirection::CCW_COUNTERCLOCKWISE});
-        chassis.moveToPoint(24, -36, 2000);
+        chassis.turnToHeading(315, 500, {.direction = lemlib::AngularDirection::CCW_COUNTERCLOCKWISE});
+        chassis.moveToPoint(24, -36, 2000, {.forwards = false});
     }
 }
 
@@ -160,7 +160,7 @@ void SAWP_4() {
         chassis.moveToPoint(8.16, -15.615, 1000);
         chassis.turnToHeading(270,700);
         wallStake.move_voltage(10000);
-        pros::delay(300);
+        pros::delay(320);
         wallStake.brake();
         chassis.moveToPoint(40.977, -30.415, 2000, {.forwards = false, .maxSpeed = 57}); // mogo 2
         pros::delay(1730);
@@ -176,8 +176,8 @@ void SAWP_4() {
         chassis.moveToPoint(61.446, -46.356, 1000); // ring 3
         pros::delay(1200);
         chassis.moveToPoint(60, 45, 700, {.forwards = false});
-        chassis.turnToHeading(215, 500);
-        chassis.moveToPoint(24.418, -36.738, 1200); // Ladder
+        chassis.turnToHeading(45, 500);
+        chassis.moveToPoint(24.418, -36.738, 1200, {.forwards = false}); // Ladder
     } else { // blue
         chassis.moveToPoint(-0.233, -11.351, 700, {.forwards = false});
         chassis.turnToHeading(330, 500);
@@ -192,7 +192,7 @@ void SAWP_4() {
         chassis.moveToPoint(-8.16, -15.615, 1000);
         chassis.turnToHeading(90,700);
         wallStake.move_voltage(10000);
-        pros::delay(300);
+        pros::delay(320);
         wallStake.brake();
         chassis.moveToPoint(-40.977, -30.415, 2000, {.forwards = false, .maxSpeed = 57}); // mogo 2
         pros::delay(1730);
@@ -208,8 +208,8 @@ void SAWP_4() {
         chassis.moveToPoint(-61.446, -46.356, 1000); // ring 3
         pros::delay(1200);
         chassis.moveToPoint(-60, 45, 700, {.forwards = false});
-        chassis.turnToHeading(145, 500);
-        chassis.moveToPoint(-24.418, -36.738, 1200); // Ladder
+        chassis.turnToHeading(315, 500);
+        chassis.moveToPoint(-24.418, -36.738, 1200, {.forwards = false}); // Ladder
     }
 }
 
