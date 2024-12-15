@@ -234,7 +234,7 @@ void skills() {
     chassis.moveToPoint(-47.994, 35.438, 1100, {.maxSpeed = 55}); // Ring 3
     pros::delay(1400);
     chassis.moveToPoint(-47.927, 14.123, 1100, {.maxSpeed = 55}); // Ring 4
-    pros::delay(1400);
+    pros::delay(1600);
     chassis.moveToPoint(-47.928, -0.999, 1100, {.maxSpeed = 55}); // Ring 5
     pros::delay(1300);
     chassis.moveToPoint(-44, 11, 1000, {.forwards = false});    
@@ -311,9 +311,9 @@ void skills() {
     chassis.turnToHeading(90, 600);
     chassis.moveToPoint(25, 110, 1000, {.forwards = false});
     chassis.moveToPoint(-25, 125, 1000, {.forwards = false});
-    chassis.moveToPoint(-64, 128, 2500, {.forwards = false, .minSpeed = 127});
+    chassis.moveToPoint(-64, 128, 1800, {.forwards = false, .minSpeed = 127});
     intake.move_voltage(12000);
-    chassis.moveToPoint(-59, 110, 2000);
+    chassis.moveToPoint(-59, 107, 2000);
     pros::delay(1200);
     intake.move_voltage(0);
     chassis.moveToPoint(4.5, 110, 2400);
