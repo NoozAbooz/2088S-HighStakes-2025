@@ -28,7 +28,7 @@ void testBM() {
 void four_ring_bar() {
     if (alliance == "red" || alliance == "na") {
         wallStake.move_voltage(10000); // Start
-        pros::delay(320);
+        pros::delay(300);
         wallStake.brake();
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
@@ -57,7 +57,7 @@ void four_ring_bar() {
         chassis.moveToPoint(-24, -36, 2000, {.forwards = false});
     } else {
         wallStake.move_voltage(10000); // Start
-        pros::delay(320);
+        pros::delay(300);
         wallStake.brake();
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
@@ -160,7 +160,7 @@ void SAWP_4() {
         chassis.moveToPoint(8.16, -15.615, 1000);
         chassis.turnToHeading(270,700);
         wallStake.move_voltage(10000);
-        pros::delay(320);
+        pros::delay(300);
         wallStake.brake();
         chassis.moveToPoint(40.977, -30.415, 2000, {.forwards = false, .maxSpeed = 57}); // mogo 2
         pros::delay(1730);
@@ -192,7 +192,7 @@ void SAWP_4() {
         chassis.moveToPoint(-8.16, -15.615, 1000);
         chassis.turnToHeading(90,700);
         wallStake.move_voltage(10000);
-        pros::delay(320);
+        pros::delay(300);
         wallStake.brake();
         chassis.moveToPoint(-40.977, -30.415, 2000, {.forwards = false, .maxSpeed = 57}); // mogo 2
         pros::delay(1730);
@@ -234,7 +234,7 @@ void skills() {
     chassis.moveToPoint(-47.994, 35.438, 1100, {.maxSpeed = 55}); // Ring 3
     pros::delay(1400);
     chassis.moveToPoint(-47.927, 14.123, 1100, {.maxSpeed = 55}); // Ring 4
-    pros::delay(1400);
+    pros::delay(1600);
     chassis.moveToPoint(-47.928, -0.999, 1100, {.maxSpeed = 55}); // Ring 5
     pros::delay(1300);
     chassis.moveToPoint(-44, 11, 1000, {.forwards = false});    
@@ -311,9 +311,9 @@ void skills() {
     chassis.turnToHeading(90, 600);
     chassis.moveToPoint(25, 110, 1000, {.forwards = false});
     chassis.moveToPoint(-25, 125, 1000, {.forwards = false});
-    chassis.moveToPoint(-64, 128, 2500, {.forwards = false, .minSpeed = 127});
+    chassis.moveToPoint(-64, 128, 1800, {.forwards = false, .minSpeed = 127});
     intake.move_voltage(12000);
-    chassis.moveToPoint(-59, 110, 2000);
+    chassis.moveToPoint(-59, 107, 2000);
     pros::delay(1200);
     intake.move_voltage(0);
     chassis.moveToPoint(4.5, 110, 2400);
