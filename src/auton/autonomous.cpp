@@ -28,7 +28,7 @@ void testBM() {
 void four_ring_bar() {
     if (alliance == "red" || alliance == "na") {
         wallStake.move_voltage(10000); // Start
-        pros::delay(320);
+        pros::delay(300);
         wallStake.brake();
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
@@ -57,7 +57,7 @@ void four_ring_bar() {
         chassis.moveToPoint(-24, -36, 2000, {.forwards = false});
     } else {
         wallStake.move_voltage(10000); // Start
-        pros::delay(320);
+        pros::delay(300);
         wallStake.brake();
         chassis.moveToPoint(0, -14.237, 1000, {.forwards = false}); // Mogo  
         pros::delay(20);
@@ -160,7 +160,7 @@ void SAWP_4() {
         chassis.moveToPoint(8.16, -15.615, 1000);
         chassis.turnToHeading(270,700);
         wallStake.move_voltage(10000);
-        pros::delay(320);
+        pros::delay(300);
         wallStake.brake();
         chassis.moveToPoint(40.977, -30.415, 2000, {.forwards = false, .maxSpeed = 57}); // mogo 2
         pros::delay(1730);
@@ -192,7 +192,7 @@ void SAWP_4() {
         chassis.moveToPoint(-8.16, -15.615, 1000);
         chassis.turnToHeading(90,700);
         wallStake.move_voltage(10000);
-        pros::delay(320);
+        pros::delay(300);
         wallStake.brake();
         chassis.moveToPoint(-40.977, -30.415, 2000, {.forwards = false, .maxSpeed = 57}); // mogo 2
         pros::delay(1730);
