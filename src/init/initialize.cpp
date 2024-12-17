@@ -16,10 +16,7 @@ void initialize() {
     // pros::Task([] {
     //     chassis.calibrate();
     // });
-
-    pros::Task([] {
-        ks::odomThread();   
-    });
+    ks::initializeOdom();
 
     optical.set_led_pwm(75); // enable led on optical sensor for accuracy
     optical.set_integration_time(10); // refresh every 10ms
