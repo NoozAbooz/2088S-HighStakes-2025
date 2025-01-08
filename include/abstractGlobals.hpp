@@ -12,10 +12,9 @@ extern rd_view_t *allianceview;
 extern rd::Selector gui_selector;
 void rdconfig_init();
 
-extern bool isCompetition;
 extern std::string alliance;
-extern std::string auton_name;
 extern std::string field_status;
+extern void competitionTelemtryRefresh();
 
 /* Functions */
 // DT

@@ -11,7 +11,7 @@
 void opcontrol() {
 	field_status = "opcontrol";
 	pros::Task([] { // run only in competition
-		if (isCompetition == true) {
+		if (field_status == "competition") {
 			Gif* gif = new Gif("/usd/nokotan.gif", rd_view_obj(gifview));
 			rd_view_focus(gifview);
 			console.println("Running gif...");
@@ -31,7 +31,7 @@ void opcontrol() {
 
 		// Report temperature telemetry 😭
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
-		controller.print(0, 0, "DT%.0lf|INT%.0lf|%.0lf  ", drivetrainTemps, intake.get_temperature(), chassis.getPose().theta);
+		controller.print(0, 0, "DT%.0lf|INT%.0lf|%.0lf  ", drivetrainTemps, intake.get_temperature(), ks::odom_pos.theta);
 		pros::delay(10); // Delay to save resources on brain
 	}
 }

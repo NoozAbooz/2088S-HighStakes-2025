@@ -27,7 +27,7 @@ void refreshWallstakes() {
 void resetWallstakes() {
 	if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
 		pros::Task([] {
-			while ((wallStakeSensor.get_angle() / 100) < 32) {
+			while ((wallStakeRotationSensor.get_angle() / 100) < 32) {
 				wallStake.move_voltage(8000);
 			}
 			controller.rumble(".");

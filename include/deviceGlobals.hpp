@@ -11,11 +11,11 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // inline pros::MotorGroup rightDrive({-12, 13, -17});
 
 // v1
-inline pros::MotorGroup leftDrive({-1, -2, 3});
-inline pros::MotorGroup rightDrive({6, -7, 8});
+inline pros::MotorGroup leftDrive({-18, 19, 20});
+inline pros::MotorGroup rightDrive({-11, 12, 13});
 
 // Intake
-inline pros::Motor intake(-10);
+inline pros::Motor intake(-14);
 inline pros::MotorGroup wallStake({-13, 14});
 
 // Pneumatics
@@ -26,23 +26,23 @@ inline pros::adi::Pneumatics doinkerPiston('B', false);
 inline pros::Optical optical(14);
 inline pros::Imu inertial1(17);
 inline pros::Imu inertial2(15);
-inline pros::Rotation wallStakeSensor(12);
+inline pros::Rotation wallStakeRotationSensor(12);
 
 inline pros::Rotation verticalEncoder(4);
 inline pros::Rotation horizontalEncoder(-5);
 //hello world it is 210K secret note iykyk :D
 // horizontal tracking wheel
-inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_2, 0.44);
+inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_275, 0.44);
 // vertical tracking wheel
-inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemlib::Omniwheel::NEW_2, 1.65);
+inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemlib::Omniwheel::NEW_275, 1.65);
 
 // drivetrain settings
 inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               &rightDrive, // right motor group
                               13.5, // track width
                               lemlib::Omniwheel::NEW_325,
-                              360, // drivetrain rpm
-                              2 // chase power is 2. If we had traction wheels, it would have been 8
+                              450, // drivetrain rpm
+                              8 // chase power is 2. If we had traction wheels, it would have been 8
 );
 // lateral motion controller
 inline lemlib::ControllerSettings lateralController(10, // proportional gain (kP)
