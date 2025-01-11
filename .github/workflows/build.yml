@@ -50,4 +50,4 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Build PROS Project  
-        run: pros make clean all
+        run: make -j

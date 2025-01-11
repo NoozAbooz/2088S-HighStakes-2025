@@ -14,7 +14,7 @@ void opcontrol() {
 		if (field_status == "competition") {
 			Gif* gif = new Gif("/usd/nokotan.gif", rd_view_obj(gifview));
 			rd_view_focus(gifview);
-			console.println("Running gif...");
+			console.println("Launching gif...");
 		}
 	});
 
