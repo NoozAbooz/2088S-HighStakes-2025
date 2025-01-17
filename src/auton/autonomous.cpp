@@ -12,8 +12,6 @@
  * from where it left off.
  */
 
-std::string auton_name = "null";
-
 void testPID() {
     clampPiston.set_value(true);
     pros::delay(1000);
@@ -24,7 +22,27 @@ void testPID() {
 void testBM() {
     chassis.moveToPose(52, 6, 320, 1000, {.forwards = false});
 }
+void calibrateOdomOffsets() {
+    
+}
 
+rd::Selector gui_selector({
+    // {"E 5 Ring", Five_Ring},
+    // {"Q 4 Ring + Bar", four_ring_bar},
+    // {"Q SAWP 2 Mogo", SAWP_4},
+    // {"Skills", skills},
+});
+
+void autonomous() {
+    //initializeColourSort();
+    chassis.setPose(0, 0, 0);
+    field_status = "autonomous";
+    console.println("Running auton...");
+    gui_selector.run_auton();
+}
+
+
+/* Legacy Auton Routines */
 void four_ring_bar() {
     if (alliance == "red" || alliance == "na") {
         wallStake.move_voltage(10000); // Start
@@ -323,20 +341,3 @@ void skills() {
     intake.move_voltage(12000);
     pros::delay(500);
 }
-
-rd::Selector gui_selector({
-    {"E 5 Ring", Five_Ring},
-    {"Q 4 Ring + Bar", four_ring_bar},
-    {"Q SAWP 2 Mogo", SAWP_4},
-    {"Skills", skills},
-});
-void autonomous() {
-    //initializeColourSort();
-    chassis.setPose(0, 0, 0);
-    field_status = "autonomous";
-    console.println("Running auton...");
-    gui_selector.run_auton();
-}
-
-
-/* Legacy Auton Routines */

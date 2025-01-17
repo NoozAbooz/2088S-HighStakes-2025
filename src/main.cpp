@@ -11,10 +11,10 @@
 void opcontrol() {
 	field_status = "opcontrol";
 	pros::Task([] { // run only in competition
-		if (isCompetition == true) {
+		if (field_status == "competition") {
 			Gif* gif = new Gif("/usd/nokotan.gif", rd_view_obj(gifview));
 			rd_view_focus(gifview);
-			console.println("Running gif...");
+			console.println("Launching gif...");
 		}
 	});
 

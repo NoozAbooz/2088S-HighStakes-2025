@@ -1,6 +1,5 @@
 #include "main.h"
 
-bool isCompetition = false;
 std::string field_status;
 
 /**
@@ -47,14 +46,23 @@ void disabled() {
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
+void competitionTelemtryRefresh(std::optional<rd::Selector::routine_t> routine) {
+    if (!routine.has_value()) return;
+    controller.print(0, 0, "%s |%s| %.0lf", alliance.c_str(), routine.value().action, chassis.getPose().theta);
+}
+
 void competition_initialize() {
     rd_view_focus(allianceview);
-    isCompetition = true;
+    field_status = "competition";
 
-    pros::Task([] {
-        while (field_status != "opcontrol") {
-            controller.print(0, 0, "%s | %.0lf", alliance.c_str(), chassis.getPose().theta);
-            pros::delay(500);
-        }
+    gui_selector.on_select([](std::optional<rd::Selector::routine_t> routine) {
+        competitionTelemtryRefresh(routine);
     });
+
+    // pros::Task([] {   // legacy way of doing above
+    //     while (field_status != "opcontrol") {
+    //         controller.print(0, 0, "%s | %.0lf", alliance.c_str(), chassis.getPose().theta);
+    //         pros::delay(500);
+    //     }
+    // });
 }

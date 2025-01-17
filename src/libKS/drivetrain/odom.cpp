@@ -6,19 +6,19 @@ double    x = 0; // global X
 double    y = 0; // global Y
 double    theta; // global theta
 
-Position odom_pos;
+Position ks::odom_pos;
 
 // Gyro scale effect from 2775V
 // If it is a bit less than 360, that's your number. If it is a bit more than 0, add 360 and that's your number.
 double gyro_scale1 = 360;
 double gyro_scale2 = 360;
 
-double vertical_wheel_diameter = 2.125;
+double vertical_wheel_diameter = 2.75;
 double vertical_wheel_offset = 0.44;
 
-double horizontal_wheel_diameter = 2.125;
+double horizontal_wheel_diameter = 2.75;
 double horizontal_wheel_offset = 1.65;
-double gear_ratio = 36.0 / 72;
+double gear_ratio = 36.0 / 48;
 
 // Return robot rotation in degrees, unwrapped
 double get_imu_rotation() {
@@ -37,7 +37,7 @@ double get_imu_rotation() {
 double get_vertical_distance_traveled() {
     if (!isnanf(verticalEncoder.get_position()) && !isinf(verticalEncoder.get_position())) { // use rot sensor as priority
         return ((verticalEncoder.get_position()) * vertical_wheel_diameter * M_PI / 36000); // 1 is gear ratio
-    } else if (!isnanf(leftDrive.get_position(0)) && !isinf(leftDrive.get_position(0))) { // cartridge gearing, leave since its factored into rpm
+    } else if (!isnanf(leftDrive.get_position(0)) && !isinf(leftDrive.get_position(0))) { // 900 is cartridge gearing, leave since its factored into rpm
             double left_distance = (leftDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
 			double right_distance = (rightDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
 
@@ -80,14 +80,9 @@ double avg_heading;
 double deltaXLocal;
 double deltaYLocal;
 
-void ks::initializeOdom() {
-	pros::Task odom_task(ks::odomThread);
-}
-
-void ks::setOdomPosition(double x_new = 0, double y_new = 0, double theta_new = 0) {
-	odom_task.suspend();
-	x = x_new;
-	y = y_new;
+void ks::setOdomPosition() {
+	x = 0;
+	y = 0;
 
 	verticalEncoder.reset_position();
 	horizontalEncoder.reset_position();
@@ -95,6 +90,8 @@ void ks::setOdomPosition(double x_new = 0, double y_new = 0, double theta_new = 
 	vertical_pos = 0;
 	horizontal_pos = 0;
 
+	vertical_pos = 0;
+	horizontal_pos = 0;
 	prev_vertical_pos = 0;
 	prev_horizontal_pos = 0;
 	prev_heading = 0;
@@ -104,7 +101,7 @@ void ks::setOdomPosition(double x_new = 0, double y_new = 0, double theta_new = 
 	odom_task.resume();
 }
 
-void ks::odomThread() {
+void ks::odomUpdate() {
 	inertial1.reset();
 	inertial2.reset();
 

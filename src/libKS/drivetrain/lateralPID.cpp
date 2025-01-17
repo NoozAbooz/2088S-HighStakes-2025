@@ -32,15 +32,15 @@ void ks::LateralPID::move_lateral_pid(double target, double maxSpeed, double min
 		derivative = (error - prevError);
 
 		power = (global_kp * error) + (global_ki * integral) + (global_kd * derivative);
-		if (power * (12000.0 / 127) > maxSpeed * (12000.0 / 127)) {
+		if (power > maxSpeed) {
 			power = maxSpeed;
-		} else if (power * (12000.0 / 127) < -maxSpeed * (12000.0 / 127)) {
+		} else if (power < -maxSpeed) {
 			power = -maxSpeed;
 		}
 
-		if (power * (12000.0 / 127) < minSpeed * (12000.0 / 127)) {
+		if (power < minSpeed) {
 			power = minSpeed;
-		} else if (power * (12000.0 / 127) > -minSpeed * (12000.0 / 127)) {
+		} else if (power > -minSpeed) {
 			power = -minSpeed;
 		}
 
