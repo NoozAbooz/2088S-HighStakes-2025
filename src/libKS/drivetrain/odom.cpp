@@ -80,7 +80,7 @@ double avg_heading;
 double deltaXLocal;
 double deltaYLocal;
 
-void ks::setOdomPosition() {
+void ks::setOdomPosition(double x_new, double y_new, double theta_new) {
 	x = 0;
 	y = 0;
 
