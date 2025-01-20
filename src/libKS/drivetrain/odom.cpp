@@ -80,17 +80,15 @@ double avg_heading;
 double deltaXLocal;
 double deltaYLocal;
 
-void ks::initializeOdom() {
-	pros::Task odom_task(ks::odomUpdate);
-}
-
-void ks::setOdomPosition(double x_new = 0, double y_new = 0, double theta_new = 0) {
-	odom_task.suspend();
-	x = x_new;
-	y = y_new;
+void ks::setOdomPosition() {
+	x = 0;
+	y = 0;
 
 	verticalEncoder.reset_position();
 	horizontalEncoder.reset_position();
+
+	vertical_pos = 0;
+	horizontal_pos = 0;
 
 	vertical_pos = 0;
 	horizontal_pos = 0;
@@ -149,7 +147,6 @@ void ks::odomUpdate() {
        		theta += 360;
 		}
 
-		// funky stuff for alliance colours :(
 		chassis.setPose(x, y, get_imu_rotation());
         pros::delay(5);
     }
