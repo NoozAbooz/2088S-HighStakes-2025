@@ -11,22 +11,22 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // inline pros::MotorGroup rightDrive({-12, 13, -17});
 
 // v1
-inline pros::MotorGroup leftDrive({-18, 19, 20});
-inline pros::MotorGroup rightDrive({-11, 12, 13});
+inline pros::MotorGroup leftDrive({11, -12, -13});
+inline pros::MotorGroup rightDrive({18, -19, 20});
 
 // Intake
-inline pros::Motor intake(-14);
-inline pros::MotorGroup wallStake({-13, 14});
+inline pros::MotorGroup intake({-17, -8});
+inline pros::Motor wallStake(21);
 
 // Pneumatics
 inline pros::adi::Pneumatics clampPiston('A', false);
 inline pros::adi::Pneumatics doinkerPiston('B', false);
 
 /* Declare sensors */
-inline pros::Optical optical(14);
+inline pros::Optical optical(2);
 inline pros::Imu inertial1(17);
 inline pros::Imu inertial2(15);
-inline pros::Rotation wallStakeRotationSensor(12);
+inline pros::Rotation wallStakeRotationSensor(10);
 
 inline pros::Rotation verticalEncoder(4);
 inline pros::Rotation horizontalEncoder(-5);

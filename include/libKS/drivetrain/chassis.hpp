@@ -4,5 +4,5 @@
 namespace ks {
     void moveRaw(int voltage, int time);
     double driveCurve(double input, double curve);
-    void arcadeDrive(int linCurve, int rotCurve, double turnScale);
+    void arcadeDrive(int linCurve = 0, int rotCurve = 0, double turnScale = 1);
 }

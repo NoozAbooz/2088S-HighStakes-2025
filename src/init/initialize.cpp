@@ -16,10 +16,12 @@ void initialize() {
     //     chassis.calibrate();
     // });
     ks::initializeOdom();
+    initializeColourSort();
 
     optical.set_led_pwm(75); // enable led on optical sensor for accuracy
     optical.set_integration_time(10); // refresh every 10ms
     wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    intake.get_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 
     inertial1.set_data_rate(5);
     inertial2.set_data_rate(5);
@@ -46,9 +48,10 @@ void disabled() {
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competitionTelemtryRefresh(std::optional<rd::Selector::routine_t> routine) {
-    if (!routine.has_value()) return;
-    controller.print(0, 0, "%s |%s| %.0lf", alliance.c_str(), routine.value().action, chassis.getPose().theta);
+void competitionTelemtryRefresh() {
+    auto auton = gui_selector.get_auton();
+    const char* auton_name = auton->name.c_str();
+    controller.print(0, 0, "%s|%s|%.0lf", alliance.c_str(), auton_name, chassis.getPose().theta);
 }
 
 void competition_initialize() {
@@ -56,7 +59,7 @@ void competition_initialize() {
     field_status = "competition";
 
     gui_selector.on_select([](std::optional<rd::Selector::routine_t> routine) {
-        competitionTelemtryRefresh(routine);
+        competitionTelemtryRefresh();
     });
 
     // pros::Task([] {   // legacy way of doing above
