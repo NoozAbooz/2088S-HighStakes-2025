@@ -11,11 +11,11 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // inline pros::MotorGroup rightDrive({-12, 13, -17});
 
 // v1
-inline pros::MotorGroup leftDrive({11, -12, -13});
-inline pros::MotorGroup rightDrive({18, -19, 20});
+inline pros::MotorGroup leftDrive({4, -3, -5});
+inline pros::MotorGroup rightDrive({7, -10, 8});
 
 // Intake
-inline pros::MotorGroup intake({-17, -8});
+inline pros::MotorGroup intake({-9, -20});
 inline pros::Motor wallStake(21);
 
 // Pneumatics
@@ -23,13 +23,13 @@ inline pros::adi::Pneumatics clampPiston('A', false);
 inline pros::adi::Pneumatics doinkerPiston('B', false);
 
 /* Declare sensors */
-inline pros::Optical optical(2);
+inline pros::Optical optical(19);
 inline pros::Imu inertial1(17);
 inline pros::Imu inertial2(15);
-inline pros::Rotation wallStakeRotationSensor(10);
+inline pros::Rotation wallStakeRotationSensor(11);
 
-inline pros::Rotation verticalEncoder(4);
-inline pros::Rotation horizontalEncoder(-5);
+inline pros::Rotation verticalEncoder(1);
+inline pros::Rotation horizontalEncoder(-14);
 //hello world it is 210K secret note iykyk :D
 // horizontal tracking wheel
 inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_275, 0.44);
