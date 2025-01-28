@@ -12,11 +12,11 @@ inline pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 // v1
 inline pros::MotorGroup leftDrive({4, -3, -5});
-inline pros::MotorGroup rightDrive({7, -10, 8});
+inline pros::MotorGroup rightDrive({-7, 10, 8});
 
 // Intake
 inline pros::MotorGroup intake({-9, -20});
-inline pros::Motor wallStake(21);
+inline pros::Motor wallStake(16);
 
 // Pneumatics
 inline pros::adi::Pneumatics clampPiston('A', false);

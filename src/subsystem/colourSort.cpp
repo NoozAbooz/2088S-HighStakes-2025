@@ -11,15 +11,21 @@ void initializeColourSort() {
 				// eject blue rings
 				console.println("eject blue impostor");
 				intakeLock = true;
+				pros::delay(230);
 				intake.brake();
-				pros::delay(600);
+				pros::delay(168);
 				intake.move_voltage(12000);
 				intakeLock = false;
 			}
-			if (alliance == "blue" && optical.get_hue() > 15 && optical.get_hue() < 40) {
+			if (alliance == "blue" && optical.get_hue() > 15 && optical.get_hue() < 27) {
 				// eject red rings
-				intake.brake();
 				console.println("eject red impostor");
+				intakeLock = true;
+				pros::delay(230);
+				intake.brake();
+				pros::delay(168);
+				intake.move_voltage(12000);
+				intakeLock = false;
 			}
 
 			pros::delay(10);
