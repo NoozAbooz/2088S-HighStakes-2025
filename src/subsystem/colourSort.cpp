@@ -11,9 +11,9 @@ void initializeColourSort() {
 				// eject blue rings
 				console.println("eject blue impostor");
 				intakeLock = true;
-				pros::delay(230);
+				pros::delay(240);
 				intake.brake();
-				pros::delay(168);
+				pros::delay(175);
 				intake.move_voltage(12000);
 				intakeLock = false;
 			}
@@ -21,9 +21,9 @@ void initializeColourSort() {
 				// eject red rings
 				console.println("eject red impostor");
 				intakeLock = true;
-				pros::delay(230);
+				pros::delay(240);
 				intake.brake();
-				pros::delay(168);
+				pros::delay(175);
 				intake.move_voltage(12000);
 				intakeLock = false;
 			}

@@ -24,8 +24,8 @@ inline pros::adi::Pneumatics doinkerPiston('B', false);
 
 /* Declare sensors */
 inline pros::Optical optical(19);
-inline pros::Imu inertial1(17);
-inline pros::Imu inertial2(15);
+inline pros::Imu inertial1(12);
+inline pros::Imu inertial2(18);
 inline pros::Rotation wallStakeRotationSensor(11);
 
 inline pros::Rotation verticalEncoder(1);
@@ -42,18 +42,18 @@ inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               13.5, // track width
                               lemlib::Omniwheel::NEW_325,
                               450, // drivetrain rpm
-                              8 // chase power is 2. If we had traction wheels, it would have been 8
+                              2 // chase power is 2. If we had traction wheels, it would have been 8
 );
 // lateral motion controller
-inline lemlib::ControllerSettings lateralController(10, // proportional gain (kP)
+inline lemlib::ControllerSettings lateralController(1.8, // proportional gain (kP)
                                               0, // integral gain (kI)
-                                              10, // derivative gain (kD)
-                                              3, // anti windup
+                                              0, // derivative gain (kD)
+                                              0, // anti windup
                                               1, // small error range, in inches
                                               100, // small error range timeout, in milliseconds
                                               3, // large error range, in inches
                                               500, // large error range timeout, in milliseconds
-                                              40 // maximum acceleration (slew)
+                                              127 // maximum acceleration (slew)
 );
 // angular motion controller
 inline lemlib::ControllerSettings angularController(4, // proportional gain (kP)

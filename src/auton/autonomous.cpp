@@ -13,11 +13,8 @@
  */
 
 void testPID() {
-    clampPiston.set_value(true);
-    pros::delay(1000);
-    // chassis.moveToPoint(0, 24, 5000);
-    chassis.turnToHeading(90, 1000);
-    // chassis.moveToPoint(24, 24, 5000)   
+    chassis.moveToPoint(0, 0, 1000);
+    chassis.moveToPoint(0, 24, 1000);
 }
 void testBM() {
     chassis.moveToPose(52, 6, 320, 1000, {.forwards = false});
@@ -26,20 +23,6 @@ void calibrateOdomOffsets() {
     
 }
 
-
-
-rd::Selector gui_selector({
-    // {"E 5 Ring", Five_Ring},
-    // {"Q 4 Ring + Bar", four_ring_bar},
-    // {"Q SAWP 2 Mogo", SAWP_4},
-
-    {"Skills", skills, "", 0},
-
-    { "Test PID", testPID, "", 220 },
-    { "Test BM", testBM, "", 220 },
-    { "Odom Offsets", calibrateOdomOffsets, "", 220 }
-});
-
 void autonomous() {
     //initializeColourSort();
     chassis.setPose(0, 0, 0);
@@ -47,7 +30,21 @@ void autonomous() {
     console.println("Running auton...");
     gui_selector.run_auton();
 }
+void SIG_SAWP() {
+    chassis.moveToPoint(0, 0, 1000);
+    chassis.moveToPose(-11.922, -29.782, 10, 1200, {.forwards = false, .minSpeed = 80});
+    pros::delay(750);
+    clampPiston.set_value(true);
+    // chassis.moveTo(-12.737, -60.17, 5000);
+    // chassis.moveTo(0.732, -69.73, 5000);
+    // chassis.moveTo(1.925, -20.201, 5000);
+    // chassis.moveTo(-13.005, -4.77, 5000);
+    // chassis.moveTo(-26.775, 8.237, 5000);
+    // chassis.moveTo(-43.333, -2.844, 5000);
+    // chassis.moveTo(-26.943, 17.381, 5000);
+    // chassis.moveTo(-45.866, -19.014, 5000);
 
+}
 
 /* Legacy Auton Routines */
 void four_ring_bar() {
@@ -238,3 +235,14 @@ void SAWP_4() {
     }
 }
 
+rd::Selector gui_selector({
+    // {"E 5 Ring", Five_Ring},
+    // {"Q 4 Ring + Bar", four_ring_bar},
+    // {"Q SAWP 2 Mogo", SAWP_4},
+    {"Mecha SAWP", SIG_SAWP},
+    {"Skills", skills, "", 0},
+
+    { "Test PID", testPID, "", 220 },
+    { "Test BM", testBM, "", 220 },
+    { "Odom Offsets", calibrateOdomOffsets, "", 220 }
+});
