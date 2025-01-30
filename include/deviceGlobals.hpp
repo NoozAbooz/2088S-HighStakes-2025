@@ -32,9 +32,9 @@ inline pros::Rotation verticalEncoder(-1);
 inline pros::Rotation horizontalEncoder(-14);
 //hello world it is 210K secret note iykyk :D
 // horizontal tracking wheel
-inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_275, 0.44);
+inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_275, 0.876);
 // vertical tracking wheel
-inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemlib::Omniwheel::NEW_275, 1.65);
+inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemlib::Omniwheel::NEW_275, -3.2455);
 
 // drivetrain settings
 inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
@@ -68,9 +68,9 @@ inline lemlib::ControllerSettings angularController(3, // proportional gain (kP)
 );
 // sensors for odometry
 // note that in this example we use internal motor encoders, so we don't pass vertical tracking wheels
-inline lemlib::OdomSensors sensors(&vertical_tracking_wheel, // vertical tracking wheel 1, set to nullptr as we don't have one
+inline lemlib::OdomSensors sensors(nullptr, // vertical tracking wheel 1, set to nullptr as we don't have one
                             nullptr, // vertical tracking wheel 2, set to nullptr as we don't have one
-                            &horizontal_tracking_wheel, // horizontal tracking wheel 1
+                            nullptr, // horizontal tracking wheel 1
                             nullptr, // horizontal tracking wheel 2, set to nullptr as we don't have a second one
                             &inertial1 // inertial sensor
 );

@@ -12,13 +12,10 @@ void initialize() {
     rdconfig_init();
     pros::delay(10);
 
-    // pros::Task([] {
-    //     while (true) {
-    //         printf("Theta: %f\n", ks::odom_pos.theta);
-    //         pros::delay(1000);
-    //     }
-    // });
-    ks::initializeOdom();
+    pros::Task([] {
+        chassis.calibrate();
+    });
+    //ks::initializeOdom();
     initializeColourSort();
 
     optical.set_led_pwm(100); // enable led on optical sensor for accuracy
