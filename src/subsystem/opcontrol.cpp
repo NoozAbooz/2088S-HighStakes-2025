@@ -5,9 +5,6 @@ void refreshIntake() {
 	if (intakeLock == false) {
 		if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
 			intake.move_voltage(12000);
-
-			// stuff anti-jam system here too
-			
 		} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
 			intake.move_voltage(-12000);
 		} else {
@@ -18,33 +15,28 @@ void refreshIntake() {
 
 void refreshWallstakes() {
 	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-		// if ((wallStakeSensor.get_angle() / 100 < 130 && wallStakeSensor.get_angle() / 100 > 0)) {
-			wallStake.move_voltage(6000);
-		// }
-
+		wallStake.move_voltage(6000);
 	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
 		wallStake.move_voltage(-10000);
 	} else {
 		wallStake.brake();
 	}
+
+	if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+		resetWallstakes();
+	}
 }
 
 void resetWallstakes() {
-	if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-		pros::Task([] {
-			while ((wallStakeRotationSensor.get_angle() / 100) < 115) {
-				wallStake.move_voltage(8000);
-			}
-			while ((wallStakeRotationSensor.get_angle() / 100) > 115) {
-				wallStake.move_voltage(-8000);
-			}
-			controller.rumble(".");
-		});
-		// wallStake.move_voltage(10000);
-		// pros::delay(170);
-		// wallStake.brake();
-		// controller.rumble(".");
-	}
+	pros::Task([] {
+		while ((wallStakeRotationSensor.get_angle() / 100) < 115) {
+			wallStake.move_voltage(8000);
+		}
+		// while ((wallStakeRotationSensor.get_angle() / 100) > 115) {
+		// 	wallStake.move_voltage(-8000);
+		// }
+		controller.rumble(".");
+	});
 }
 
 bool clampToggle = false;
@@ -61,4 +53,8 @@ void refreshDoinker() {
     	doinkerToggle = !doinkerToggle;
 		doinkerPiston.set_value(doinkerToggle);
     }
+}
+
+void hangSequeunce() {
+	
 }

@@ -27,7 +27,6 @@ void opcontrol() {
 		refreshClamp();
 		refreshDoinker();
 		refreshWallstakes();
-		resetWallstakes();
 
 		// Report temperature telemetry 😭
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
