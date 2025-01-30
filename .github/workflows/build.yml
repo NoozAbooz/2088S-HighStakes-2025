@@ -48,6 +48,10 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
-      
+
+      - name: Tempfix for outdated toolchain
+        uses: sed -i 's/--no-warn-rwx-segments//g' "common.mk"
+
+
       - name: Build PROS Project  
         run: make -j

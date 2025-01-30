@@ -14,10 +14,10 @@ double gyro_scale1 = 360;
 double gyro_scale2 = 360;
 
 double vertical_wheel_diameter = 2.75;
-double vertical_wheel_offset = 0.44;
+double vertical_wheel_offset = 0.876;
 
 double horizontal_wheel_diameter = 2.75;
-double horizontal_wheel_offset = 1.65;
+double horizontal_wheel_offset = -3.2455;
 double gear_ratio = 36.0 / 48;
 
 // Return robot rotation in degrees, unwrapped
@@ -85,6 +85,7 @@ void ks::initializeOdom() {
 }
 
 void ks::setOdomPosition(double x_new, double y_new, double theta_new) {
+	odom_task.suspend();
 	x = 0;
 	y = 0;
 
@@ -112,12 +113,12 @@ void ks::odomUpdate() {
 	verticalEncoder.reset_position();
 	horizontalEncoder.reset_position();
 
-	while (isnanf(inertial1.get_heading()) || isinf(inertial1.get_heading())) {
+	while (isnanf(inertial1.get_rotation()) || isinf(inertial1.get_rotation())) {
 		pros::delay(10);
 	}
 
 	while (true) {
-		printf("%f, %f\n", get_vertical_distance_traveled(), get_horizontal_distance_traveled());
+		// printf("%f, %f\n", get_vertical_distance_traveled(), get_horizontal_distance_traveled());
 		vertical_pos = get_vertical_distance_traveled();
 		horizontal_pos = get_horizontal_distance_traveled();
         
@@ -146,12 +147,7 @@ void ks::odomUpdate() {
 		x += (deltaYLocal * cos(avg_heading)) + (deltaXLocal * sin(avg_heading));
 		y += (deltaYLocal * sin(avg_heading)) - (deltaXLocal * cos(avg_heading));
 
-		theta = fmod(get_imu_rotation(), 360); // wrap to [0, 360) for user view
-    	if (theta < 0) {
-       		theta += 360;
-		}
-
 		chassis.setPose(x, y, get_imu_rotation());
-        pros::delay(5);
+        pros::delay(10);
     }
 }

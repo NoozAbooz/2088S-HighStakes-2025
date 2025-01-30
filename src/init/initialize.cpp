@@ -13,20 +13,23 @@ void initialize() {
     pros::delay(10);
 
     // pros::Task([] {
-    //     chassis.calibrate();
+    //     while (true) {
+    //         printf("Theta: %f\n", ks::odom_pos.theta);
+    //         pros::delay(1000);
+    //     }
     // });
     ks::initializeOdom();
     initializeColourSort();
 
-    optical.set_led_pwm(75); // enable led on optical sensor for accuracy
+    optical.set_led_pwm(100); // enable led on optical sensor for accuracy
     optical.set_integration_time(10); // refresh every 10ms
     wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     intake.get_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 
-    inertial1.set_data_rate(5);
-    inertial2.set_data_rate(5);
-    verticalEncoder.set_data_rate(5);
-    horizontalEncoder.set_data_rate(5);
+    inertial1.set_data_rate(10);
+    inertial2.set_data_rate(10);
+    verticalEncoder.set_data_rate(10);
+    horizontalEncoder.set_data_rate(10);
     console.println("Robot initialized");
 }
 

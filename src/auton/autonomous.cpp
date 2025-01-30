@@ -13,23 +13,27 @@
  */
 
 void testPID() {
-    chassis.moveToPoint(0, 0, 1000);
-    chassis.moveToPoint(0, 24, 1000);
+    //chassis.moveToPoint(0, 24, 1000);
+    chassis.turnToHeading(90, 2000);
+    //chassis.moveToPoint(24, 24, 1000);
 }
 void testBM() {
-    chassis.moveToPose(52, 6, 320, 1000, {.forwards = false});
+    chassis.moveToPose(24, 24, 90, 1500);
 }
 void calibrateOdomOffsets() {
-    
+    printf("Copy this:\n");
+    printf("\\left[");
+
+    chassis.turnToHeading(359, 1000, {.direction = lemlib::AngularDirection::CW_CLOCKWISE});
+    while (chassis.isInMotion()) {
+        printf("\\left(%f,%f\\right),", chassis.getPose().x, chassis.getPose().y);
+        pros::delay(20);
+    }
+
+    printf("\\right]");
 }
 
-void autonomous() {
-    //initializeColourSort();
-    chassis.setPose(0, 0, 0);
-    field_status = "autonomous";
-    console.println("Running auton...");
-    gui_selector.run_auton();
-}
+
 void SIG_SAWP() {
     chassis.moveToPoint(0, 0, 1000);
     chassis.moveToPose(-11.922, -29.782, 10, 1200, {.forwards = false, .minSpeed = 80});
@@ -246,3 +250,11 @@ rd::Selector gui_selector({
     { "Test BM", testBM, "", 220 },
     { "Odom Offsets", calibrateOdomOffsets, "", 220 }
 });
+
+void autonomous() {
+    //initializeColourSort();
+    chassis.setPose(0, 0, 0);
+    field_status = "autonomous";
+    console.println("Running auton...");
+    gui_selector.run_auton();
+}

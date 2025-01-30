@@ -15,7 +15,7 @@ inline pros::MotorGroup leftDrive({4, -3, -5});
 inline pros::MotorGroup rightDrive({-7, 10, 8});
 
 // Intake
-inline pros::MotorGroup intake({-9, -20});
+inline pros::MotorGroup intake({-9, -19});
 inline pros::Motor wallStake(16);
 
 // Pneumatics
@@ -23,12 +23,12 @@ inline pros::adi::Pneumatics clampPiston('A', false);
 inline pros::adi::Pneumatics doinkerPiston('B', false);
 
 /* Declare sensors */
-inline pros::Optical optical(19);
-inline pros::Imu inertial1(12);
+inline pros::Optical optical(20);
+inline pros::Imu inertial1(2);
 inline pros::Imu inertial2(18);
 inline pros::Rotation wallStakeRotationSensor(11);
 
-inline pros::Rotation verticalEncoder(1);
+inline pros::Rotation verticalEncoder(-1);
 inline pros::Rotation horizontalEncoder(-14);
 //hello world it is 210K secret note iykyk :D
 // horizontal tracking wheel
@@ -45,20 +45,20 @@ inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               2 // chase power is 2. If we had traction wheels, it would have been 8
 );
 // lateral motion controller
-inline lemlib::ControllerSettings lateralController(1.8, // proportional gain (kP)
+inline lemlib::ControllerSettings lateralController(10, // proportional gain (kP)
                                               0, // integral gain (kI)
-                                              0, // derivative gain (kD)
-                                              0, // anti windup
+                                              10, // derivative gain (kD)
+                                              3, // anti windup
                                               1, // small error range, in inches
                                               100, // small error range timeout, in milliseconds
                                               3, // large error range, in inches
                                               500, // large error range timeout, in milliseconds
-                                              127 // maximum acceleration (slew)
+                                              40 // maximum acceleration (slew)
 );
 // angular motion controller
-inline lemlib::ControllerSettings angularController(4, // proportional gain (kP)
+inline lemlib::ControllerSettings angularController(3, // proportional gain (kP)
                                               0, // integral gain (kI)
-                                              20, // derivative gain (kD)
+                                              17, // derivative gain (kD)
                                               3, // anti windup
                                               1, // small error range, in inches
                                               100, // small error range timeout, in milliseconds

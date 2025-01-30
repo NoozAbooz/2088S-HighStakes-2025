@@ -31,7 +31,11 @@ void opcontrol() {
 
 		// Report temperature telemetry 😭
 		double drivetrainTemps = ks::vector_average(leftDrive.get_temperature_all());
-		controller.print(0, 0, "DT%.0lf|INT%.0lf|%.0lf  ", drivetrainTemps, intake.get_temperature(), ks::odom_pos.theta);
+		double theta = fmod(chassis.getPose().theta, 360); // wrap to [0, 360) for user view
+    	if (theta < 0) {
+       		theta += 360;
+		}
+		controller.print(0, 0, "DT%.0lf|INT%.0lf|%.0lf  ", drivetrainTemps, intake.get_temperature(), theta);
 		pros::delay(10); // Delay to save resources on brain
 	}
 }
