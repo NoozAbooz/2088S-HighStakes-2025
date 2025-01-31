@@ -45,7 +45,7 @@ inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               2 // chase power is 2. If we had traction wheels, it would have been 8
 );
 // lateral motion controller
-inline lemlib::ControllerSettings lateralController(15, // proportional gain (kP)
+inline lemlib::ControllerSettings lateralController(20, // proportional gain (kP)
                                               0, // integral gain (kI)
                                               0, // derivative gain (kD)
                                               3, // anti windup
