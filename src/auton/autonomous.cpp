@@ -13,8 +13,8 @@
  */
 
 void testPID() {
-    chassis.moveToPoint(0, 24, 1000);
-    //chassis.turnToHeading(90, 2000);
+    //chassis.moveToPoint(0, 24, 1000);
+    chassis.turnToHeading(90, 2000);
     //chassis.moveToPoint(24, 24, 1000);
 }
 void testBM() {
@@ -36,22 +36,42 @@ void calibrateOdomOffsets() {
 
 void SIG_SAWP() {
     chassis.moveToPoint(0, 0, 1250);
+    intake.move_voltage(12000);
+    doinkerPiston.set_value(true);
+    chassis.moveToPoint(-1.249, 44.651, 1250);
+    pros::delay(1550);
+    intake.move_voltage(0);
+    chassis.moveToPoint(0.937, 20.134, 1250, {.forwards = false});
+    chassis.turnToHeading(230, 500);
+    doinkerPiston.set_value(false);
+    pros::delay(900);
+    chassis.moveToPoint(6.245, 20.987, 1250, {.forwards = false, .maxSpeed = 50});
+    pros::delay(200);
+    clampPiston.set_value(true);
+    // chassis.moveToPoint(1.634, 34.851, 1250);
+    // chassis.moveToPoint(-19.274, 42.218, 1250);
+    // chassis.moveToPoint(-39.384, 5.946, 1250);
+    // chassis.moveToPoint(24.607, 3.935, 1250);
+
+
+
+
+}
+void ring_rush() {
     // wallStake.move_voltage(10000);
     // pros::delay(800);
     // wallStake.brake();
-   chassis.moveToPoint(-15.167, -28.355, 1250, {.forwards = false, .maxSpeed = 127});
+   chassis.moveToPoint(-14.167, -28.355, 1250, {.forwards = false, .maxSpeed = 127});
     pros::delay(850);
     clampPiston.set_value(true);
+    pros::delay(200);
     intake.move_voltage(12000);
-    chassis.moveToPoint(-12.243, -68.251, 1250);
-    // chassis.moveToPoint(0.165, -51.6, 1250);
-    // chassis.moveToPoint(-8.078, -9.727, 1250);
+    chassis.moveToPoint(-4.243, -54.251, 1250);
+    chassis.moveToPoint(0.165, -51.6, 1250);
+    chassis.moveToPoint(-20.078, -63.727, 1250);
     // chassis.moveToPoint(-23.904, 7.748, 1250);
     // chassis.moveToPoint(-44.511, 0.989, 1250);
     // chassis.moveToPoint(-47.808, -15.167, 1250);
-
-
-
 }
 
 /* Legacy Auton Routines */
