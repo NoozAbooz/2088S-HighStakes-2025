@@ -35,18 +35,22 @@ void calibrateOdomOffsets() {
 
 
 void SIG_SAWP() {
-    chassis.moveToPoint(0, 0, 1000);
-    chassis.moveToPose(-11.922, -29.782, 10, 1200, {.forwards = false, .minSpeed = 80});
-    pros::delay(750);
+    chassis.moveToPoint(0, 0, 1250);
+    // wallStake.move_voltage(10000);
+    // pros::delay(800);
+    // wallStake.brake();
+   chassis.moveToPoint(-15.167, -28.355, 1250, {.forwards = false, .maxSpeed = 127});
+    pros::delay(850);
     clampPiston.set_value(true);
-    // chassis.moveTo(-12.737, -60.17, 5000);
-    // chassis.moveTo(0.732, -69.73, 5000);
-    // chassis.moveTo(1.925, -20.201, 5000);
-    // chassis.moveTo(-13.005, -4.77, 5000);
-    // chassis.moveTo(-26.775, 8.237, 5000);
-    // chassis.moveTo(-43.333, -2.844, 5000);
-    // chassis.moveTo(-26.943, 17.381, 5000);
-    // chassis.moveTo(-45.866, -19.014, 5000);
+    intake.move_voltage(12000);
+    chassis.moveToPoint(-12.243, -68.251, 1250);
+    // chassis.moveToPoint(0.165, -51.6, 1250);
+    // chassis.moveToPoint(-8.078, -9.727, 1250);
+    // chassis.moveToPoint(-23.904, 7.748, 1250);
+    // chassis.moveToPoint(-44.511, 0.989, 1250);
+    // chassis.moveToPoint(-47.808, -15.167, 1250);
+
+
 
 }
 
