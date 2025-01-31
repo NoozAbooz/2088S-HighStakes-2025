@@ -8,8 +8,8 @@ void initializeColourSort() {
 	pros::Task([] {
 		while (true) {
 			//console.printf("Hue: %d\n", optical.get_hue());
-			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 100 && optical.get_hue() < 230 ||
-				alliance == "blue" && optical.get_hue() > 15 && optical.get_hue() < 27))  {
+			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 100 && optical.get_hue() < 230) ||
+				(alliance == "blue" && optical.get_hue() > 15 && optical.get_hue() < 27))  {
 				// eject blue rings
 				console.println("eject impostor");
 				intakeLock = true;
