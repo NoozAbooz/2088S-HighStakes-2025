@@ -32,9 +32,9 @@ inline pros::Rotation verticalEncoder(-1);
 inline pros::Rotation horizontalEncoder(-14);
 //hello world it is 210K secret note iykyk :D
 // horizontal tracking wheel
-inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_275, 0.44);
+inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_275, 0.876);
 // vertical tracking wheel
-inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemlib::Omniwheel::NEW_275, 1.65);
+inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemlib::Omniwheel::NEW_275, -3.2455);
 
 // drivetrain settings
 inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
@@ -45,9 +45,9 @@ inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               2 // chase power is 2. If we had traction wheels, it would have been 8
 );
 // lateral motion controller
-inline lemlib::ControllerSettings lateralController(20, // proportional gain (kP)
+inline lemlib::ControllerSettings lateralController(10, // proportional gain (kP)
                                               0, // integral gain (kI)
-                                              0, // derivative gain (kD)
+                                              10, // derivative gain (kD)
                                               3, // anti windup
                                               1, // small error range, in inches
                                               100, // small error range timeout, in milliseconds
