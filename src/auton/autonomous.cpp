@@ -35,29 +35,6 @@ void calibrateOdomOffsets() {
 
 
 void SIG_SAWP() {
-    chassis.moveToPoint(0, 0, 1250);
-    intake.move_voltage(12000);
-    doinkerPiston.set_value(true);
-    chassis.moveToPoint(-1.249, 44.651, 1250);
-    pros::delay(1550);
-    intake.move_voltage(0);
-    chassis.moveToPoint(0.937, 20.134, 1250, {.forwards = false});
-    chassis.turnToHeading(230, 500);
-    doinkerPiston.set_value(false);
-    pros::delay(900);
-    chassis.moveToPoint(6.245, 20.987, 1250, {.forwards = false, .maxSpeed = 50});
-    pros::delay(200);
-    clampPiston.set_value(true);
-    // chassis.moveToPoint(1.634, 34.851, 1250);
-    // chassis.moveToPoint(-19.274, 42.218, 1250);
-    // chassis.moveToPoint(-39.384, 5.946, 1250);
-    // chassis.moveToPoint(24.607, 3.935, 1250);
-
-
-
-
-}
-void ring_rush() {
     // wallStake.move_voltage(10000);
     // pros::delay(800);
     // wallStake.brake();
@@ -69,9 +46,35 @@ void ring_rush() {
     chassis.moveToPoint(-4.243, -54.251, 1250);
     chassis.moveToPoint(0.165, -51.6, 1250);
     chassis.moveToPoint(-20.078, -63.727, 1250);
-    // chassis.moveToPoint(-23.904, 7.748, 1250);
-    // chassis.moveToPoint(-44.511, 0.989, 1250);
-    // chassis.moveToPoint(-47.808, -15.167, 1250);
+
+
+
+
+
+}
+void ring_rush() {
+    chassis.moveToPoint(0, 0, 1250);
+    intake.move_voltage(12000);
+    doinkerPiston.set_value(true);
+    chassis.moveToPoint(-1.249, 44.651, 1250);
+    pros::delay(1550);
+    intake.move_voltage(0);
+    chassis.moveToPoint(-1.037, 19.134, 1250, {.forwards = false});
+    pros::delay(650);
+    doinkerPiston.set_value(false);
+    // pros::delay(850);
+    chassis.turnToHeading(230, 500);
+    chassis.moveToPoint(4.745, 14.987, 1250, {.forwards = false, .maxSpeed = 50});
+    pros::delay(600);
+    clampPiston.set_value(true);
+    pros::delay(200);
+    intake.move_voltage(12000);
+    chassis.moveToPoint(-18.634, 29.851, 1250);
+    pros::delay(200);
+    chassis.moveToPoint(-37.274, -3.218, 1250);
+    // chassis.moveToPoint(-39.384, 5.946, 1250);
+    // chassis.moveToPoint(24.607, 3.935, 1250);
+    
 }
 
 /* Legacy Auton Routines */
@@ -268,6 +271,7 @@ rd::Selector gui_selector({
     // {"Q 4 Ring + Bar", four_ring_bar},
     // {"Q SAWP 2 Mogo", SAWP_4},
     {"Mecha SAWP", SIG_SAWP},
+    {"Ring Rush", ring_rush, "", 0},
     {"Skills", skills, "", 0},
 
     { "Test PID", testPID, "", 220 },
