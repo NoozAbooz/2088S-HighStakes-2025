@@ -12,10 +12,10 @@ void initialize() {
     rdconfig_init();
     pros::delay(10);
 
-    pros::Task([] {
-        chassis.calibrate();
-    });
-    //ks::initializeOdom();
+    //pros::Task([] {
+    //    chassis.calibrate();
+    //});
+    ks::initializeOdom();
     initializeColourSort();
 
     optical.set_led_pwm(100); // enable led on optical sensor for accuracy
