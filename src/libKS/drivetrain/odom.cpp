@@ -38,10 +38,11 @@ double get_vertical_distance_traveled() {
     if (!isnanf(verticalEncoder.get_position()) && !isinf(verticalEncoder.get_position())) { // use rot sensor as priority
         return ((verticalEncoder.get_position()) * vertical_wheel_diameter * M_PI / 36000); // 1 is gear ratio
     } else if (!isnanf(leftDrive.get_position(0)) && !isinf(leftDrive.get_position(0))) { // 900 is cartridge gearing, leave since its factored into rpm
-            double left_distance = (leftDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
-			double right_distance = (rightDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
+		console.println("ODOM Using motor encoder fallback");
+        double left_distance = (leftDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
+		double right_distance = (rightDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
 
-			return (left_distance + right_distance) / 2; // find avg
+		return (left_distance + right_distance) / 2; // find avg
     } else {
         return 0;
     }
