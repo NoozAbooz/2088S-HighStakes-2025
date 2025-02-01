@@ -55,23 +55,27 @@ void SIG_SAWP() {
 void ring_rush() {
     chassis.moveToPoint(0, 0, 1250);
     intake.move_voltage(12000);
-    doinkerPiston.set_value(true);
-    chassis.moveToPoint(-1.249, 44.651, 1250);
-    pros::delay(1550);
+    leftDoinkerPiston.set_value(true);
+    chassis.moveToPoint(-1.549, 45.351, 1250);
+    pros::delay(1450);
     intake.move_voltage(0);
-    chassis.moveToPoint(-1.037, 19.134, 1250, {.forwards = false});
-    pros::delay(650);
-    doinkerPiston.set_value(false);
+    chassis.moveToPoint(-1.737, 20.234, 1250, {.forwards = false, .maxSpeed = 90});
+    pros::delay(690);
+    leftDoinkerPiston.set_value(false);
     // pros::delay(850);
     chassis.turnToHeading(230, 500);
-    chassis.moveToPoint(4.745, 14.987, 1250, {.forwards = false, .maxSpeed = 50});
-    pros::delay(600);
+    chassis.moveToPoint(2.045, 13.087, 1250, {.forwards = false, .maxSpeed = 50});
+    pros::delay(650);
     clampPiston.set_value(true);
-    pros::delay(200);
+    pros::delay(400);
     intake.move_voltage(12000);
     chassis.moveToPoint(-18.634, 29.851, 1250);
     pros::delay(200);
-    chassis.moveToPoint(-37.274, -3.218, 1250);
+    chassis.moveToPoint(-43.174, -11.218, 1350);
+    pros::delay(2000);
+    chassis.moveToPoint(-22, -1, 1000, {.forwards = false});
+    pros::delay(100);
+    chassis.moveToPoint(44, -11, 2500, {.maxSpeed = 70});
     // chassis.moveToPoint(-39.384, 5.946, 1250);
     // chassis.moveToPoint(24.607, 3.935, 1250);
     

@@ -51,7 +51,13 @@ bool doinkerToggle = false;
 void refreshDoinker() {
 	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
     	doinkerToggle = !doinkerToggle;
-		doinkerPiston.set_value(doinkerToggle);
+		if (alliance == "red") {
+			rightDoinkerPiston.set_value(doinkerToggle);
+		} else if (alliance == "blue") {
+			leftDoinkerPiston.set_value(doinkerToggle);
+		} else {
+			rightDoinkerPiston.set_value(doinkerToggle);
+		}
     }
 }
 
