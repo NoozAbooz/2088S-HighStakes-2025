@@ -276,7 +276,7 @@ rd::Selector gui_selector({
     // {"Q SAWP 2 Mogo", SAWP_4},
     {"Mecha SAWP", SIG_SAWP},
     {"Ring Rush", ring_rush, "", 0},
-    {"Skills", skills, "", 0},
+    // {"Skills", skills, "", 0},
 
     { "Test PID", testPID, "", 220 },
     { "Test BM", testBM, "", 220 },
