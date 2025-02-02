@@ -24,6 +24,13 @@ void initializeColourSort() {
 				colourSortToggle = !colourSortToggle;
 			}
 
+			// anti-jam, auton only
+			// if (field_status == "autonomous" && intake.get_efficiency() < 20) {
+			// 	intake.move_voltage(-8000);
+			// 	pros::delay(100);
+			// 	intake.move_voltage(12000);
+			// }
+
 			pros::delay(10);
 		}
 	});
