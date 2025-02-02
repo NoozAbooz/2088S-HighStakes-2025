@@ -75,7 +75,7 @@ void ring_rush() {
     pros::delay(3500);
     chassis.moveToPoint(-22, -1, 1000, {.forwards = false});
     pros::delay(100);
-    chassis.moveToPoint(44, -14, 2500, {.maxSpeed = 70});
+    chassis.moveToPoint(44, -17, 2500, {.maxSpeed = 70});
     // chassis.moveToPoint(-39.384, 5.946, 1250);
     // chassis.moveToPoint(24.607, 3.935, 1250);
     
