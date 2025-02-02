@@ -64,7 +64,7 @@ void ring_rush() {
     leftDoinkerPiston.set_value(false);
     // pros::delay(850);
     chassis.turnToHeading(230, 500);
-    chassis.moveToPoint(3.045, 13.987, 1250, {.forwards = false, .maxSpeed = 50});
+    chassis.moveToPoint(3.945, 14.687, 1250, {.forwards = false, .maxSpeed = 50});
     pros::delay(650);
     clampPiston.set_value(true);
     pros::delay(400);
@@ -72,7 +72,7 @@ void ring_rush() {
     chassis.moveToPoint(-20.634, 32.051, 1250);
     pros::delay(400);
     chassis.moveToPoint(-44.174, -13.218, 1450);
-    pros::delay(3500);
+    pros::delay(3000);
     chassis.moveToPoint(-22, -1, 1000, {.forwards = false});
     pros::delay(100);
     chassis.moveToPoint(44, -17, 2500, {.maxSpeed = 70});
