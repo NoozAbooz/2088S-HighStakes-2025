@@ -4,9 +4,7 @@ using namespace ks;
 
 double    x = 0; // global X
 double    y = 0; // global Y
-double    theta; // global theta
-
-Position ks::odom_pos;
+double    theta = 0; // global theta
 
 // Gyro scale effect from 2775V
 // If it is a bit less than 360, that's your number. If it is a bit more than 0, add 360 and that's your number.
@@ -25,18 +23,16 @@ double get_imu_rotation() {
 	double rotation1 = inertial1.get_rotation();
 	double rotation2 = inertial2.get_rotation();
 
-	double average_rotation = 0;
-	if (!isnanf(inertial2.get_rotation()) && !isinf(inertial2.get_heading())) { // use imu 2 when available
-		average_rotation = ((rotation1 * (360.0 / gyro_scale1)) + (rotation2 * (360.0 / gyro_scale2))) / 2;
+	if (!isnanf(inertial2.get_rotation()) && !isinf(inertial2.get_rotation())) { // use imu 2 when available
+		return (rotation1 + rotation2) / 2;
 	} else {
-		average_rotation = rotation1 * (360.0 / gyro_scale1);
+		return rotation1;
 	}
-	return average_rotation;
 }
 
 double get_vertical_distance_traveled() {
     if (!isnanf(verticalEncoder.get_position()) && !isinf(verticalEncoder.get_position())) { // use rot sensor as priority
-        return ((verticalEncoder.get_position()) * vertical_wheel_diameter * M_PI / 36000); // 1 is gear ratio
+        return ((verticalEncoder.get_position() / 36000.0) * M_PI * vertical_wheel_diameter); // 1 is gear ratio
     } else if (!isnanf(leftDrive.get_position(0)) && !isinf(leftDrive.get_position(0))) { // 900 is cartridge gearing, leave since its factored into rpm
 		console.println("ODOM Using motor encoder fallback");
         double left_distance = (leftDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
@@ -47,9 +43,8 @@ double get_vertical_distance_traveled() {
         return 0;
     }
 }
-
 double get_horizontal_distance_traveled() { 
-	return ((horizontalEncoder.get_position()) * horizontal_wheel_diameter * M_PI / 36000);
+	return ((horizontalEncoder.get_position() / 36000.0) * M_PI * horizontal_wheel_diameter);
 }
 
 // double get_dt_heading() {
@@ -82,6 +77,16 @@ double deltaXLocal;
 double deltaYLocal;
 
 void ks::initializeOdom() {
+	inertial1.reset();
+	inertial2.reset();
+
+	verticalEncoder.reset();
+	horizontalEncoder.reset();
+
+	while (isnanf(inertial1.get_rotation()) || isinf(inertial1.get_rotation())) {
+		pros::delay(10);
+	}
+
 	pros::Task odom_task(ks::odomUpdate); 
 }
 
@@ -90,8 +95,8 @@ void ks::setOdomPosition(double x_new, double y_new, double theta_new) {
 	x = 0;
 	y = 0;
 
-	verticalEncoder.reset_position();
-	horizontalEncoder.reset_position();
+	verticalEncoder.reset();
+	horizontalEncoder.reset();
 
 	vertical_pos = 0;
 	horizontal_pos = 0;
@@ -108,20 +113,15 @@ void ks::setOdomPosition(double x_new, double y_new, double theta_new) {
 }
 
 void ks::odomUpdate() {
-	inertial1.reset();
-	inertial2.reset();
+	console.printf("%.0lf, %.0lf", get_vertical_distance_traveled(), get_horizontal_distance_traveled());
 
-	verticalEncoder.reset_position();
-	horizontalEncoder.reset_position();
-
-	while (isnanf(inertial1.get_rotation()) || isinf(inertial1.get_rotation())) {
-		pros::delay(10);
-	}
+	double vertical_pos_offset = get_vertical_distance_traveled();
+	double horizontal_pos_offset = get_horizontal_distance_traveled();
 
 	while (true) {
 		// printf("%f, %f\n", get_vertical_distance_traveled(), get_horizontal_distance_traveled());
-		vertical_pos = get_vertical_distance_traveled();
-		horizontal_pos = get_horizontal_distance_traveled();
+		vertical_pos = get_vertical_distance_traveled() - vertical_pos_offset;
+		horizontal_pos = get_horizontal_distance_traveled() - horizontal_pos_offset;
         
 		delta_vertical = (vertical_pos - prev_vertical_pos);
 		delta_horizontal = (horizontal_pos - prev_horizontal_pos);

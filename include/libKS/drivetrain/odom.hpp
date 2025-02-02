@@ -9,8 +9,6 @@ namespace ks
             double theta;
     };
 
-    extern Position odom_pos;
-
     extern void odomUpdate();
     extern void setOdomPosition(double x_new, double y_new, double theta_new);
     extern void initializeOdom();
