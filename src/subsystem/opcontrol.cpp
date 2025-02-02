@@ -29,12 +29,12 @@ void refreshWallstakes() {
 
 void resetWallstakes() {
 	pros::Task([] {
-		while ((wallStakeRotationSensor.get_angle() / 100) < 45) {
+		while ((wallStakeRotationSensor.get_angle() / 100) < 47) {
 			wallStake.move_voltage(8000);
 		}
-		while ((wallStakeRotationSensor.get_angle() / 100) > 45) {
-			wallStake.move_voltage(-8000);
-		}
+		// while ((wallStakeRotationSensor.get_angle() / 100) > 45) {
+		// 	wallStake.move_voltage(-8000);
+		// }
 		controller.rumble(".");
 	});
 }
