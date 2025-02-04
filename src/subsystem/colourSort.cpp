@@ -1,7 +1,8 @@
 #include "main.h"
 
 bool intakeLock = false;
-bool colourSortToggle = false;
+bool colourSortToggle = true;
+bool antiJamToggle = true;
 
 // Colour Sorter
 void initializeColourSort() {
@@ -24,11 +25,13 @@ void initializeColourSort() {
 				colourSortToggle = !colourSortToggle;
 			}
 
-			// anti-jam, auton only
-			// if (field_status == "autonomous" && intake.get_efficiency() < 20) {
+			// // anti-jam, auton only
+			// if (field_status == "autonomous" && intake.get_efficiency() < 20 && antiJamToggle == true) {
+			// 	intakeLock = true;
 			// 	intake.move_voltage(-8000);
 			// 	pros::delay(100);
 			// 	intake.move_voltage(12000);
+			// 	intakeLock = false;
 			// }
 
 			pros::delay(10);
