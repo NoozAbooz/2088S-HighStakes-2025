@@ -51,7 +51,7 @@ void disabled() {
 void competitionTelemtryRefresh() {
     auto auton = gui_selector.get_auton();
     const char* auton_name = auton->name.c_str();
-    controller.print(0, 0, "%s|%s|%.0lf", alliance.c_str(), auton_name, chassis.getPose().theta);
+    controller.print(0, 0, "%s|%s|%.0lf   ", alliance.c_str(), auton_name, chassis.getPose().theta);
 }
 
 void competition_initialize() {

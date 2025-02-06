@@ -13,6 +13,7 @@ void initializeColourSort() {
 				(alliance == "blue" && optical.get_hue() > 15 && optical.get_hue() < 27))  {
 				// eject blue rings
 				console.println("eject impostor");
+				controller.rumble(".");
 				intakeLock = true;
 				pros::delay(220);
 				intake.brake();
@@ -25,7 +26,7 @@ void initializeColourSort() {
 				colourSortToggle = !colourSortToggle;
 			}
 
-			// anti-jam, auton only
+			// anti-jam
 			if (intake.get_actual_velocity() == 0 && intake.get_voltage() > 1000 && (wallStakeRotationSensor.get_angle() / 100) < 20 && antiJamToggle == true) {
 				intakeLock = true;
 				intake.move_voltage(-8000);

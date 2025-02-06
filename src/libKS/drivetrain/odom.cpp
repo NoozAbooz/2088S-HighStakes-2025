@@ -31,17 +31,17 @@ double get_imu_rotation() {
 }
 
 double get_vertical_distance_traveled() {
-    if (!isnanf(verticalEncoder.get_position()) && !isinf(verticalEncoder.get_position())) { // use rot sensor as priority
-        return ((verticalEncoder.get_position() / 36000.0) * M_PI * vertical_wheel_diameter); // 1 is gear ratio
-    } else if (!isnanf(leftDrive.get_position(0)) && !isinf(leftDrive.get_position(0))) { // 900 is cartridge gearing, leave since its factored into rpm
+	if (!isnanf(verticalEncoder.get_position()) && !isinf(verticalEncoder.get_position())) { // use rot sensor as priority
+		return ((verticalEncoder.get_position() / 36000.0) * M_PI * vertical_wheel_diameter); // 1 is gear ratio
+	} else if (!isnanf(leftDrive.get_position(0)) && !isinf(leftDrive.get_position(0))) { // 900 is cartridge gearing, leave since its factored into rpm
 		console.println("ODOM Using motor encoder fallback");
-        double left_distance = (leftDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
+		double left_distance = (leftDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
 		double right_distance = (rightDrive.get_position(0) / 900 * (vertical_wheel_diameter * M_PI) / gear_ratio);
 
 		return (left_distance + right_distance) / 2; // find avg
-    } else {
-        return 0;
-    }
+	} else {
+		return 0;
+	}
 }
 double get_horizontal_distance_traveled() { 
 	return ((horizontalEncoder.get_position() / 36000.0) * M_PI * horizontal_wheel_diameter);
@@ -83,9 +83,21 @@ void ks::initializeOdom() {
 	verticalEncoder.reset();
 	horizontalEncoder.reset();
 
-	while (isnanf(inertial1.get_rotation()) || isinf(inertial1.get_rotation())) {
-		pros::delay(10);
+	inertial2.reset(); // doesnt matter if this one passes or not
+	if (inertial1.reset() != PROS_ERR) {	
+	  	while( inertial1.is_calibrating() ) {
+			pros::delay(10);
+	  	}
+	  	console.println("Passed Primary IMU calibration check"); 
+	} else {
+	  	if( errno == ENODEV ) {
+			console.println("[ERROR] Primary IMU failed to calibrate...");
+	  	}
 	}
+
+	// while (isnanf(inertial1.get_rotation()) || isinf(inertial1.get_rotation())) {
+	// 	pros::delay(10);
+	// }
 
 	pros::Task odom_task(ks::odomUpdate); 
 }
@@ -122,7 +134,7 @@ void ks::odomUpdate() {
 		// printf("%f, %f\n", get_vertical_distance_traveled(), get_horizontal_distance_traveled());
 		vertical_pos = get_vertical_distance_traveled() - vertical_pos_offset;
 		horizontal_pos = get_horizontal_distance_traveled() - horizontal_pos_offset;
-        
+		
 		delta_vertical = (vertical_pos - prev_vertical_pos);
 		delta_horizontal = (horizontal_pos - prev_horizontal_pos);
 
@@ -149,6 +161,6 @@ void ks::odomUpdate() {
 		y += (deltaYLocal * sin(avg_heading)) - (deltaXLocal * cos(avg_heading));
 
 		chassis.setPose(x, y, get_imu_rotation());
-        pros::delay(10);
-    }
+		pros::delay(10);
+	}
 }
