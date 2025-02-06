@@ -14,6 +14,7 @@
 
 void testPID() {
     chassis.moveToPoint(0, 24, 1000);
+    intake.move_voltage(12000);
     //chassis.turnToHeading(90, 2000);
     //chassis.moveToPoint(24, 24, 1000);
 }
