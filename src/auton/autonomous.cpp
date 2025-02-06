@@ -303,12 +303,12 @@ rd::Selector gui_selector({
     // {"Q 4 Ring + Bar", four_ring_bar},
     // {"Q SAWP 2 Mogo", SAWP_4},
     {"Mecha SAWP", SIG_SAWP},
-    {"Ring Rush", ring_rush, "", 0},
+    {"Ring Rush", ring_rush},
     // {"Skills", skills, "", 0},
 
-    { "Test PID", testPID, "", 220 },
-    { "Test BM", testBM, "", 220 },
-    { "Odom Offsets", calibrateOdomOffsets, "", 220 }
+    { "Test PID", testPID},
+    { "Test BM", testBM},
+    { "Odom Offsets", calibrateOdomOffsets}
 });
 
 void autonomous() {
