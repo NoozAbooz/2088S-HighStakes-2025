@@ -125,7 +125,7 @@ void ks::setOdomPosition(double x_new, double y_new, double theta_new) {
 }
 
 void ks::odomUpdate() {
-	console.printf("%.0lf, %.0lf", get_vertical_distance_traveled(), get_horizontal_distance_traveled());
+	console.printf("%.0lf, %.0lf", verticalEncoder.get_position(), get_horizontal_distance_traveled());
 
 	double vertical_pos_offset = get_vertical_distance_traveled();
 	double horizontal_pos_offset = get_horizontal_distance_traveled();

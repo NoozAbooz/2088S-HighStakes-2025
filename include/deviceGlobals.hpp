@@ -30,8 +30,8 @@ inline pros::Imu inertial1(2);
 inline pros::Imu inertial2(18);
 inline pros::Rotation wallStakeRotationSensor(11);
 
-inline pros::Rotation verticalEncoder(-1);
-inline pros::Rotation horizontalEncoder(-14);
+inline pros::Rotation verticalEncoder(-13);
+inline pros::Rotation horizontalEncoder(-1);
 //hello world it is 210K secret note iykyk :D
 // horizontal tracking wheel
 inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_275, 0.876);
@@ -41,7 +41,7 @@ inline lemlib::TrackingWheel horizontal_tracking_wheel(&horizontalEncoder, lemli
 // drivetrain settings
 inline lemlib::Drivetrain drivetrain(&leftDrive, // left motor group
                               &rightDrive, // right motor group
-                              13.5, // track width
+                              11.75, // track width
                               lemlib::Omniwheel::NEW_325,
                               450, // drivetrain rpm
                               2 // chase power is 2. If we had traction wheels, it would have been 8
