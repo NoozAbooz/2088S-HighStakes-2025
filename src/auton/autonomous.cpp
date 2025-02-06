@@ -35,21 +35,89 @@ void calibrateOdomOffsets() {
 
 
 void SIG_SAWP() {
-    // wallStake.move_voltage(10000);
-    // pros::delay(800);
-    // wallStake.brake();
-   chassis.moveToPoint(-14.167, -28.355, 1250, {.forwards = false, .maxSpeed = 127});
-    pros::delay(850);
-    clampPiston.set_value(true);
-    pros::delay(200);
-    intake.move_voltage(12000);
-    chassis.moveToPoint(-4.243, -54.251, 1250);
-    chassis.moveToPoint(0.165, -51.6, 1250);
-    chassis.moveToPoint(-20.078, -63.727, 1250);
+    //intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	//wall_stake_rotation_sensor.set_position(382.0);
+	// turn so front is facing alliance stake and back is facing goal
+    chassis.turnToHeading(45, 1000);
 
+	// score alliance stake
+	driver.alliance_stake();
+	pros::delay(500);
 
+	chassis.setPose(0, 0, 0);
+	chassis.moveToPoint(0, -5, 600);
 
+	driver.next_state();
+	chassis.turnToHeading(17, 1000); //-20
 
+	// clamp goal
+	chassis.setPose(0, 0, 0);
+	chassis.moveToPoint(0, -28, 500);
+	chassis.moveToPoint(0, -32, 2000);
+
+	clampPiston.set_value(true);
+	pros::delay(150);
+
+	// turn to ring 1
+	chassis.turnToHeading(-86, 1000);
+
+	// intake ring 1
+	intake.move_voltage(12000);
+
+	chassis.setPose(0, 0, 0);
+	chassis.moveToPoint(0, 25, 500);
+	chassis.moveToPoint(0, 20, 450); // move back to align with ring closest to middle in 8-stack
+
+	// turn to ring 2
+	// r_pid.set_r_constants(2.5, 0, 17);
+	// chassis.turnToHeading(180, 90, 2); //185
+	chassis.setPose(0, 0, 0);
+	chassis.turnToHeading(-100, 1000);
+
+	// drive to intake ring 2 and drive back
+	chassis.setPose(0, 0, 0);
+	chassis.moveToPoint(0, 16.5, 700);
+	pros::delay(250);
+	chassis.moveToPoint(0, 10, 700);
+
+	// turn to ring 3
+
+	chassis.turnToHeading(-320, 1000);
+
+	intake.move_voltage(12000);
+
+	// intake ring 3
+	chassis.setPose(0, 0, 0);
+	chassis.moveToPoint(0, 32, 650); // 42
+
+	chassis.turnToHeading(-270, 1000);
+
+	clampPiston.set_value(false);
+
+	intake.move_voltage(9000);
+
+	// intake double ring stack at mid
+	chassis.setPose(0, 0, 0);
+	chassis.moveToPoint(0, 45, 2500);
+
+	chassis.turnToHeading(8, 1000); // 21.5 degrees
+
+	chassis.setPose(0, 0, 0);
+	chassis.moveToPoint(0, -28, 1000);
+
+	clampPiston.set_value(true);
+	pros::delay(250);
+	
+
+	chassis.turnToHeading(80, 1000);
+	intake.move_voltage(12000);
+
+	intake.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+
+	chassis.setPose(0, 0, 0);
+	chassis.moveToPoint(0, 29, 1000);
+	intake.move_voltage(0);
+	chassis.moveToPoint(5, -6, 1000);
 
 }
 void ring_rush() {
