@@ -17,7 +17,7 @@ void opcontrol() {
 			console.println("Launching gif...");
 		}
 	});
-	//antiJamToggle = false;
+	antiJamToggle = false;
 
 	while (true) { // Main continuous loop
 		/* Drive */
