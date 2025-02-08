@@ -25,7 +25,7 @@ inline pros::adi::Pneumatics rightDoinkerPiston('C', false);
 inline pros::adi::Pneumatics intakeLiftPiston('D', false);
 
 /* Declare sensors */
-inline pros::Optical optical(20);
+inline pros::Optical optical(21);
 inline pros::Imu inertial1(2);
 inline pros::Imu inertial2(18);
 inline pros::Rotation wallStakeRotationSensor(11);

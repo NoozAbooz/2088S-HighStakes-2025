@@ -33,7 +33,46 @@ void calibrateOdomOffsets() {
 
     printf("\\right]");
 }
+void sawp() {
 
+    chassis.moveToPoint(0, 0, 1250);
+    wallStake.move_voltage(10000);
+    pros::delay(700);
+    wallStake.move_voltage(-10000);
+    pros::delay(300);
+    wallStake.brake();
+    chassis.moveToPoint(-35.1, -19.526, 1750, {.forwards = false, .maxSpeed = 60});
+    pros::delay(1590);
+    clampPiston.set_value(true);
+    pros::delay(100);
+    intake.move_voltage(12000);
+    chassis.moveToPoint(-42.426, -39.767, 1250);
+    chassis.turnToHeading(165, 500);
+    chassis.moveToPoint(-40.045, -59.267, 1350, {.maxSpeed = 115});
+    chassis.moveToPoint(-38.326, -36.767, 1250, {.forwards = false});
+    chassis.moveToPoint(-29.352, -49.075, 1000);
+    chassis.moveToPoint(-20.042, 5.3, 1250);
+    pros::delay(900);
+    intake.move_voltage(0);
+    pros::delay(850);
+    clampPiston.set_value(false);
+    pros::delay(200);
+    chassis.moveToPoint(-41.971, 20.681, 1850, {.forwards = false});
+    pros::delay(1000);
+    clampPiston.set_value(true);
+    intake.move_voltage(12000);
+    pros::delay(300);
+    chassis.moveToPoint(-51.858, 43.824, 1100);
+    pros::delay(1000);
+    chassis.moveToPoint(-52.552, 16.16, 1300);
+    pros::delay(950);
+    wallStake.move_voltage(10000);
+    pros::delay(250);
+    wallStake.move_voltage(0);
+
+
+    
+}
 
 void SIG_SAWP() {
     //intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -141,22 +180,23 @@ void ring_rush() {
     intake.move_voltage(12000);
     chassis.moveToPoint(-18.634, 35.051, 2050);
     pros::delay(800);
+    intake.move_voltage(-12000);
     antiJamToggle = false;
     intake.move_voltage(6000);
     chassis.moveToPoint(-35.174, 0.218, 1650, {.maxSpeed= 90});
     pros::delay(300);
-    // intakeLiftPiston.set_value(true);
-    // pros::delay(500);
-    // intakeLiftPiston.set_value(false);
-    // pros::delay(600);
-    chassis.moveToPoint(-30, 2, 1300, {.forwards = false});
+    intakeLiftPiston.set_value(true);
+    pros::delay(1000);
+    intakeLiftPiston.set_value(false);
+    chassis.moveToPoint(-30, 2, 600, {.forwards = false});
     chassis.moveToPoint(-36.174, 0.218, 1200, {.minSpeed= 127});
+    pros::delay(1000);
     chassis.moveToPoint(-22, 10, 1500, {.forwards = false});
+    antiJamToggle = true;
     pros::delay(300);
     chassis.moveToPoint(-36.174, 0.218, 1200, {.minSpeed= 127});
     pros::delay(300);
     intake.move_voltage(12000);
-    antiJamToggle = true;
     // chassis.moveToPoint(-44.174, -15.218, 1850, {.maxSpeed= 80});
     // pros::delay(2000);
     // chassis.moveToPoint(-22, -1, 1000, {.forwards = false});
@@ -379,7 +419,7 @@ rd::Selector gui_selector({
     // {"E 5 Ring", Five_Ring},
     // {"Q 4 Ring + Bar", four_ring_bar},
     // {"Q SAWP 2 Mogo", SAWP_4},
-    {"Mecha SAWP", SIG_SAWP},
+    {"Mecha SAWP", sawp},
     {"Ring Rush", ring_rush},
     // {"Skills", skills, "", 0},
 
@@ -391,6 +431,7 @@ rd::Selector gui_selector({
 void autonomous() {
     //initializeColourSort();
     chassis.setPose(0, 0, 0);
+    optical.set_led_pwm(100);
     field_status = "autonomous";
     console.println("Running auton...");
     gui_selector.run_auton();
