@@ -46,7 +46,7 @@ void initializeColourSort() {
 			}
 
 			previousIntakeVel = intakeVel;
-			pros::delay(5);
+			pros::delay(10);
 		}
 	});
 }
