@@ -124,12 +124,12 @@ void SIG_SAWP() {
 void ring_rush() {
     if (alliance == "red" || alliance == "na"){
     chassis.moveToPoint(0, 0, 1250);
-    chassis.moveToPoint(-0.8, 46.751, 1250);
+    chassis.moveToPoint(-0.8, 46.051, 1250);
     intake.move_voltage(12000);
     leftDoinkerPiston.set_value(true);
-    pros::delay(1550);
+    pros::delay(1480);
     intake.move_voltage(0);
-    chassis.moveToPoint(-0.037, 20.234, 1250, {.forwards = false, .maxSpeed = 90});
+    chassis.moveToPoint(-0.037, 17.634, 1050, {.forwards = false, .maxSpeed = 80});
     pros::delay(860);
     leftDoinkerPiston.set_value(false);
     // pros::delay(850);
@@ -139,31 +139,31 @@ void ring_rush() {
     clampPiston.set_value(true);
     pros::delay(530);
     intake.move_voltage(12000);
-    chassis.moveToPoint(-21.634, 36.051, 2050);
-    pros::delay(400);
+    chassis.moveToPoint(-18.634, 35.051, 2050);
+    pros::delay(800);
     antiJamToggle = false;
-    intake.move_voltage(12000);
-    chassis.moveToPoint(-35.174, 0.218, 1650, {.maxSpeed= 127});
-    intakeLiftPiston.set_value(true);
-    pros::delay(500);
-    intakeLiftPiston.set_value(false);
-    pros::delay(700);
+    intake.move_voltage(6000);
+    chassis.moveToPoint(-35.174, 0.218, 1650, {.maxSpeed= 90});
+    pros::delay(300);
+    // intakeLiftPiston.set_value(true);
+    // pros::delay(500);
+    // intakeLiftPiston.set_value(false);
+    // pros::delay(600);
     chassis.moveToPoint(-30, 2, 1300, {.forwards = false});
-    chassis.moveToPoint(-36.174, 2.218, 1200, {.minSpeed= 127});
-    intake.move_voltage(12000);
-    chassis.moveToPoint(-22, 10, 1500, {.forwards = false});
-    pros::delay(400);
     chassis.moveToPoint(-36.174, 0.218, 1200, {.minSpeed= 127});
-    pros::delay(500);
+    chassis.moveToPoint(-22, 10, 1500, {.forwards = false});
+    pros::delay(300);
+    chassis.moveToPoint(-36.174, 0.218, 1200, {.minSpeed= 127});
+    pros::delay(300);
+    intake.move_voltage(12000);
     antiJamToggle = true;
     // chassis.moveToPoint(-44.174, -15.218, 1850, {.maxSpeed= 80});
     // pros::delay(2000);
     // chassis.moveToPoint(-22, -1, 1000, {.forwards = false});
     // pros::delay(100);
     chassis.moveToPoint(18.174, 0.218, 1050, {.minSpeed= 127});
-    pros::delay(100);
     chassis.moveToPoint(31, 2, 1000, {.maxSpeed = 127});
-    // chassis.moveToPoint(50, -3, 10000);
+    chassis.moveToPoint(50, -3, 10000, {.maxSpeed = 75});
 
     // resetWallstakes();
     antiJamToggle = false;
@@ -393,6 +393,5 @@ void autonomous() {
     chassis.setPose(0, 0, 0);
     field_status = "autonomous";
     console.println("Running auton...");
-    alliance = "red";
     gui_selector.run_auton();
 }
