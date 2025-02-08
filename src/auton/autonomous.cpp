@@ -33,131 +33,131 @@ void calibrateOdomOffsets() {
 
     printf("\\right]");
 }
+
+void half_sawp() {
+    if (alliance == "red" || alliance == "na"){
+        chassis.moveToPoint(0, 0, 1250);
+        wallStake.move_voltage(10000);
+        pros::delay(670);
+        wallStake.move_voltage(-10000);
+        pros::delay(300);
+        wallStake.brake();
+        chassis.moveToPoint(-36.1, -19.526, 1750, {.forwards = false, .maxSpeed = 65});
+        pros::delay(1590);
+        clampPiston.set_value(true);
+        pros::delay(100);
+        intake.move_voltage(12000);
+        chassis.moveToPoint(-42.426, -39.767, 1250);
+        chassis.turnToHeading(165, 500);
+        chassis.moveToPoint(-40.045, -61.267, 1350, {.maxSpeed = 115});
+        chassis.moveToPoint(-38.326, -36.767, 1250, {.forwards = false});
+        chassis.moveToPoint(-27.352, -49.075, 1000);
+        chassis.moveToPoint(-34, -17, 2000);
+        chassis.turnToHeading(270, 1000);
+        wallStake.move_voltage(10000);
+        pros::delay(200);
+        wallStake.move_voltage(0);
+    } else {
+        chassis.moveToPoint(0, 0, 1250);
+        wallStake.move_voltage(10000);
+        pros::delay(670);
+        wallStake.move_voltage(-10000);
+        pros::delay(300);
+        wallStake.brake();
+        chassis.moveToPoint(36.1, -19.526, 1750, {.forwards = false, .maxSpeed = 65});
+        pros::delay(1590);
+        clampPiston.set_value(true);
+        pros::delay(100);
+        intake.move_voltage(12000);
+        chassis.moveToPoint(42.426, -39.767, 1250);
+        chassis.turnToHeading(195, 500);
+        chassis.moveToPoint(40.045, -61.267, 1350, {.maxSpeed = 115});
+        chassis.moveToPoint(38.326, -36.767, 1250, {.forwards = false});
+        chassis.moveToPoint(27.352, -49.075, 1000);
+        chassis.moveToPoint(34, -17, 2000);
+        chassis.turnToHeading(90, 1000);
+        wallStake.move_voltage(10000);
+        pros::delay(200);
+        wallStake.move_voltage(0);
+    }
+}
+
 void sawp() {
-
-    chassis.moveToPoint(0, 0, 1250);
-    wallStake.move_voltage(10000);
-    pros::delay(700);
-    wallStake.move_voltage(-10000);
-    pros::delay(300);
-    wallStake.brake();
-    chassis.moveToPoint(-35.1, -19.526, 1750, {.forwards = false, .maxSpeed = 60});
-    pros::delay(1590);
-    clampPiston.set_value(true);
-    pros::delay(100);
-    intake.move_voltage(12000);
-    chassis.moveToPoint(-42.426, -39.767, 1250);
-    chassis.turnToHeading(165, 500);
-    chassis.moveToPoint(-40.045, -59.267, 1350, {.maxSpeed = 115});
-    chassis.moveToPoint(-38.326, -36.767, 1250, {.forwards = false});
-    chassis.moveToPoint(-29.352, -49.075, 1000);
-    chassis.moveToPoint(-20.042, 5.3, 1250);
-    pros::delay(900);
-    intake.move_voltage(0);
-    pros::delay(850);
-    clampPiston.set_value(false);
-    pros::delay(200);
-    chassis.moveToPoint(-41.971, 20.681, 1850, {.forwards = false});
-    pros::delay(1000);
-    clampPiston.set_value(true);
-    intake.move_voltage(12000);
-    pros::delay(300);
-    chassis.moveToPoint(-51.858, 43.824, 1100);
-    pros::delay(1000);
-    chassis.moveToPoint(-52.552, 16.16, 1300);
-    pros::delay(950);
-    wallStake.move_voltage(10000);
-    pros::delay(250);
-    wallStake.move_voltage(0);
-
-
-    
+    if (alliance == "red" || alliance == "na") {
+        chassis.moveToPoint(0, 0, 1250);
+        wallStake.move_voltage(10000);
+        pros::delay(670);
+        wallStake.move_voltage(-10000);
+        pros::delay(300);
+        wallStake.brake();
+        chassis.moveToPoint(-36.1, -19.526, 1750, {.forwards = false, .maxSpeed = 65});
+        pros::delay(1590);
+        clampPiston.set_value(true);
+        pros::delay(100);
+        intake.move_voltage(12000);
+        chassis.moveToPoint(-42.426, -39.767, 1250);
+        chassis.turnToHeading(165, 500);
+        chassis.moveToPoint(-40.045, -61.267, 1350, {.maxSpeed = 115});
+        chassis.moveToPoint(-38.326, -36.767, 1250, {.forwards = false});
+        chassis.moveToPoint(-27.352, -49.075, 1000);
+        chassis.moveToPoint(-20.042, 5.3, 1250);
+        pros::delay(900);
+        intake.move_voltage(0);
+        pros::delay(850);
+        clampPiston.set_value(false);
+        pros::delay(200);
+        chassis.moveToPoint(-41.971, 22.681, 1850, {.forwards = false});
+        pros::delay(1100);
+        clampPiston.set_value(true);
+        intake.move_voltage(12000);
+        pros::delay(300);
+        chassis.moveToPoint(-51.858, 46.824, 1150);
+        pros::delay(1000);
+        chassis.moveToPoint(-48.552, 16.16, 1300);
+        pros::delay(1150);
+        wallStake.move_voltage(11000);
+        pros::delay(100);
+        wallStake.brake();
+    } else {
+                chassis.moveToPoint(0, 0, 1250);
+        wallStake.move_voltage(10000);
+        pros::delay(670);
+        wallStake.move_voltage(-10000);
+        pros::delay(300);
+        wallStake.brake();
+        chassis.moveToPoint(36.1, -19.526, 1750, {.forwards = false, .maxSpeed = 65});
+        pros::delay(1590);
+        clampPiston.set_value(true);
+        pros::delay(100);
+        intake.move_voltage(12000);
+        chassis.moveToPoint(42.426, -39.767, 1250);
+        chassis.turnToHeading(195, 500);
+        chassis.moveToPoint(40.045, -61.267, 1350, {.maxSpeed = 115});
+        chassis.moveToPoint(38.326, -36.767, 1250, {.forwards = false});
+        chassis.moveToPoint(27.352, -49.075, 1000);
+        chassis.moveToPoint(20.042, 5.3, 1250);
+        pros::delay(900);
+        intake.move_voltage(0);
+        pros::delay(850);
+        clampPiston.set_value(false);
+        pros::delay(200);
+        chassis.moveToPoint(41.971, 22.681, 1850, {.forwards = false});
+        pros::delay(1100);
+        clampPiston.set_value(true);
+        intake.move_voltage(12000);
+        pros::delay(300);
+        chassis.moveToPoint(51.858, 46.824, 1150);
+        pros::delay(1000);
+        chassis.moveToPoint(48.552, 16.16, 1300);
+        pros::delay(1150);
+        wallStake.move_voltage(11000);
+        pros::delay(100);
+        wallStake.brake();
+    }
 }
 
 void SIG_SAWP() {
-    //intake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	//wall_stake_rotation_sensor.set_position(382.0);
-	// turn so front is facing alliance stake and back is facing goal
-    chassis.turnToHeading(45, 1000);
-
-	// score alliance stake
-	// driver.alliance_stake();
-	// pros::delay(500);
-
-	// chassis.setPose(0, 0, 0);
-	// chassis.moveToPoint(0, -5, 600);
-
-	// driver.next_state();
-	chassis.turnToHeading(17, 1000); //-20
-
-	// clamp goal
-	chassis.setPose(0, 0, 0);
-	chassis.moveToPoint(0, -28, 500);
-	chassis.moveToPoint(0, -32, 2000);
-
-	clampPiston.set_value(true);
-	pros::delay(150);
-
-	// turn to ring 1
-	chassis.turnToHeading(-86, 1000);
-
-	// intake ring 1
-	intake.move_voltage(12000);
-
-	chassis.setPose(0, 0, 0);
-	chassis.moveToPoint(0, 25, 500);
-	chassis.moveToPoint(0, 20, 450); // move back to align with ring closest to middle in 8-stack
-
-	// turn to ring 2
-	// r_pid.set_r_constants(2.5, 0, 17);
-	// chassis.turnToHeading(180, 90, 2); //185
-	chassis.setPose(0, 0, 0);
-	chassis.turnToHeading(-100, 1000);
-
-	// drive to intake ring 2 and drive back
-	chassis.setPose(0, 0, 0);
-	chassis.moveToPoint(0, 16.5, 700);
-	pros::delay(250);
-	chassis.moveToPoint(0, 10, 700);
-
-	// turn to ring 3
-
-	chassis.turnToHeading(-320, 1000);
-
-	intake.move_voltage(12000);
-
-	// intake ring 3
-	chassis.setPose(0, 0, 0);
-	chassis.moveToPoint(0, 32, 650); // 42
-
-	chassis.turnToHeading(-270, 1000);
-
-	clampPiston.set_value(false);
-
-	intake.move_voltage(9000);
-
-	// intake double ring stack at mid
-	chassis.setPose(0, 0, 0);
-	chassis.moveToPoint(0, 45, 2500);
-
-	chassis.turnToHeading(8, 1000); // 21.5 degrees
-
-	chassis.setPose(0, 0, 0);
-	chassis.moveToPoint(0, -28, 1000);
-
-	clampPiston.set_value(true);
-	pros::delay(250);
-	
-
-	chassis.turnToHeading(80, 1000);
-	intake.move_voltage(12000);
-
-	intake.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-
-	chassis.setPose(0, 0, 0);
-	chassis.moveToPoint(0, 29, 1000);
-	intake.move_voltage(0);
-	chassis.moveToPoint(5, -6, 1000);
+    
 
 }
 void ring_rush() {
@@ -421,6 +421,7 @@ rd::Selector gui_selector({
     // {"Q SAWP 2 Mogo", SAWP_4},
     {"Mecha SAWP", sawp},
     {"Ring Rush", ring_rush},
+    {"Half SAWP", half_sawp},
     // {"Skills", skills, "", 0},
 
     { "Test PID", testPID},

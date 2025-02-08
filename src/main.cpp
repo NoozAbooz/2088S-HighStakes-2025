@@ -18,6 +18,7 @@ void opcontrol() {
 		}
 	});
 	antiJamToggle = false;
+	wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
 	while (true) { // Main continuous loop
 		/* Drive */
