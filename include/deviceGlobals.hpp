@@ -30,8 +30,8 @@ inline pros::Imu inertial1(2);
 inline pros::Imu inertial2(18);
 inline pros::Rotation wallStakeRotationSensor(11);
 
-inline pros::Rotation verticalEncoder(-13);
-inline pros::Rotation horizontalEncoder(-1);
+inline pros::Rotation verticalEncoder(-14);
+inline pros::Rotation horizontalEncoder(1);
 //hello world it is 210K secret note iykyk :D
 // horizontal tracking wheel
 inline lemlib::TrackingWheel vertical_tracking_wheel(&verticalEncoder, lemlib::Omniwheel::NEW_275, 0.876);

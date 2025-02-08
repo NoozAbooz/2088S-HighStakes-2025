@@ -42,13 +42,13 @@ void SIG_SAWP() {
     chassis.turnToHeading(45, 1000);
 
 	// score alliance stake
-	driver.alliance_stake();
-	pros::delay(500);
+	// driver.alliance_stake();
+	// pros::delay(500);
 
-	chassis.setPose(0, 0, 0);
-	chassis.moveToPoint(0, -5, 600);
+	// chassis.setPose(0, 0, 0);
+	// chassis.moveToPoint(0, -5, 600);
 
-	driver.next_state();
+	// driver.next_state();
 	chassis.turnToHeading(17, 1000); //-20
 
 	// clamp goal
@@ -122,58 +122,67 @@ void SIG_SAWP() {
 
 }
 void ring_rush() {
+    if (alliance == "red" || alliance == "na"){
     chassis.moveToPoint(0, 0, 1250);
-    chassis.moveToPoint(-1.949, 45.851, 1250);
+    chassis.moveToPoint(-0.8, 46.751, 1250);
     intake.move_voltage(12000);
     leftDoinkerPiston.set_value(true);
-    pros::delay(1350);
+    pros::delay(1550);
     intake.move_voltage(0);
-    chassis.moveToPoint(-1.737, 20.234, 1250, {.forwards = false, .maxSpeed = 90});
+    chassis.moveToPoint(-0.037, 20.234, 1250, {.forwards = false, .maxSpeed = 90});
     pros::delay(860);
     leftDoinkerPiston.set_value(false);
     // pros::delay(850);
     chassis.turnToHeading(230, 500);
-    chassis.moveToPoint(5.945, 16.287, 1250, {.forwards = false, .maxSpeed = 80});
+    chassis.moveToPoint(13.945, 28.287, 1450, {.forwards = false, .maxSpeed = 80});
     pros::delay(750);
     clampPiston.set_value(true);
-    pros::delay(830);
+    pros::delay(530);
     intake.move_voltage(12000);
-    chassis.moveToPoint(-18.634, 30.051, 1250);
-    pros::delay(300);
+    chassis.moveToPoint(-21.634, 36.051, 2050);
+    pros::delay(400);
     antiJamToggle = false;
-    intake.move_voltage(7000);
-    chassis.moveToPoint(-44.174, -14.218, 1650, {.maxSpeed= 127});
-    // intakeLiftPiston.set_value(true);
-    // intakeLiftPiston.set_value(false);
-    // pros::delay(700);
-    chassis.moveToPoint(-30, 2, 1300, {.forwards = false});
-    chassis.moveToPoint(-44.174, -14.218, 1000, {.minSpeed= 127});
-    antiJamToggle = true;
     intake.move_voltage(12000);
-    chassis.moveToPoint(-22, 10, 1000, {.forwards = false});
-    pros::delay(300);
+    chassis.moveToPoint(-35.174, 0.218, 1650, {.maxSpeed= 127});
+    intakeLiftPiston.set_value(true);
+    pros::delay(500);
+    intakeLiftPiston.set_value(false);
+    pros::delay(700);
+    chassis.moveToPoint(-30, 2, 1300, {.forwards = false});
+    chassis.moveToPoint(-36.174, 2.218, 1200, {.minSpeed= 127});
+    intake.move_voltage(12000);
+    chassis.moveToPoint(-22, 10, 1500, {.forwards = false});
+    pros::delay(400);
+    chassis.moveToPoint(-36.174, 0.218, 1200, {.minSpeed= 127});
+    pros::delay(500);
+    antiJamToggle = true;
     // chassis.moveToPoint(-44.174, -15.218, 1850, {.maxSpeed= 80});
     // pros::delay(2000);
     // chassis.moveToPoint(-22, -1, 1000, {.forwards = false});
     // pros::delay(100);
     chassis.moveToPoint(18.174, 0.218, 1050, {.minSpeed= 127});
     pros::delay(100);
-    chassis.moveToPoint(21, 2, 1200, {.maxSpeed = 35});
-    pros::delay(900);
-    resetWallstakes();
+    chassis.moveToPoint(31, 2, 1000, {.maxSpeed = 127});
+    // chassis.moveToPoint(50, -3, 10000);
+
+    // resetWallstakes();
     antiJamToggle = false;
-    intakeLiftPiston.set_value(true);
-    pros::delay(1050);
-    intakeLiftPiston.set_value(false);
-    pros::delay(1200);
-    chassis.moveToPoint(21.5, -18.3, 1200);
-    pros::delay(100);
-    intake.move_voltage(-500);
-    wallStake.move_voltage(12000);
-    pros::delay(900);
-    wallStake.brake();
+    // intakeLiftPiston.set_value(true);
+    // pros::delay(1050);
+    // intakeLiftPiston.set_value(false);
+    // pros::delay(1200);
+    // chassis.moveToPoint(21.5, -18.3, 1200);
+    // pros::delay(100);
+    // intake.move_voltage(-500);
+    // wallStake.move_voltage(12000);
+    // pros::delay(900);
+    // wallStake.brake();
     // chassis.moveToPoint(-39.384, 5.946, 1250);
     // chassis.moveToPoint(24.607, 3.935, 1250);
+
+    } else { // blue
+
+    }
     
 }
 
