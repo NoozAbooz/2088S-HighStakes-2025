@@ -78,3 +78,48 @@ inline lemlib::OdomSensors sensors(&vertical_tracking_wheel, // vertical trackin
 );
 // create the chassis
 inline lemlib::Chassis chassis(drivetrain, lateralController, angularController, sensors);
+
+inline catlib::Drivetrain cLdt(
+    &leftDrive,
+    &rightDrive,
+    3.25,
+    450
+);
+
+inline catlib::PIDConstants lateral_pid(
+    6,
+    0,
+    8
+);
+
+inline catlib::PIDConstants angular_pid(
+    2.5,
+    0,
+    17.4
+);
+
+inline catlib::TrackingWheel vertical_tracker(
+    &verticalEncoder,
+    2.75,
+    0.876
+);
+
+inline catlib::TrackingWheel horizontal_tracker(
+    &horizontalEncoder,
+    2.75,
+    -3.2455
+);
+
+inline catlib::OdomSensors cLsensors(
+    &inertial1,
+    &vertical_tracker,
+    &vertical_tracker
+);
+
+inline catlib::Chassis cl (
+    &cLdt,
+    &lateral_pid,
+    &angular_pid,
+    &cLsensors,
+    catlib::DriveType::SPLIT_ARCADE
+);
