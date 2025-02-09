@@ -10,4 +10,5 @@
 #include "libKS/drivetrain/lateralPID.hpp"
 #include "libKS/drivetrain/angularPID.hpp"
 
+#include "libKS/pid.hpp"
 #include "libKS/utilities.hpp"

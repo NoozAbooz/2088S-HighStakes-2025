@@ -2,10 +2,10 @@
 
 // ks::LateralPID pid;
 
-double global_kp = 0;
+double global_kp = 6;
 double global_ki = 0;
-double global_kd = 0;
-double global_timeOut = 0;
+double global_kd = 8;
+double global_timeOut = 2000;
 
 void ks::LateralPID::set_lateral_constants(double kp, double ki, double kd, double timeOut) {
 	global_kp = kp;
@@ -21,7 +21,6 @@ void ks::LateralPID::move_lateral_pid(double target, double maxSpeed, double min
 	double power = 0;
 	double currentTime = 0;
 
-	double tolerance = 0;
 	double local_timer = 0;
 
 	while (true) {
@@ -51,7 +50,7 @@ void ks::LateralPID::move_lateral_pid(double target, double maxSpeed, double min
 		if (local_timer > (global_timeOut * 100)) {
 			leftDrive.move_voltage(0);
 			rightDrive.move_voltage(0);
-			return;
+			break;
 		}
 
 		local_timer++;

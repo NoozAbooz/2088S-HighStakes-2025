@@ -34,7 +34,7 @@ void initializeColourSort() {
 			intakeVel = intake.get_actual_velocity();
 			derivative = previousIntakeVel - intakeVel;
 
-			if (derivative < -55 && intake.get_voltage() > 6000 && ((wallStakeRotationSensor.get_angle() / 100) < 20 || (wallStakeRotationSensor.get_angle() / 100) > 365) && antiJamToggle == true) {
+			if (derivative < -45 && intake.get_voltage() > 6000 && ((wallStakeRotationSensor.get_angle() / 100) < 20 || (wallStakeRotationSensor.get_angle() / 100) > 365) && antiJamToggle == true) {
 				console.println("anti-jam triggered");
 				antiJamToggle = false;
 				intakeLock = true;
