@@ -101,43 +101,7 @@ namespace ks
 	  return(false);
 	}
 
-  inline float to_milivolt(float input){
+  	inline float to_milivolt(float input){
       return(input * (12000.0/127.0));
-  }
-
-	class PID {
-	    public:
-	    // Constructor
-	    PID(double kP, double kI, double kD) 
-	    : kP(kP), 
-	      kI(kI), 
-	      kD(kD) {}
-
-	    // Member function to update PID
-	    double update(const double error) {
-	        // calculate integral
-	        integral += error;
-
-	        // calculate derivative
-	        const double derivative = error - prevError;
-	        prevError = error;
-
-	        // calculate output
-	        return error * kP + integral * kI + derivative * kD;
-	    }
-
-	    // Member function to reset PID
-	    void reset() {
-	        integral = 0;
-	        prevError = 0;
-	    }
-
-	    protected:
-	    // Member variables
-	    double kP;
-	    double kI;
-	    double kD;
-	    double integral = 0;
-	    double prevError = 0;
-	};
+  	}
 }

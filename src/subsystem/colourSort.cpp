@@ -18,7 +18,7 @@ void initializeColourSort() {
 				// eject blue rings
 				console.println("eject impostor");
 				intakeLock = true;
-				pros::delay(230);
+				pros::delay(234);
 				intake.brake();
 				pros::delay(220);
 				intake.move_voltage(12000);
@@ -34,11 +34,11 @@ void initializeColourSort() {
 			intakeVel = intake.get_actual_velocity();
 			derivative = previousIntakeVel - intakeVel;
 
-			if (derivative < -50 && intake.get_voltage() > 6000 && ((wallStakeRotationSensor.get_angle() / 100) < 20 || (wallStakeRotationSensor.get_angle() / 100) > 365) && antiJamToggle == true) {
+			if (derivative < -45 && intake.get_voltage() > 6000 && ((wallStakeRotationSensor.get_angle() / 100) < 20 || (wallStakeRotationSensor.get_angle() / 100) > 365) && antiJamToggle == true) {
 				console.println("anti-jam triggered");
 				antiJamToggle = false;
 				intakeLock = true;
-				intake.move_voltage(-8000);
+				intake.move_voltage(-10000);
 				pros::delay(190);
 				intake.move_voltage(12000);
 				intakeLock = false;
