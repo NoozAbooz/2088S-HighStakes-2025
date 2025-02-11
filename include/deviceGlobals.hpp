@@ -16,7 +16,7 @@ inline pros::MotorGroup rightDrive({-7, 10, 8});
 
 // Intake
 inline pros::MotorGroup intake({-9, -19});
-inline pros::Motor wallStake(16);
+inline pros::Motor wallStake(20);
 
 // Pneumatics
 inline pros::adi::Pneumatics clampPiston('A', false);
@@ -116,7 +116,7 @@ inline catlib::OdomSensors cLsensors(
     &vertical_tracker
 );
 
-inline catlib::Chassis cl (
+inline catlib::Chassis cat (
     &cLdt,
     &lateral_pid,
     &angular_pid,

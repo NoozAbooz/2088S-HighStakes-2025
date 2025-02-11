@@ -82,8 +82,7 @@ void ks::initializeOdom() {
 
 	verticalEncoder.reset();
 	horizontalEncoder.reset();
-
-	inertial2.reset(); // doesnt matter if this one passes or not
+	
 	if (inertial1.reset() != PROS_ERR) {	
 	  	while( inertial1.is_calibrating() ) {
 			pros::delay(10);
@@ -95,9 +94,17 @@ void ks::initializeOdom() {
 	  	}
 	}
 
-	// while (isnanf(inertial1.get_rotation()) || isinf(inertial1.get_rotation())) {
-	// 	pros::delay(10);
-	// }
+	while (isnanf(inertial1.get_rotation()) || isinf(inertial1.get_rotation())) {
+		pros::delay(10);
+	}
+
+	vertical_pos = get_vertical_distance_traveled();
+	horizontal_pos = get_horizontal_distance_traveled();
+	heading = to_rad(fmod((360 - get_imu_rotation()) + 90, 360));
+
+	prev_vertical_pos = vertical_pos;
+	prev_horizontal_pos = horizontal_pos;
+	prev_heading = heading;
 
 	pros::Task odom_task(ks::odomUpdate); 
 }
@@ -127,13 +134,10 @@ void ks::setOdomPosition(double x_new, double y_new, double theta_new) {
 void ks::odomUpdate() {
 	console.printf("%.0lf, %.0lf", verticalEncoder.get_position(), get_horizontal_distance_traveled());
 
-	double vertical_pos_offset = get_vertical_distance_traveled();
-	double horizontal_pos_offset = get_horizontal_distance_traveled();
-
 	while (true) {
 		// printf("%f, %f\n", get_vertical_distance_traveled(), get_horizontal_distance_traveled());
-		vertical_pos = get_vertical_distance_traveled() - vertical_pos_offset;
-		horizontal_pos = get_horizontal_distance_traveled() - horizontal_pos_offset;
+		vertical_pos = get_vertical_distance_traveled();
+		horizontal_pos = get_horizontal_distance_traveled();
 		
 		delta_vertical = (vertical_pos - prev_vertical_pos);
 		delta_horizontal = (horizontal_pos - prev_horizontal_pos);

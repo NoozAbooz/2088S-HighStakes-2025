@@ -53,6 +53,8 @@ void ks::LateralPID::move_lateral_pid(double target, double maxSpeed, double min
 			break;
 		}
 
+		if (fabs(error) < 0.2) break;
+
 		local_timer++;
 		prevError = error;
 		pros::delay(10);

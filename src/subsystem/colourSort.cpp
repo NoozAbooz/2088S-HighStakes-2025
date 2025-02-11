@@ -12,13 +12,13 @@ void initializeColourSort() {
 		double derivative;
 		while (true) {
 			//console.printf("Hue: %d\n", optical.get_hue());
-			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 200 && optical.get_hue() < 230) ||
-				(alliance == "blue" && optical.get_hue() > 8 && optical.get_hue() < 15)) {
+			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 190 && optical.get_hue() < 240) ||
+				(alliance == "blue" && optical.get_hue() > 8 && optical.get_hue() < 20)) {
 				colourSortToggle = false;
 				// eject blue rings
 				console.println("eject impostor");
 				intakeLock = true;
-				pros::delay(234);
+				pros::delay(230);
 				intake.brake();
 				pros::delay(220);
 				intake.move_voltage(12000);
@@ -30,22 +30,22 @@ void initializeColourSort() {
 				colourSortToggle = !colourSortToggle;
 			}
 
-			// anti-jam
-			intakeVel = intake.get_actual_velocity();
-			derivative = previousIntakeVel - intakeVel;
+			// // anti-jam
+			// intakeVel = intake.get_actual_velocity();
+			// derivative = previousIntakeVel - intakeVel;
 
-			if (derivative < -45 && intake.get_voltage() > 6000 && ((wallStakeRotationSensor.get_angle() / 100) < 20 || (wallStakeRotationSensor.get_angle() / 100) > 365) && antiJamToggle == true) {
-				console.println("anti-jam triggered");
-				antiJamToggle = false;
-				intakeLock = true;
-				intake.move_voltage(-10000);
-				pros::delay(190);
-				intake.move_voltage(12000);
-				intakeLock = false;
-				antiJamToggle = true;
-			}
+			// if (derivative < -47 && intake.get_voltage() > 6000 && ((wallStakeRotationSensor.get_angle() / 100) < 20 || (wallStakeRotationSensor.get_angle() / 100) > 365) && antiJamToggle == true) {
+			// 	console.println("anti-jam triggered");
+			// 	antiJamToggle = false;
+			// 	intakeLock = true;
+			// 	intake.move_voltage(-10000);
+			// 	pros::delay(270);
+			// 	intake.move_voltage(12000);
+			// 	intakeLock = false;
+			// 	antiJamToggle = true;
+			// }
+			// previousIntakeVel = intakeVel;
 
-			previousIntakeVel = intakeVel;
 			pros::delay(10);
 		}
 	});
