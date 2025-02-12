@@ -156,8 +156,7 @@ def main():
             or ('include' and 'lemlib') in components
             or ('include' and 'fmt') in components
             or ('include' and 'robodash') in components
-            or ('include' and 'sylib') in components
-            or ('include' and 'Graphy') in components
+            or ('include' and 'catLib') in components
 
             or ('include' and 'pros') in components
             or ('include' and 'output') in components
