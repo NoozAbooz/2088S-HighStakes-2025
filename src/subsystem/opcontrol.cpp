@@ -31,7 +31,7 @@ void refreshWallstakes() {
 void resetWallstakes() {
 	pros::Task([] {
 		isResetting = true;
-		while ((wallStakeRotationSensor.get_angle() / 100) < 35) {
+		while ((wallStakeRotationSensor.get_angle() / 100) < 135) {
 			wallStake.move_voltage(8000);
 		}
 		wallStake.brake();
@@ -66,3 +66,4 @@ void refreshDoinker() {
 void hangSequeunce() {
 	
 }
+
