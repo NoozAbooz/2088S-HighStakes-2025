@@ -13,9 +13,8 @@ void initialize() {
     pros::delay(10);
 
     pros::Task([] {
-       chassis.calibrate();
+       ks::initializeOdom();
     });
-    // ks::initializeOdom();
     initializeColourSort();
 
     optical.set_led_pwm(100); // enable led on optical sensor for accuracy
@@ -53,6 +52,7 @@ void competitionTelemtryRefresh() {
 void competition_initialize() {
     rd_view_focus(allianceview);
     field_status = "competition";
+    chassis.calibrate();
 
     gui_selector.on_select([](std::optional<rd::Selector::routine_t> routine) {
         competitionTelemtryRefresh();
