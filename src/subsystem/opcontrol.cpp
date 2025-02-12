@@ -16,9 +16,9 @@ void refreshIntake() {
 bool isResetting = false;
 void refreshWallstakes() {
 	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-		wallStake.move_voltage(6000);
+		wallStake.move_voltage(12000);
 	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-		wallStake.move_voltage(-10000);
+		wallStake.move_voltage(-12000);
 	} else if (isResetting == false) {
 		wallStake.brake();
 	}
@@ -34,10 +34,10 @@ void resetWallstakes() {
 		while ((wallStakeRotationSensor.get_angle() / 100) < 35) {
 			wallStake.move_voltage(8000);
 		}
+		while ((wallStakeRotationSensor.get_angle() / 100) > 10) {
+			wallStake.move_voltage(-8000);
+		}
 		wallStake.brake();
-		// while ((wallStakeRotationSensor.get_angle() / 100) > 45) {
-		// 	wallStake.move_voltage(-8000);
-		// }
 		controller.rumble(".");
 		isResetting = false;
 	});
