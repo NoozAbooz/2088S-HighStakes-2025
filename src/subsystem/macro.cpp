@@ -50,3 +50,41 @@ void initializeColourSort() {
 		}
 	});
 }
+
+int wallstakeStates[3] = {85, 123, 250};
+int currState = 0;
+
+void liftControl(double target) {
+	double error = target - wallStakeRotationSensor.get_position() / 100.0;
+	double kp = 4;
+	double timer = 0;
+
+	wallStake.move(127);
+	while (timer < 2000) {
+    	error = target - wallStakeRotationSensor.get_position() / 100.0;
+    	wallStake.move(kp * error);
+
+		if (fabs(error) < 5) {
+			break;
+		}
+
+		timer += 10;
+		pros::delay(10);
+	}
+	wallStake.brake();
+}
+
+void resetWallstakes() {
+	pros::Task([] {
+		isResetting = true;
+
+		if (wallStakeRotationSensor.get_position() / 100.0 < wallstakeStates[1]) {
+			liftControl(wallstakeStates[1]);
+		} else if (wallStakeRotationSensor.get_position() / 100.0 > wallstakeStates[1]) {
+			liftControl(wallstakeStates[0]);
+		}
+
+		controller.rumble(".");
+		isResetting = false;
+	});
+}

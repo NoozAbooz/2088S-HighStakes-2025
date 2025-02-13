@@ -13,12 +13,12 @@ void initialize() {
     pros::delay(10);
 
     pros::Task([] {
-       ks::initializeOdom();
+       chassis.calibrate();
     });
     initializeColourSort();
 
     optical.set_led_pwm(100); // enable led on optical sensor for accuracy
-    optical.set_integration_time(10); // refresh every 10ms
+    optical.set_integration_time(3); // refresh every Xms
     wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     intake.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
 

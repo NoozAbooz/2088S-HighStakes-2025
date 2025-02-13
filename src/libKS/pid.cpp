@@ -15,6 +15,10 @@ void ks::PIDConstants::setPIDConstants(double kP, double kI, double kD) {
 ks::PID::PID() {  
 }
 
+ks::PID::PID(PIDConstants* constants) {
+    this->constants = constants;
+}
+
 void ks::PID::reset() {
     this->integral = 0;
     this->prevError = 0;

@@ -18,6 +18,8 @@ extern std::string field_status;
 extern bool intakeLock;
 extern bool antiJamToggle;
 extern void competitionTelemtryRefresh();
+extern bool isResetting;
+extern int wallstakeStates[];
 
 /* Functions */
 // DT
@@ -28,6 +30,8 @@ void refreshClamp();
 void refreshDoinker();
 void refreshWallstakes();
 void resetWallstakes();
+
+void liftControl(double target);
 
 void initializeColourSort();
 void driverSkillsMacro();

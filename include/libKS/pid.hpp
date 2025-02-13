@@ -16,6 +16,7 @@ namespace ks {
     class PID {
         public:
             PID();
+            PID(PIDConstants* constants);
 
             void reset();
 

@@ -17,6 +17,7 @@ bool isResetting = false;
 void refreshWallstakes() {
 	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
 		wallStake.move_voltage(12000);
+		intake.move_voltage(-1000);
 	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
 		wallStake.move_voltage(-12000);
 	} else if (isResetting == false) {
@@ -26,21 +27,6 @@ void refreshWallstakes() {
 	if(controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
 		resetWallstakes();
 	}
-}
-
-void resetWallstakes() {
-	pros::Task([] {
-		isResetting = true;
-		while ((wallStakeRotationSensor.get_angle() / 100) < 135) {
-			wallStake.move_voltage(8000);
-		}
-		while ((wallStakeRotationSensor.get_angle() / 100) > 10) {
-			wallStake.move_voltage(-8000);
-		}
-		wallStake.brake();
-		controller.rumble(".");
-		isResetting = false;
-	});
 }
 
 bool clampToggle = false;

@@ -52,7 +52,7 @@ rd::Selector gui_selector({
     {"Half SAWP", half_sawp},
     {"Ring Rush", ring_rush},
     {"Move forward", driveForward},
-    // {"Skills", skills, "", 0},
+    {"Skills", skills},
 
     { "Test PID", testPID},
     { "Test BM", testBM},
