@@ -54,17 +54,21 @@ void initializeColourSort() {
 int wallstakeStates[3] = {85, 123, 250};
 int currState = 0;
 
+ks::PIDConstants PIDconst(3.5, 0, 0);
+ks::PID wallstakePID(&PIDconst);
+
 void liftControl(double target) {
+	wallstakePID.reset();
 	double error = target - wallStakeRotationSensor.get_position() / 100.0;
-	double kp = 4;
+
 	double timer = 0;
 
 	wallStake.move(127);
 	while (timer < 2000) {
     	error = target - wallStakeRotationSensor.get_position() / 100.0;
-    	wallStake.move(kp * error);
+    	wallStake.move(wallstakePID.output(error));
 
-		if (fabs(error) < 5) {
+		if (fabs(error) < 2) {
 			break;
 		}
 
