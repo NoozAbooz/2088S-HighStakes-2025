@@ -48,10 +48,12 @@ pros::delay(400);
 chassis.moveToPoint(-64, 0, 1000, {.forwards = false});
 pros::delay(700);
 clampPiston.set_value(false);
-pros::delay(200);
 
 intake.move_voltage(0);
-liftControl(wallstakeStates[0]);
+pros::Task([] {
+       liftControl(wallstakeStates[0]);
+});
+
 
 chassis.moveToPoint(0, 11, 2000);
 pros::delay(100);
@@ -60,14 +62,14 @@ chassis.moveToPoint(21 , 10, 1100, {.forwards = false, .maxSpeed = 60});
 pros::delay(800);
 clampPiston.set_value(true);
 chassis.turnToHeading(0, 600);
-// intake.move_voltage(12000);
-// chassis.moveToPoint(20, 30, 700);
-// chassis.moveToPoint(38, 47, 900);
-// chassis.moveToPoint(45, 84, 1300);
-// pros::delay(700);
-// liftControl(wallstakeStates[1]);
-// pros::delay(400);
-// chassis.turnToHeading(180, 700);
+intake.move_voltage(12000);
+chassis.moveToPoint(20, 30, 700);
+chassis.moveToPoint(42, 47, 900);
+chassis.moveToPoint(48, 80, 1300);
+pros::delay(700);
+liftControl(wallstakeStates[1]);
+pros::delay(400);
+//chassis.turnToHeading(180, 700);
 // pros::delay(500);
 // chassis.moveToPoint(40, 63, 3000);
 // pros::delay(1200);
