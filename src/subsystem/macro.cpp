@@ -54,7 +54,7 @@ void initializeColourSort() {
 int wallstakeStates[3] = {85, 123, 250};
 int currState = 0;
 
-ks::PIDConstants PIDconst(4, 1, 0);
+ks::PIDConstants PIDconst(3.5, 0, 0);
 ks::PID wallstakePID(&PIDconst);
 
 void liftControl(double target) {
