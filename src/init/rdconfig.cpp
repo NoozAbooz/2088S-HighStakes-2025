@@ -165,11 +165,4 @@ void rdconfig_init() {
     render_home_view();
 	render_alliance_view();
 	rd_view_focus(homeview);
-
-    // pros::Task([] { // run multithreaded
-    //     while (true) {
-            
-    //     }
-    //     render_sensor_view();
-    // });
 }

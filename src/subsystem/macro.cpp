@@ -12,15 +12,15 @@ void initializeColourSort() {
 		double derivative;
 		while (true) {
 			//console.printf("Hue: %d\n", optical.get_hue());
-			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 190 && optical.get_hue() < 240) ||
+			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 180 && optical.get_hue() < 240) ||
 				(alliance == "blue" && optical.get_hue() > 8 && optical.get_hue() < 20)) {
 				colourSortToggle = false;
 				// eject blue rings
 				console.println("eject impostor");
 				intakeLock = true;
-				pros::delay(230);
+				pros::delay(20);
 				intake.brake();
-				pros::delay(220);
+				pros::delay(300);
 				intake.move_voltage(12000);
 				intakeLock = false;
 				colourSortToggle = true;
@@ -46,7 +46,7 @@ void initializeColourSort() {
 			// }
 			// previousIntakeVel = intakeVel;
 
-			pros::delay(10);
+			pros::delay(3);
 		}
 	});
 }
@@ -54,7 +54,7 @@ void initializeColourSort() {
 int wallstakeStates[3] = {85, 123, 250};
 int currState = 0;
 
-ks::PIDConstants PIDconst(3.5, 0, 0);
+ks::PIDConstants PIDconst(3.5, 1, 0);
 ks::PID wallstakePID(&PIDconst);
 
 void liftControl(double target) {
@@ -64,7 +64,7 @@ void liftControl(double target) {
 	double timer = 0;
 
 	wallStake.move(127);
-	while (timer < 2000) {
+	while (timer < 1000) {
     	error = target - wallStakeRotationSensor.get_position() / 100.0;
     	wallStake.move(wallstakePID.output(error));
 
