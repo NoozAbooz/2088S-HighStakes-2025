@@ -51,7 +51,7 @@ void initializeColourSort() {
 	});
 }
 
-int wallstakeStates[3] = {85, 123, 250};
+int wallstakeStates[3] = {90, 123, 250};
 int currState = 0;
 
 ks::PIDConstants PIDconst(3.5, 1, 0);
