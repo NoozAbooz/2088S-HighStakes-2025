@@ -16,7 +16,7 @@ inline pros::MotorGroup rightDrive({-7, 10, 8});
 
 // Intake
 inline pros::MotorGroup intake({-9, -19});
-inline pros::Motor wallStake(20);
+inline pros::Motor wallStake(15);
 
 // Pneumatics
 inline pros::adi::Pneumatics clampPiston('A', false);
@@ -30,7 +30,7 @@ inline pros::Imu inertial1(2);
 inline pros::Imu inertial2(18);
 inline pros::Rotation wallStakeRotationSensor(11);
 
-inline pros::Rotation verticalEncoder(-14);
+inline pros::Rotation verticalEncoder(-13);
 inline pros::Rotation horizontalEncoder(1);
 //hello world it is 210K secret note iykyk :D
 // horizontal tracking wheel
@@ -113,7 +113,7 @@ inline catlib::TrackingWheel horizontal_tracker(
 inline catlib::OdomSensors bensors(
     &inertial1,
     &vertical_tracker,
-    &vertical_tracker
+    &horizontal_tracker
 );
 
 inline catlib::Chassis cat (

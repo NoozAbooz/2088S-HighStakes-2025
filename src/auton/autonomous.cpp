@@ -36,27 +36,27 @@ void calibrateOdomOffsets() {
 
 /* Legacy Auton Routines */
 void driveForward() {
+    while (isnanf(inertial1.get_rotation()) || isinf(inertial1.get_rotation())) {
+		pros::delay(10);
+	}
     cat.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
-    cat.movePID(17.5, 2000);
-    cat.turnToHeadingPID(90);
-    pros::delay(500);
-    cat.turnToHeadingPID(180, 1, true);
-    cat.movePID(17.5, 2000);
+    cat.movePID(24, 2000);
+    cat.movePID(24, 2000);
 }
 
 rd::Selector gui_selector({
     // {"E 5 Ring", Five_Ring},
     // {"Q 4 Ring + Bar", four_ring_bar},
     // {"Q SAWP 2 Mogo", SAWP_4},
-    {"Mecha SAWP", sawp},
-    {"Half SAWP", half_sawp},
-    {"Ring Rush", ring_rush},
-    {"Move forward", driveForward},
-    {"Skills", skills},
+    {"Mecha SAWP", sawp, "", 0},
+    {"PID SAWP", pid_sawp, "", 0},
+    {"Ring Rush", ring_rush, "", 0},
+    {"Move forward", driveForward, "", 0},
+    {"Skills", skills, "", 100},
 
-    { "Test PID", testPID},
-    { "Test BM", testBM},
-    { "Odom Offsets", calibrateOdomOffsets}
+    { "Test PID", testPID, "", 220},
+    { "Test BM", testBM, "", 220},
+    { "Odom Offsets", calibrateOdomOffsets, "", 220}
 });
 
 void autonomous() {

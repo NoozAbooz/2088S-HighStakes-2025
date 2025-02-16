@@ -31,30 +31,30 @@ void initializeColourSort() {
 			}
 
 			// // anti-jam
-			// intakeVel = intake.get_actual_velocity();
-			// derivative = previousIntakeVel - intakeVel;
+			intakeVel = intake.get_actual_velocity();
+			derivative = previousIntakeVel - intakeVel;
 
-			// if (derivative < -47 && intake.get_voltage() > 6000 && ((wallStakeRotationSensor.get_angle() / 100) < 20 || (wallStakeRotationSensor.get_angle() / 100) > 365) && antiJamToggle == true) {
-			// 	console.println("anti-jam triggered");
-			// 	antiJamToggle = false;
-			// 	intakeLock = true;
-			// 	intake.move_voltage(-10000);
-			// 	pros::delay(270);
-			// 	intake.move_voltage(12000);
-			// 	intakeLock = false;
-			// 	antiJamToggle = true;
-			// }
-			// previousIntakeVel = intakeVel;
+			if (derivative < -47 && intake.get_voltage() > 6000 && (wallStakeRotationSensor.get_angle() / 100) < wallstakeStates[1] && antiJamToggle == true) {
+				console.println("anti-jam triggered");
+				antiJamToggle = false;
+				//intakeLock = true;
+				intake.move_voltage(-10000);
+				pros::delay(270);
+				intake.move_voltage(12000);
+				//intakeLock = false;
+				antiJamToggle = true;
+			}
+			previousIntakeVel = intakeVel;
 
 			pros::delay(3);
 		}
 	});
 }
 
-int wallstakeStates[3] = {90, 123, 250};
+int wallstakeStates[3] = {90, 130, 250};
 int currState = 0;
 
-ks::PIDConstants PIDconst(3.5, 1, 0);
+ks::PIDConstants PIDconst(2.5, 0, 1);
 ks::PID wallstakePID(&PIDconst);
 
 void liftControl(double target) {
@@ -63,7 +63,7 @@ void liftControl(double target) {
 
 	double timer = 0;
 
-	wallStake.move(127);
+	wallStake.move(80);
 	while (timer < 1000) {
     	error = target - wallStakeRotationSensor.get_position() / 100.0;
     	wallStake.move(wallstakePID.output(error));
