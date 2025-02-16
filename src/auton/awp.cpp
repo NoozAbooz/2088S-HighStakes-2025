@@ -7,13 +7,14 @@ void pid_sawp() {
         wallStake.move_voltage(10000);
         pros::delay(670);
 
-        chassis.turnToHeading(50, 1000, {.maxSpeed = 100});
-
         pros::Task([] {
             wallStake.move_voltage(-10000);
             pros::delay(300);
             wallStake.brake();
         });
+        pros::delay(100);
+
+        chassis.turnToHeading(50, 1000, {.maxSpeed = 100});
 
         // move to mogo 1
         cat.movePID(-20, 2000, 1.2, 5);
@@ -24,43 +25,42 @@ void pid_sawp() {
         cat.movePID(-20, 1000, 1);
 
         // turn to ring stack 1
-        chassis.turnToHeading(180, 1000);
+        chassis.turnToHeading(220, 1000, {}, false);
         intake.move_voltage(12000); // TODO ENABLE
-        cat.movePID(24, 2000, 1.1, 1);
+        cat.movePID(24, 900, 1, 1);
 
         // ringstack 2
-        chassis.setPose(0, 0, 0);
-        chassis.moveToPoint(15, 8, 1000, {.maxSpeed = 80}, false); 
-        pros::delay(100);
+        chassis.turnToHeading(95, 1000);
+        cat.movePID(25, 2000, 1, 1);
+        pros::delay(600);
 
         // back out and go to mogo #2
-        chassis.moveToPoint(0, 8, 1000, {.forwards = false}, false);
-        chassis.setPose(0, 0, 0);
-        chassis.turnToHeading(100, 1000, {.maxSpeed = 80}, false);
-        //chassis.moveToPoint(62, -10, 5000, {.maxSpeed = 80});
+        inertial1.set_rotation(0);
+        chassis.turnToHeading(-85, 1000);
         pros::Task([] {
-            pros::delay(600);
+            pros::delay(1800);
             clampPiston.set_value(false);
         });
-        cat.movePID(62, 5000, 1.2);
+        cat.movePID(60, 4000, 1.2, 1);
 
         // clamp mogo #2
-        chassis.turnToHeading(200, 1000, {.earlyExitRange = 1}, false);
+        chassis.turnToHeading(25, 800, {.earlyExitRange = 1}, false);
         pros::Task([] {
             pros::delay(900);
             clampPiston.set_value(true);
         });
-        cat.movePID(-32, 1200, 0.7);
+        cat.movePID(-32, 1000, 0.7);
 
         // ring stack 3
         chassis.setPose(0, 0, 0);
-        chassis.turnToHeading(230, 1000, {}, false);
+        chassis.turnToHeading(255, 1000, {}, false);
         cat.movePID(18, 1000, 1.2, 1);
 
         // touch ladder
-        chassis.moveToPoint(24, 0, 1000, {.minSpeed = 120});
+        cat.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
+        chassis.moveToPoint(24, 2, 1000, {.minSpeed = 110});
         pros::Task([] {
-            pros::delay(800);
+            pros::delay(1000);
             wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
             wallStake.move_voltage(12000);
         });
