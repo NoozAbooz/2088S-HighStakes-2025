@@ -30,7 +30,7 @@ void initializeColourSort() {
 				colourSortToggle = !colourSortToggle;
 			}
 
-// 			// // anti-jam
+// 			// anti-jam
 // 			intakeVel = intake.get_actual_velocity();
 // 			derivative = previousIntakeVel - intakeVel;
 
@@ -46,7 +46,7 @@ void initializeColourSort() {
 // 			}
 // 			previousIntakeVel = intakeVel;
 
-// 			pros::delay(3);
+			pros::delay(3);
 		}
 });
 }
