@@ -20,7 +20,7 @@ void initializeColourSort() {
 				intakeLock = true;
 				pros::delay(20);
 				intake.brake();
-				pros::delay(300);
+				pros::delay(350);
 				intake.move_voltage(12000);
 				intakeLock = false;
 				colourSortToggle = true;
@@ -30,21 +30,21 @@ void initializeColourSort() {
 				colourSortToggle = !colourSortToggle;
 			}
 
-// 			// anti-jam
-// 			intakeVel = intake.get_actual_velocity();
-// 			derivative = previousIntakeVel - intakeVel;
+			// anti-jam
+			intakeVel = intake.get_actual_velocity();
+			derivative = previousIntakeVel - intakeVel;
 
-// 			if (derivative < -55 && intake.get_voltage() > 6000 && (wallStakeRotationSensor.get_angle() / 100) < wallstakeStates[1] && antiJamToggle == true) {
-// 				console.println("anti-jam triggered");
-// 				antiJamToggle = false;
-// 				//intakeLock = true;
-// 				intake.move_voltage(-10000);
-// 				pros::delay(270);
-// 				intake.move_voltage(12000);
-// 				//intakeLock = false;
-// 				antiJamToggle = true;
-// 			}
-// 			previousIntakeVel = intakeVel;
+			if (derivative < -48 && intake.get_voltage() > 6000 && (wallStakeRotationSensor.get_angle() / 100) < wallstakeStates[1] && antiJamToggle == true) {
+				console.println("anti-jam triggered");
+				antiJamToggle = false;
+				//intakeLock = true;
+				intake.move_voltage(-10000);
+				pros::delay(270);
+				intake.move_voltage(12000);
+				//intakeLock = false;
+				antiJamToggle = true;
+			}
+			previousIntakeVel = intakeVel;
 
 			pros::delay(3);
 		}
