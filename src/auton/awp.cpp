@@ -14,7 +14,7 @@ void pid_sawp() {
         });
         pros::delay(100);
 
-        chassis.turnToHeading(50, 1000, {.maxSpeed = 100});
+        chassis.turnToHeading(50, 800, {.maxSpeed = 100});
 
         // move to mogo 1
         cat.movePID(-20, 2000, 1.2, 5);
