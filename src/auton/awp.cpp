@@ -44,17 +44,17 @@ void pid_sawp() {
         cat.movePID(60, 4000, 1.2, 1);
 
         // clamp mogo #2
-        chassis.turnToHeading(25, 800, {.earlyExitRange = 1}, false);
+        chassis.turnToHeading(25, 800, {.earlyExitRange = 10}, false);
         pros::Task([] {
             pros::delay(900);
             clampPiston.set_value(true);
         });
-        cat.movePID(-32, 1000, 0.7);
+        cat.movePID(-32, 1000, 0.3);
 
         // ring stack 3
         chassis.setPose(0, 0, 0);
         chassis.turnToHeading(255, 1000, {}, false);
-        cat.movePID(18, 1000, 1.2, 1);
+        cat.movePID(18, 1000, 1.2, 1.3);
 
         // touch ladder
         cat.setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
