@@ -24,6 +24,9 @@ void ring_rush() {
     // chassis.moveToPoint(-14, 25, 1000, {.forwards = false});
     chassis.moveToPoint(-39.974, -2.218, 1650, {.maxSpeed= 90});
     pros::delay(500);
+
+    // tuned up to here
+
     rightDoinkerPiston.set_value(true);
     chassis.turnToHeading(113.5, 900, {.maxSpeed = 80});
     pros::delay(250);
