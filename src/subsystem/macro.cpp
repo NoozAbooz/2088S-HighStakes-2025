@@ -27,7 +27,7 @@ void initializeColourSort() {
 				intakeLock = true;
 
 				int timer = 0;
-				while (dist.get_distance() > 110 && timer < 800) {
+				while (dist.get_distance() > 80 && dist.get_distance() < 90 && timer < 800) {
 					pros::delay(3);
 					timer += 3;
 				}
