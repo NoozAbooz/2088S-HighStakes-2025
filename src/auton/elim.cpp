@@ -39,17 +39,17 @@ void ring_rush() {
 
     // corner clear
     rightDoinkerPiston.set_value(true);
-    chassis.turnToHeading(112.5, 1100, {.maxSpeed = 40});
+    chassis.turnToHeading(112.5, 1100, {.maxSpeed = 50});
     pros::delay(250);
     rightDoinkerPiston.set_value(false);
     pros::delay(800);
     
     chassis.setPose(0, 0, 0);
-    chassis.moveToPoint(3, 14, 1250);
-    chassis.moveToPoint(3, 40, 1000);
+    chassis.moveToPoint(3, 9, 1250, {.forwards = false});
+    chassis.moveToPoint(5, 40, 1000);
 
-    chassis.moveToPoint(-12, 30, 1500);
-    chassis.turnToHeading(-3, 1000, {}, false);
+    // chassis.moveToPoint(-12, 30, 1500);
+    // chassis.turnToHeading(-3, 1000, {}, false);
 
     chassis.setPose(0, 0, 0);
     chassis.moveToPoint(0, 62, 3000, {.maxSpeed = 80});
