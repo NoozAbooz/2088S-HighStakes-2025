@@ -16,7 +16,10 @@ void rdconfig_init();
 extern std::string alliance;
 extern std::string field_status;
 extern bool intakeLock;
+
+extern bool colourSortToggle;
 extern bool antiJamToggle;
+
 extern void competitionTelemtryRefresh();
 extern bool isResetting;
 extern int wallstakeStates[];
