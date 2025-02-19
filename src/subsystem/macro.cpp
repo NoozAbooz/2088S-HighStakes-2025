@@ -10,20 +10,37 @@ void initializeColourSort() {
 		double previousIntakeVel;
 		double intakeVel;
 		double derivative;
+
+		int consequtiveTrigger = 0;
 		while (true) {
-			//console.printf("Hue: %d\n", optical.get_hue());
-			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 180 && optical.get_hue() < 240) ||
-				(alliance == "blue" && optical.get_hue() > 8 && optical.get_hue() < 20)) {
+			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 160 && optical.get_hue() < 240) ||
+				(alliance == "blue" && optical.get_hue() > 8 && optical.get_hue() < 35)) {
+
+				if (consequtiveTrigger > 3) {
+					pros::delay(1000);
+					continue;
+				}
+
 				colourSortToggle = false;
 				// eject blue rings
 				console.println("eject impostor");
 				intakeLock = true;
-				pros::delay(20);
-				intake.brake();
-				pros::delay(350);
+
+				int timer = 0;
+				while (dist.get_distance() > 110 && timer < 800) {
+					pros::delay(3);
+					timer += 3;
+				}
+
+				intake.move_voltage(0);
+				pros::delay(230);
 				intake.move_voltage(12000);
 				intakeLock = false;
 				colourSortToggle = true;
+
+				consequtiveTrigger++;
+			} else {
+				consequtiveTrigger = 0;
 			}
 
 			if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
@@ -31,20 +48,20 @@ void initializeColourSort() {
 			}
 
 			// anti-jam
-			intakeVel = intake.get_actual_velocity();
-			derivative = previousIntakeVel - intakeVel;
+			// intakeVel = intake.get_actual_velocity();
+			// derivative = previousIntakeVel - intakeVel;
 
-			if (derivative < -48 && intake.get_voltage() > 6000 && (wallStakeRotationSensor.get_angle() / 100) < wallstakeStates[1] && antiJamToggle == true) {
-				console.println("anti-jam triggered");
-				antiJamToggle = false;
-				//intakeLock = true;
-				intake.move_voltage(-10000);
-				pros::delay(270);
-				intake.move_voltage(12000);
-				//intakeLock = false;
-				antiJamToggle = true;
-			}
-			previousIntakeVel = intakeVel;
+			// if (derivative < -50 && intake.get_voltage() > 6000 && (wallStakeRotationSensor.get_angle() / 100) < wallstakeStates[1] && antiJamToggle == true) {
+			// 	console.println("anti-jam triggered");
+			// 	antiJamToggle = false;
+			// 	//intakeLock = true;
+			// 	intake.move_voltage(-10000);
+			// 	pros::delay(270);
+			// 	intake.move_voltage(12000);
+			// 	//intakeLock = false;
+			// 	antiJamToggle = true;
+			// }
+			// previousIntakeVel = intakeVel;
 
 			pros::delay(3);
 		}
