@@ -21,7 +21,7 @@ void ring_rush() {
     pros::Task ([] {
         pros::delay(750);
         clampPiston.set_value(true);
-        pros::delay(900);
+        pros::delay(880);
         intake.move_voltage(12000);
         colourSortToggle = true;
     });
@@ -39,13 +39,14 @@ void ring_rush() {
 
     // corner clear
     rightDoinkerPiston.set_value(true);
-    chassis.turnToHeading(112.5, 1100, {.maxSpeed = 75});
+    chassis.turnToHeading(112.5, 1100, {.maxSpeed = 69});
     pros::delay(250);
     rightDoinkerPiston.set_value(false);
     pros::delay(100);
     chassis.moveToPoint(-30, 9, 1000, {.forwards = false});
-    pros::delay(300);
-    chassis.moveToPoint(-39, -2, 700);
+    pros::delay(100);
+    chassis.moveToPoint(-39, -3, 1000);
+    pros::delay(100);
     chassis.turnToHeading(110, 500);
     chassis.moveToPoint(-10, 3, 3000, {.maxSpeed = 80});
     pros::delay(100);
