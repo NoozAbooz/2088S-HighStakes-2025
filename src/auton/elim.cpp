@@ -4,8 +4,8 @@ void ring_rush() {
     alliance = "red";
 
     if (alliance == "red" || alliance == "na"){
-    colourSortToggle = false;
     chassis.moveToPoint(0, 0, 1250);
+    colourSortToggle = false;
     chassis.moveToPoint(-2.5, 45.751, 1250);
     intake.move_voltage(12000);
     leftDoinkerPiston.set_value(true);
