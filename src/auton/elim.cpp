@@ -21,7 +21,7 @@ void ring_rush() {
     pros::Task ([] {
         pros::delay(750);
         clampPiston.set_value(true);
-        pros::delay(800);
+        pros::delay(900);
         intake.move_voltage(12000);
         colourSortToggle = true;
     });
