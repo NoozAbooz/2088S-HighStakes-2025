@@ -39,7 +39,7 @@ void ring_rush() {
 
     // corner clear
     rightDoinkerPiston.set_value(true);
-    chassis.turnToHeading(113.5, 1100, {.maxSpeed = 69});
+    chassis.turnToHeading(113.5, 1100, {.maxSpeed = 71.5});
     pros::delay(250);
     rightDoinkerPiston.set_value(false);
     pros::delay(300);
