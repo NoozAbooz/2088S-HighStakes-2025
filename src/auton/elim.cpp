@@ -4,6 +4,7 @@ void ring_rush() {
     alliance = "red";
 
     if (alliance == "red" || alliance == "na"){
+    
     chassis.moveToPoint(0, 0, 1250);
     chassis.moveToPoint(-2.5, 45.751, 1250);
     intake.move_voltage(12000);
@@ -20,7 +21,7 @@ void ring_rush() {
     pros::Task ([] {
         pros::delay(750);
         clampPiston.set_value(true);
-        pros::delay(1400);
+        pros::delay(1100);
         intake.move_voltage(12000);
     });
     chassis.moveToPoint(14.945, 28.287, 1450, {.forwards = false, .maxSpeed = 80}, false);
