@@ -4,7 +4,7 @@ void ring_rush() {
     alliance = "red";
 
     if (alliance == "red" || alliance == "na"){
-    alliance = "na";
+    colourSortToggle = false;
     chassis.moveToPoint(0, 0, 1250);
     chassis.moveToPoint(-2.5, 45.751, 1250);
     intake.move_voltage(12000);
@@ -23,7 +23,7 @@ void ring_rush() {
         clampPiston.set_value(true);
         pros::delay(1100);
         intake.move_voltage(12000);
-        alliance = "red";
+        colourSortToggle = true;
     });
     chassis.moveToPoint(14.945, 28.287, 1450, {.forwards = false, .maxSpeed = 80}, false);
 
@@ -39,7 +39,7 @@ void ring_rush() {
 
     // corner clear
     rightDoinkerPiston.set_value(true);
-    chassis.turnToHeading(111.5, 900, {.maxSpeed = 70});
+    chassis.turnToHeading(112.5, 1100, {.maxSpeed = 40});
     pros::delay(250);
     rightDoinkerPiston.set_value(false);
     pros::delay(800);
@@ -49,7 +49,7 @@ void ring_rush() {
     chassis.moveToPoint(3, 40, 1000);
 
     chassis.moveToPoint(-12, 30, 1500);
-    chassis.turnToHeading(-5, 1000, {}, false);
+    chassis.turnToHeading(-3, 1000, {}, false);
 
     chassis.setPose(0, 0, 0);
     chassis.moveToPoint(0, 62, 3000, {.maxSpeed = 80});
