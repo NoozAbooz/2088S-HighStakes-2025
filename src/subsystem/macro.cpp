@@ -16,7 +16,7 @@ void initializeColourSort() {
 			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 160 && optical.get_hue() < 240) ||
 				(alliance == "blue" && optical.get_hue() > 8 && optical.get_hue() < 35)) {
 
-				if (consequtiveTrigger > 3) {
+				if (consequtiveTrigger > 2) {
 					pros::delay(1000);
 					continue;
 				}
@@ -32,6 +32,7 @@ void initializeColourSort() {
 					timer += 3;
 				}
 
+				pros::delay(25);
 				intake.move_voltage(0);
 				pros::delay(230);
 				intake.move_voltage(12000);
@@ -48,20 +49,20 @@ void initializeColourSort() {
 			}
 
 			// anti-jam
-			// intakeVel = intake.get_actual_velocity();
-			// derivative = previousIntakeVel - intakeVel;
+			intakeVel = intake.get_actual_velocity();
+			derivative = previousIntakeVel - intakeVel;
 
-			// if (derivative < -50 && intake.get_voltage() > 6000 && (wallStakeRotationSensor.get_angle() / 100) < wallstakeStates[1] && antiJamToggle == true) {
-			// 	console.println("anti-jam triggered");
-			// 	antiJamToggle = false;
-			// 	//intakeLock = true;
-			// 	intake.move_voltage(-10000);
-			// 	pros::delay(270);
-			// 	intake.move_voltage(12000);
-			// 	//intakeLock = false;
-			// 	antiJamToggle = true;
-			// }
-			// previousIntakeVel = intakeVel;
+			if (derivative < -50 && intake.get_voltage() > 6000 && (wallStakeRotationSensor.get_angle() / 100) < wallstakeStates[1] && antiJamToggle == true) {
+				console.println("anti-jam triggered");
+				antiJamToggle = false;
+				//intakeLock = true;
+				intake.move_voltage(-10000);
+				pros::delay(270);
+				intake.move_voltage(12000);
+				//intakeLock = false;
+				antiJamToggle = true;
+			}
+			previousIntakeVel = intakeVel;
 
 			pros::delay(3);
 		}
