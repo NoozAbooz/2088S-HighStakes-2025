@@ -32,7 +32,7 @@ void initializeColourSort() {
 					timer += 3;
 				}
 
-				pros::delay(25);
+				pros::delay(30);
 				intake.move_voltage(0);
 				pros::delay(230);
 				intake.move_voltage(12000);
@@ -52,7 +52,7 @@ void initializeColourSort() {
 			intakeVel = intake.get_actual_velocity();
 			derivative = previousIntakeVel - intakeVel;
 
-			if (derivative < -50 && intake.get_voltage() > 6000 && (wallStakeRotationSensor.get_angle() / 100) < wallstakeStates[1] && antiJamToggle == true) {
+			if (derivative < -49 && intake.get_voltage() > 6000 && (wallStakeRotationSensor.get_angle() / 100) < wallstakeStates[1] && antiJamToggle == true) {
 				console.println("anti-jam triggered");
 				antiJamToggle = false;
 				//intakeLock = true;
