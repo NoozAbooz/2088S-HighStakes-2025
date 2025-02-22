@@ -28,8 +28,8 @@ void initializeColourSort() {
 
 				int timer = 0;
 				while (dist.get_distance() > 110 && timer < 800) {
-					pros::delay(3);
-					timer += 3;
+					pros::delay(5);
+					timer += 5;
 				}
 
 				pros::delay(30);
@@ -64,7 +64,7 @@ void initializeColourSort() {
 			}
 			previousIntakeVel = intakeVel;
 
-			pros::delay(3);
+			pros::delay(10);
 		}
 });
 }
