@@ -18,8 +18,8 @@ void opcontrol() {
 		}
 	});
 	antiJamToggle = false;
+	//colourSortToggle = false;
 	wallStake.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	optical.set_led_pwm(100);
 
 	while (true) { // Main continuous loop
 		/* Drive */
