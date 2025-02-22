@@ -22,7 +22,7 @@ void initializeColourSort() {
 				}
 
 				colourSortToggle = false;
-				// eject blue rings
+				// eject rings
 				console.println("eject impostor");
 				intakeLock = true;
 
