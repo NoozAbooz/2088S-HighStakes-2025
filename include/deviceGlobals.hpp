@@ -15,7 +15,7 @@ inline pros::MotorGroup leftDrive({4, -3, -5});
 inline pros::MotorGroup rightDrive({-7, 10, 8});
 
 // Intake
-inline pros::MotorGroup intake({-9, -19});
+inline pros::MotorGroup intake({-9});
 inline pros::Motor wallStake(15);
 
 // Pneumatics

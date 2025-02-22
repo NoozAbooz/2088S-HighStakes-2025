@@ -36,20 +36,13 @@ void calibrateOdomOffsets() {
 
 /* Legacy Auton Routines */
 void driveForward() {
-    while (isnanf(inertial1.get_rotation()) || isinf(inertial1.get_rotation())) {
-		pros::delay(10);
-	}
-    cat.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
-    cat.movePID(24, 2000);
-    cat.movePID(24, 2000);
+    chassis.moveToPoint(0, 5, 1000);
 }
 
 rd::Selector gui_selector({
-    // {"E 5 Ring", Five_Ring},
-    // {"Q 4 Ring + Bar", four_ring_bar},
     // {"Q SAWP 2 Mogo", SAWP_4},
     {"Mecha SAWP", sawp, "", 0},
-    {"PID SAWP", pid_sawp, "", 0},
+    // {"PID SAWP", pid_sawp, "", 0},
     {"Ring Rush", ring_rush, "", 0},
     {"Move forward", driveForward, "", 0},
     {"Skills", skills, "", 100},
