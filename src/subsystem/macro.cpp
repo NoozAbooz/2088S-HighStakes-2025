@@ -13,8 +13,8 @@ void initializeColourSort() {
 
 		int consequtiveTrigger = 0;
 		while (true) {
-			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 160 && optical.get_hue() < 240) ||
-				(alliance == "blue" && optical.get_hue() > 8 && optical.get_hue() < 35)) {
+			if (colourSortToggle == true && (alliance == "red" && optical.get_hue() > 200 && optical.get_hue() < 230) ||
+				(alliance == "blue" && optical.get_hue() > 8 && optical.get_hue() < 25)) {
 
 				if (consequtiveTrigger > 2) {
 					pros::delay(1000);
@@ -64,7 +64,7 @@ void initializeColourSort() {
 			}
 			previousIntakeVel = intakeVel;
 
-			pros::delay(10);
+			pros::delay(5);
 		}
 });
 }
