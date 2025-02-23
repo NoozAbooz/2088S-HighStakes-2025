@@ -82,19 +82,19 @@ chassis.moveToPoint(67, 57.7, 1000);
 chassis.turnToHeading(90, 400);
 liftControl(wallstakeStates[2]);
 chassis.moveToPoint(67, 57.7, 1000);
-// pros::delay(300);
-// intake.move_voltage(12000);
-// chassis.moveToPoint(48, 63, 2000, {.forwards = false});
-// pros::delay(200);
-// chassis.turnToHeading(180, 700);
-// chassis.moveToPoint(48, 0, 2000, {.maxSpeed = 70});
-// chassis.moveToPoint(44, 15, 1000, {.forwards = false});
-// chassis.turnToHeading(90, 700);
-// chassis.moveToPoint(60, 15, 1000);
-// pros::delay(300);
-// chassis.moveToPoint(63, 0, 1000, {.forwards = false});
-// pros::delay(700);
-// clampPiston.set_value(false);
+pros::delay(300);
+intake.move_voltage(12000);
+chassis.moveToPoint(48, 63, 2000, {.forwards = false});
+pros::delay(200);
+chassis.turnToHeading(180, 700);
+chassis.moveToPoint(48, 0, 2000, {.maxSpeed = 70});
+chassis.moveToPoint(44, 15, 1000, {.forwards = false});
+chassis.turnToHeading(90, 700);
+chassis.moveToPoint(60, 15, 1000);
+pros::delay(300);
+chassis.moveToPoint(63, 0, 1000, {.forwards = false});
+pros::delay(700);
+clampPiston.set_value(false);
 
 
 
