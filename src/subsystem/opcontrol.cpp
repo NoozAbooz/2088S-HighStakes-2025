@@ -39,7 +39,7 @@ void refreshClamp() {
 
 bool doinkerToggle = false;
 void refreshDoinker() {
-	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
+	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
     	doinkerToggle = !doinkerToggle;
 		leftDoinkerPiston.set_value(doinkerToggle);
 		// if (alliance == "blue") {
