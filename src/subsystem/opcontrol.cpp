@@ -38,15 +38,15 @@ void refreshClamp() {
 }
 
 bool doinkerToggle = false;
+bool descoreToggle = false;
 void refreshDoinker() {
-	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
+	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
     	doinkerToggle = !doinkerToggle;
-		leftDoinkerPiston.set_value(doinkerToggle);
-		// if (alliance == "blue") {
-		// 	leftDoinkerPiston.set_value(doinkerToggle);
-		// } else {
-		// 	rightDoinkerPiston.set_value(doinkerToggle);
-		// }
+		rightDoinkerPiston.set_value(doinkerToggle);
+    }
+	if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
+    	descoreToggle = !descoreToggle;
+		leftDoinkerPiston.set_value(descoreToggle);
     }
 }
 
