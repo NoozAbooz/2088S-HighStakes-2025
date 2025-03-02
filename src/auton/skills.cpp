@@ -1,6 +1,6 @@
 #include "main.h"
 
-void skills() {
+void skills() { /* NO COLOUR SORT */
 
 intake.move_voltage(12000);
 pros::delay(400);
@@ -97,5 +97,11 @@ pros::delay(700);
 clampPiston.set_value(false);
 
 
+
+}
+
+void skillsCS() { /* WITH COLOUR SORT */
+
+alliance = "red";
 
 }
