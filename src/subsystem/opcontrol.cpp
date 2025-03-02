@@ -17,9 +17,8 @@ bool isResetting = false;
 void refreshWallstakes() {
 	if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
 		wallStake.move_voltage(12000);
-		intake.move_voltage(-1000);
 	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-		wallStake.move_voltage(-12000);
+		wallStake.move_voltage(-12000 * 0.65);
 	} else if (isResetting == false) {
 		wallStake.brake();
 	}
