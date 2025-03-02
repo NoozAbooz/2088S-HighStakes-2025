@@ -21,13 +21,14 @@ double gear_ratio = 36.0 / 48;
 // Return robot rotation in degrees, unwrapped
 double get_imu_rotation() {
 	double rotation1 = inertial1.get_rotation();
-	double rotation2 = inertial2.get_rotation();
+	// double rotation2 = inertial2.get_rotation();
 
-	if (!isnanf(inertial2.get_rotation()) && !isinf(inertial2.get_rotation())) { // use imu 2 when available
-		return (rotation1 + rotation2) / 2;
-	} else {
-		return rotation1;
-	}
+	// if (!isnanf(inertial2.get_rotation()) && !isinf(inertial2.get_rotation())) { // use imu 2 when available
+	// 	return (rotation1 + rotation2) / 2;
+	// } else {
+	// 	return rotation1;
+	// }
+	return rotation1;
 }
 
 double get_vertical_distance_traveled() {
@@ -78,7 +79,7 @@ double deltaYLocal;
 
 void ks::initializeOdom() {
 	inertial1.reset();
-	inertial2.reset();
+	// inertial2.reset();
 
 	verticalEncoder.reset();
 	horizontalEncoder.reset();
@@ -127,7 +128,7 @@ void ks::setOdomPosition(double x_new, double y_new, double theta_new) {
 	prev_heading = 0;
 
 	inertial1.set_heading(theta_new);
-	inertial2.set_heading(theta_new);
+	//inertial2.set_heading(theta_new);
 	odom_task.resume();
 }
 

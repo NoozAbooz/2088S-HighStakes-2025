@@ -54,11 +54,6 @@ rd::Selector gui_selector({
 
 void autonomous() {
     inertial1.tare();
-    inertial2.tare();
-
-    if (alliance == "blue") {
-        cat.mirrorAutons(true);
-    }
 
     chassis.setPose(0, 0, 0);
     optical.set_led_pwm(100);
