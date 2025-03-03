@@ -2,11 +2,11 @@
 
 void skills() { /* NO COLOUR SORT */
 
-       chassis.moveToPoint(0, 0, 1000);
+       chassis.moveToPoint(0, 0, 5000);
        wallStake.move_voltage(12000);
        pros::delay(510);
        wallStake.brake();
-       chassis.moveToPoint(-0.038, 15.025, 1000, {.forwards = false, .maxSpeed = 80}); //mogo
+       chassis.moveToPoint(0.562, -15.014, 5000); //mogo
        pros::Task([] {
               liftControl(wallstakeStates[0]);
               pros::delay(500);
@@ -14,47 +14,46 @@ void skills() { /* NO COLOUR SORT */
               pros::delay(500);
                intake.move_voltage(12000);
         });
-       chassis.moveToPoint(17.148, 37.401, 5000); //r1
+       chassis.moveToPoint(-15.832, -37.976, 5000); //r1
        pros::Task([] {
               pros::delay(1200);
               liftControl(wallstakeStates[1]);
               pros::delay(1200);
               intake.move_voltage(0);
-        });
-       chassis.moveToPoint(36.962, 84.731, 5000); //wall ring
-       // chassis.moveToPoint(9.566, 78.573, 5000); //r2
-       // chassis.moveToPoint(6.237, 84.361, 5000); //r3
-       // chassis.moveToPoint(1.235, 55.073, 5000); //r4&5
-       // chassis.moveToPoint(-26.486, 30.112, 5000); //r6
-       // chassis.moveToPoint(-23.423, 47.616, 5000); //corner
-       //first corner
+       chassis.moveToPoint(-33.982, -85.97, 5000); //wall ring
+       // chassis.moveToPoint(-6.818, -78.859, 5000); //r2
+       // chassis.moveToPoint(-3.289, -84.527, 5000); //r3
+       // chassis.moveToPoint(0.687, -55.082, 5000); //r4&5
+       // chassis.moveToPoint(27.521, -29.17, 5000); //r6
+       // chassis.moveToPoint(25.07, -46.769, 5000); //corner
+       // //first corner
+       // chassis.moveToPoint(43.681, -38.52, 5000);
+       // chassis.moveToPoint(-26.218, 9.361, 5000);
+       // chassis.moveToPoint(-48.714, -4.261, 5000);
+       // chassis.moveToPoint(-95.317, -19.771, 5000);
+       // chassis.moveToPoint(-88.437, 5.995, 5000);
+       // chassis.moveToPoint(-91.982, 10.674, 5000);
+       // chassis.moveToPoint(-64.569, 13.163, 5000);
+       // chassis.moveToPoint(-39.083, 37.451, 5000);
+       // chassis.moveToPoint(-55.23, 38.062, 5000);
+       // chassis.moveToPoint(-45.649, 58.011, 5000);
+       // chassis.moveToPoint(-48.122, -36.423, 5000);
+       // chassis.moveToPoint(-94.762, -82.436, 5000);
+       // chassis.moveToPoint(-78.081, -90.311, 5000);
+       // chassis.moveToPoint(-60.301, -110.737, 5000);
+       // chassis.moveToPoint(-50.429, -102.5, 5000);
+       // chassis.moveToPoint(-43.176, -112.025, 5000);
+       // chassis.moveToPoint(-52.214, -129.18, 5000);
+       // chassis.moveToPoint(-51.028, -70.668, 5000);
+       // chassis.moveToPoint(-78.361, -68.542, 5000);
+       // chassis.moveToPoint(-115.066, -36.574, 5000);
+       // chassis.moveToPoint(-122.487, -27.211, 5000);
+       // chassis.moveToPoint(-125.227, -42.497, 5000);
+       // chassis.moveToPoint(-141.416, -34.795, 5000);
+       // chassis.moveToPoint(-110.669, -58.58, 5000);
+       // chassis.moveToPoint(-82.262, -36.982, 5000);
+       // chassis.moveToPoint(-65.628, -38.096, 5000);
 
-       // chassis.moveToPoint(-42.31, 40.021, 5000);
-       // chassis.moveToPoint(25.875, -10.271, 5000);
-       // chassis.moveToPoint(48.833, 2.558, 5000);
-       // chassis.moveToPoint(95.949, 16.432, 5000);
-       // chassis.moveToPoint(88.174, -9.078, 5000);
-       // chassis.moveToPoint(91.554, -13.878, 5000);
-       // chassis.moveToPoint(64.07, -15.409, 5000);
-       // chassis.moveToPoint(37.752, -38.792, 5000);
-       // chassis.moveToPoint(53.868, -39.967, 5000);
-       // chassis.moveToPoint(43.597, -59.568, 5000);
-       // chassis.moveToPoint(49.364, 34.722, 5000);
-       // chassis.moveToPoint(97.581, 79.078, 5000);
-       // chassis.moveToPoint(81.186, 87.531, 5000);
-       // chassis.moveToPoint(64.129, 108.565, 5000);
-       // chassis.moveToPoint(53.976, 100.678, 5000);
-       // chassis.moveToPoint(47.059, 110.45, 5000);
-       // chassis.moveToPoint(56.69, 127.279, 5000);
-       // chassis.moveToPoint(53.463, 68.844, 5000);
-       // chassis.moveToPoint(80.705, 65.765, 5000);
-       // chassis.moveToPoint(116.273, 32.536, 5000);
-       // chassis.moveToPoint(123.362, 22.92, 5000);
-       // chassis.moveToPoint(126.634, 38.101, 5000);
-       // chassis.moveToPoint(142.544, 29.838, 5000);
-       // chassis.moveToPoint(112.646, 54.682, 5000);
-       // chassis.moveToPoint(83.502, 34.088, 5000);
-       // chassis.moveToPoint(66.918, 35.783, 5000);
        
 
 
@@ -109,7 +108,7 @@ void skills() { /* NO COLOUR SORT */
 
 // pros::Task([] {
 //        liftControl(wallstakeStates[0]);
-// });
+});
 
 
 // chassis.moveToPoint(0, 10, 1500);
